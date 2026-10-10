@@ -1,0 +1,2485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Year Project Report - PinjamGeng (UPTM) - Nursyafiqah Zulaikha</title>
+  <style>
+    /* ACADEMIC REPORT STYLING (UPTM / FCOM GUIDELINES) */
+    @page {
+      size: A4;
+      margin: 1.0in 1.0in 1.0in 1.25in; /* Top: 1.0", Right: 1.0", Bottom: 1.0", Left: 1.25" */
+      @top-left {
+        content: "CC101";
+        font-family: Arial, sans-serif;
+        font-size: 9pt;
+        font-weight: bold;
+        color: #4b5563;
+      }
+      @top-right {
+        content: "DIPLOMA IN COMPUTER SCIENCE";
+        font-family: Arial, sans-serif;
+        font-size: 9pt;
+        font-weight: bold;
+        color: #4b5563;
+      }
+      @bottom-right {
+        content: "CC101 — Page " counter(page) " of 95";
+        font-family: Arial, sans-serif;
+        font-size: 9pt;
+        color: #4b5563;
+      }
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11pt;
+      color: #000000;
+      line-height: 1.15;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      box-sizing: border-box;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 30px auto;
+      padding: 1.0in 1.0in 1.0in 1.25in;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff;
+      }
+      .page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        page-break-after: always;
+        height: auto;
+        min-height: 100vh;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cover-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 240mm;
+    }
+
+    .project-title {
+      font-size: 18pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.5;
+      margin-top: 40px;
+    }
+
+    .category-badge {
+      font-size: 14pt;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .student-info {
+      margin: 60px 0;
+    }
+
+    .student-name {
+      font-size: 14pt;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .student-id {
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .fulfillment-block {
+      margin: 40px 0;
+      font-size: 11pt;
+      line-height: 1.5;
+      font-weight: bold;
+    }
+
+    .degree-title {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .university-info {
+      margin-bottom: 30px;
+    }
+
+    .faculty-name, .uni-name, .submission-date {
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9pt;
+      font-weight: bold;
+      color: #4b5563;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    .page-footer {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 9pt;
+      color: #4b5563;
+      position: absolute;
+      bottom: 0.8in;
+      left: 1.25in;
+      right: 1.0in;
+      border-top: 1px solid #ddd;
+      padding-top: 4px;
+      font-family: Arial, sans-serif;
+    }
+
+    h1.chapter-num {
+      font-size: 16pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0 5px 0;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+    }
+
+    h1.chapter-title {
+      font-size: 16pt;
+      font-weight: bold;
+      text-align: center;
+      margin: 0 0 25px 0;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+    }
+
+    h2.section-title {
+      font-size: 13pt;
+      font-weight: bold;
+      margin: 20px 0 6px 0;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    h3.subsection-title {
+      font-size: 11pt;
+      font-weight: bold;
+      margin: 15px 0 4px 0;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    h4.sub-subsection-title {
+      font-size: 11pt;
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    p, p.justified-text {
+      font-size: 11pt;
+      line-height: 1.15;
+      text-align: justify;
+      text-justify: inter-word;
+      margin: 0 0 6pt 0;
+      text-indent: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    ul.justified-list, ol.justified-list {
+      text-align: justify;
+      text-justify: inter-word;
+      margin: 6pt 0 6pt 20px;
+      padding-left: 10px;
+      font-size: 11pt;
+      line-height: 1.15;
+      font-family: Arial, sans-serif;
+    }
+
+    ul.justified-list li, ol.justified-list li {
+      margin-bottom: 4px;
+    }
+
+    .toc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5pt;
+      line-height: 1.6;
+    }
+
+    .toc-table td {
+      padding: 2.5px 0;
+    }
+
+    .toc-chapter td {
+      font-weight: bold;
+      padding-top: 10px;
+    }
+
+    .toc-title td {
+      font-weight: bold;
+      padding-bottom: 6px;
+    }
+
+    .toc-indent-1 {
+      padding-left: 20px !important;
+      font-weight: bold;
+    }
+
+    .toc-indent-2 {
+      padding-left: 40px !important;
+    }
+
+    .toc-page {
+      text-align: right;
+      width: 40px;
+      font-weight: normal;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin: 15px 0 25px 0;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .table-caption {
+      font-size: 10.5pt;
+      font-weight: bold;
+      margin: 14pt 0 6pt 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .figure-caption {
+      font-size: 10.5pt;
+      font-weight: bold;
+      margin: 6pt 0 14pt 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .reference-item, ol.references-list li {
+      padding-left: 0.5in;
+      text-indent: -0.5in;
+      margin-bottom: 8pt;
+      line-height: 1.15;
+      font-size: 11pt;
+      text-align: justify;
+      font-family: Arial, sans-serif;
+    }
+
+    .screenshot-guide-box {
+      background-color: #faf8f5;
+      border: 1.5px dashed #8b5a2b;
+      padding: 12px 16px;
+      margin: 15px 0 20px 0;
+      font-size: 10pt;
+      line-height: 1.5;
+      color: #2e1e12;
+      border-radius: 4px;
+    }
+
+    .screenshot-guide-box h4 {
+      margin: 0 0 6px 0;
+      font-size: 10.5pt;
+      color: #8b5a2b;
+    }
+
+    .interface-doc-block {
+      margin: 25px 0;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .interface-doc-block h4 {
+      font-size: 11pt;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+    }
+
+    /* Print toolbar at top of web view */
+    .print-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #231308;
+      color: #ffffff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .print-btn {
+      background: #d97736;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: #e5a953;
+      color: #231308;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Web View Toolbar -->
+  <div class="print-toolbar no-print">
+    <div>
+      <strong>PinjamGeng Academic FYP Final Report</strong> | Student: <strong>Nursyafiqah Zulaikha Binti Zilkamal (AM2412018113)</strong>
+    </div>
+    <div>
+      <button class="print-btn" onclick="window.print()">
+        &#128438; Print / Save as PDF (Ctrl + P)
+      </button>
+    </div>
+  </div>
+
+  
+    <!-- COVER PAGE 1 -->
+    <div class="page cover-page">
+      <div class="cover-content">
+        <h1 class="project-title">SMART EVENT EQUIPMENT BOOKING AND INVENTORY MANAGEMENT SYSTEM FOR UNIVERSITI POLY-TECH MALAYSIA (PINJAMGENG)</h1>
+        
+        <div class="student-info">
+          <p class="student-name">NURSYAFIQAH ZULAIKHA BINTI ZILKAMAL</p>
+          <p class="student-id">AM2412018113</p>
+        </div>
+
+        <div class="university-info">
+          <p class="uni-name">UNIVERSITI POLY-TECH MALAYSIA</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COVER PAGE 2 -->
+    <div class="page cover-page">
+      <div class="cover-content">
+        <h1 class="project-title">SMART EVENT EQUIPMENT BOOKING AND INVENTORY MANAGEMENT SYSTEM FOR UNIVERSITI POLY-TECH MALAYSIA (PINJAMGENG)</h1>
+        <p class="category-badge">CATEGORY A</p>
+        
+        <div class="student-info">
+          <p class="student-name">NURSYAFIQAH ZULAIKHA BINTI ZILKAMAL</p>
+        </div>
+
+        <div class="fulfillment-block">
+          <p>THIS FINAL YEAR PROJECT REPORT IS PREPARED TO FULFILL THE REQUIREMENT OF</p>
+          <p class="degree-title">DIPLOMA IN COMPUTER SCIENCE</p>
+        </div>
+
+        <div class="university-info">
+          <p class="faculty-name">FACULTY OF COMPUTING &amp; MULTIMEDIA</p>
+          <p class="uni-name">UNIVERSITI POLY-TECH MALAYSIA</p>
+          <p class="submission-date">APRIL 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: DECLARATION OF ORIGINALITY -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">Declaration of Originality</h2>
+      <p class="justified-text">
+        This project is all my own work and has not been copied in part or in whole from any other source except where duly acknowledged. As such, all use of previously published work (from books, journals, magazines, internet, etc.) has been acknowledged within the main report to an item in the References or Bibliography lists.
+      </p>
+      <p class="justified-text">
+        I also agree that an electronic copy of this project may be stored and used for the purposes of plagiarism prevention and detection.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 30px;">Copyright Acknowledgement</h2>
+      <p class="justified-text">
+        I acknowledge that the copyright of this project and report belongs to Universiti Poly-Tech Malaysia.
+      </p>
+
+      <div class="signature-section" style="margin-top: 50px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <p><strong>Author's Signature:</strong> _______________________</p>
+            <p style="margin-top: 5px;"><strong>Date:</strong> 7/4/2026</p>
+          </div>
+        </div>
+
+        <div class="stamp-box" style="margin-top: 60px; width: 220px; height: 120px; border: 1.5px solid #000; text-align: center; padding-top: 95px; font-size: 11px;">
+          Coordinator / Office Stamp
+        </div>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 3 of 95</span></div>
+    </div>
+
+    <!-- PAGE 4: ABSTRACT -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title" style="text-align: center; margin-bottom: 25px;">Abstract</h2>
+      
+      <p class="justified-text">
+        Smart Event Equipment Booking and Inventory Management System (PinjamGeng) is developed to streamline and modernize the equipment borrowing and resource allocation procedures at Universiti Poly-Tech Malaysia (UPTM). Currently, student clubs, event committees, faculty lecturers, and campus administrative bodies manage audio-visual, computing, and staging equipment loans using paper-based requisition forms and manual physical logbooks. This traditional process suffers from significant operational friction, including lost application slips, scheduling conflicts, lack of real-time inventory visibility, unverified return conditions, and delayed administrative reporting. Consequently, student organizers frequently experience double-booking of high-demand items such as wireless microphones, HD projectors, and PA systems during peak event periods.
+      </p>
+      <p class="justified-text">
+        To address these critical challenges, PinjamGeng provides a centralized, web-based digital ecosystem designed with tailored role-based access for student borrowers and equipment administrators. The system introduces an innovative "Smart Event Packages" feature that allows organizers to reserve pre-configured equipment bundles (such as AGM Package, Outdoor Sports Carnival Bundle, and Seminar Exhibition Setup) in a single click, eliminating manual equipment omissions and accelerating the booking workflow. A 2-step booking wizard guides users through event scheduling, purpose verification, and digital regulatory agreement, generating an official downloadable and printable A4 loan agreement slip complete with borrower particulars and signature sections.
+      </p>
+      <p class="justified-text">
+        For administrative staff and technicians at the Faculty of Computing &amp; Multimedia (FCOM), PinjamGeng provides real-time stock allocation, request review workflows, a dedicated return inspection desk to record physical item condition (Excellent, Good, Fair, Damaged), and an automated maintenance ticketing mechanism that flags damaged gear directly for technical servicing. Built using PHP, MySQL (MariaDB), Apache (XAMPP), and styled with modern Tailwind CSS and FontAwesome under an aesthetic warm campus palette, the platform has undergone comprehensive unit, integration, system, and user acceptance testing (UAT). The evaluation results confirm that PinjamGeng eliminates schedule clashes, reduces equipment requisition time by over 80%, and establishes end-to-end accountability across the university's event operations.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 4 of 95</span></div>
+    </div>
+
+    <!-- PAGES 5-6: TABLE OF CONTENTS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">Table of Contents</h2>
+      
+      <table class="toc-table">
+        <tr class="toc-chapter"><td>CHAPTER 1</td><td class="toc-page">14</td></tr>
+        <tr class="toc-title"><td>INTRODUCTION</td><td class="toc-page">14</td></tr>
+        <tr><td class="toc-indent-1">1.1 Introduction</td><td class="toc-page">14</td></tr>
+        <tr><td class="toc-indent-1">1.2 Problem Statements</td><td class="toc-page">16</td></tr>
+        <tr><td class="toc-indent-2">1.2.1 Manual Paper-Based Loan Forms &amp; Disorganized Tracking</td><td class="toc-page">16</td></tr>
+        <tr><td class="toc-indent-2">1.2.2 Lack of Real-Time Equipment Availability &amp; Schedule Overlaps</td><td class="toc-page">16</td></tr>
+        <tr><td class="toc-indent-2">1.2.3 Inefficient Return Inspection, Damaged Equipment Tracking &amp; Reporting</td><td class="toc-page">16</td></tr>
+        <tr><td class="toc-indent-1">1.3 Project Objectives</td><td class="toc-page">17</td></tr>
+        <tr><td class="toc-indent-2">1.3.1 To develop a centralized web-based equipment booking and inventory management system</td><td class="toc-page">17</td></tr>
+        <tr><td class="toc-indent-2">1.3.2 To allow real-time equipment availability monitoring and event package selection</td><td class="toc-page">17</td></tr>
+        <tr><td class="toc-indent-2">1.3.3 To establish an automated return inspection, condition logging, and maintenance reporting workflow</td><td class="toc-page">17</td></tr>
+        <tr><td class="toc-indent-1">1.4 Scope and Target User</td><td class="toc-page">18</td></tr>
+        <tr><td class="toc-indent-2">1.4.1 Project Scope</td><td class="toc-page">18</td></tr>
+        <tr><td class="toc-indent-2">1.4.2 Product Scope</td><td class="toc-page">18</td></tr>
+        <tr><td class="toc-indent-2">1.4.3 Target User</td><td class="toc-page">19</td></tr>
+        <tr><td class="toc-indent-1">1.5 Project Requirement</td><td class="toc-page">19</td></tr>
+        <tr><td class="toc-indent-2">1.5.1 Hardware Requirement</td><td class="toc-page">19</td></tr>
+        <tr><td class="toc-indent-2">1.5.2 Software Requirement</td><td class="toc-page">20</td></tr>
+        <tr><td class="toc-indent-1">1.6 Conclusion</td><td class="toc-page">20</td></tr>
+
+        <tr class="toc-chapter"><td>CHAPTER 2</td><td class="toc-page">21</td></tr>
+        <tr class="toc-title"><td>LITERATURE REVIEW</td><td class="toc-page">21</td></tr>
+        <tr><td class="toc-indent-1">2.1 Introduction</td><td class="toc-page">21</td></tr>
+        <tr><td class="toc-indent-1">2.2 Investigation</td><td class="toc-page">22</td></tr>
+        <tr><td class="toc-indent-2">2.2.1 Manual Equipment Loan and Physical Form Processing Challenges</td><td class="toc-page">22</td></tr>
+        <tr><td class="toc-indent-2">2.2.2 The Critical Need for Real-Time Equipment Availability and Conflict Prevention</td><td class="toc-page">23</td></tr>
+        <tr><td class="toc-indent-2">2.2.3 Equipment Condition Tracking, Loss Prevention, and Reporting Complexity</td><td class="toc-page">24</td></tr>
+        <tr><td class="toc-indent-1">2.3 Previous Case Study</td><td class="toc-page">25</td></tr>
+        <tr><td class="toc-indent-2">2.3.1 Case Study 1: Cheqroom</td><td class="toc-page">25</td></tr>
+        <tr><td class="toc-indent-2">2.3.2 Case Study 2: Booqable</td><td class="toc-page">27</td></tr>
+        <tr><td class="toc-indent-2">2.3.3 Case Study 3: EZOfficeInventory</td><td class="toc-page">32</td></tr>
+        <tr><td class="toc-indent-1">2.4 Comparison</td><td class="toc-page">36</td></tr>
+        <tr><td class="toc-indent-1">2.5 Discussion</td><td class="toc-page">37</td></tr>
+        <tr><td class="toc-indent-1">2.6 Conclusion</td><td class="toc-page">38</td></tr>
+
+        <tr class="toc-chapter"><td>CHAPTER 3</td><td class="toc-page">39</td></tr>
+        <tr class="toc-title"><td>METHODOLOGY</td><td class="toc-page">39</td></tr>
+        <tr><td class="toc-indent-1">3.1 Introduction</td><td class="toc-page">39</td></tr>
+        <tr><td class="toc-indent-1">3.2 Agile Methodology</td><td class="toc-page">40</td></tr>
+        <tr><td class="toc-indent-1">3.3 Phases in Agile Methodology</td><td class="toc-page">41</td></tr>
+        <tr><td class="toc-indent-2">3.3.1 Phase 1: Plan</td><td class="toc-page">41</td></tr>
+        <tr><td class="toc-indent-2">3.3.2 Phase 2: Design</td><td class="toc-page">41</td></tr>
+        <tr><td class="toc-indent-2">3.3.3 Phase 3: Develop</td><td class="toc-page">42</td></tr>
+        <tr><td class="toc-indent-2">3.3.4 Phase 4: Test</td><td class="toc-page">42</td></tr>
+        <tr><td class="toc-indent-2">3.3.5 Phase 5: Deploy</td><td class="toc-page">42</td></tr>
+        <tr><td class="toc-indent-2">3.3.6 Phase 6: Review</td><td class="toc-page">43</td></tr>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 5 of 95</span></div>
+    </div>
+
+    <!-- TOC PAGE 6 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <table class="toc-table">
+        <tr><td class="toc-indent-1">3.4 Data Gathering and Requirement</td><td class="toc-page">43</td></tr>
+        <tr><td class="toc-indent-2">3.4.1 User Requirement Analysis</td><td class="toc-page">43</td></tr>
+        <tr><td class="toc-indent-1">3.5 Interface Design</td><td class="toc-page">50</td></tr>
+        <tr><td class="toc-indent-2">3.5.1 Wireframe</td><td class="toc-page">50</td></tr>
+        <tr><td class="toc-indent-2">3.5.2 Actual Interface</td><td class="toc-page">59</td></tr>
+        <tr><td class="toc-indent-1">3.6 System and Application Modelling</td><td class="toc-page">91</td></tr>
+        <tr><td class="toc-indent-2">3.6.1 Flowchart</td><td class="toc-page">91</td></tr>
+        <tr><td class="toc-indent-2">3.6.2 Use Case Diagram</td><td class="toc-page">94</td></tr>
+        <tr><td class="toc-indent-2">3.6.3 Entity Relational Diagram</td><td class="toc-page">96</td></tr>
+        <tr><td class="toc-indent-2">3.6.4 Data Dictionary</td><td class="toc-page">97</td></tr>
+        <tr><td class="toc-indent-1">3.7 Conclusion</td><td class="toc-page">101</td></tr>
+
+        <tr class="toc-chapter"><td>CHAPTER 4</td><td class="toc-page">102</td></tr>
+        <tr class="toc-title"><td>FINDINGS AND RESULTS</td><td class="toc-page">102</td></tr>
+        <tr><td class="toc-indent-1">4.1 Introduction</td><td class="toc-page">102</td></tr>
+        <tr><td class="toc-indent-1">4.2 System Evaluation</td><td class="toc-page">103</td></tr>
+        <tr><td class="toc-indent-2">4.2.1 Unit Testing</td><td class="toc-page">104</td></tr>
+        <tr><td class="toc-indent-2">4.2.2 Integration Testing</td><td class="toc-page">111</td></tr>
+        <tr><td class="toc-indent-2">4.2.3 System Testing</td><td class="toc-page">116</td></tr>
+        <tr><td class="toc-indent-2">4.2.4 User Acceptance Testing</td><td class="toc-page">118</td></tr>
+        <tr><td class="toc-indent-1">4.3 Discussion</td><td class="toc-page">124</td></tr>
+        <tr><td class="toc-indent-1">4.4 Conclusion</td><td class="toc-page">125</td></tr>
+
+        <tr class="toc-chapter"><td>CHAPTER 5</td><td class="toc-page">126</td></tr>
+        <tr class="toc-title"><td>CONCLUSION</td><td class="toc-page">126</td></tr>
+        <tr><td class="toc-indent-1">5.1 Introduction</td><td class="toc-page">126</td></tr>
+        <tr><td class="toc-indent-1">5.2 Project Achievement</td><td class="toc-page">126</td></tr>
+        <tr><td class="toc-indent-2">5.2.1 First Objective</td><td class="toc-page">127</td></tr>
+        <tr><td class="toc-indent-2">5.2.2 Second Objective</td><td class="toc-page">128</td></tr>
+        <tr><td class="toc-indent-2">5.2.3 Third Objective</td><td class="toc-page">129</td></tr>
+        <tr><td class="toc-indent-1">5.3 Project Constraint and Limitation</td><td class="toc-page">131</td></tr>
+        <tr><td class="toc-indent-1">5.4 Recommendation and Future Work</td><td class="toc-page">132</td></tr>
+        <tr><td class="toc-indent-1">5.5 Conclusion</td><td class="toc-page">133</td></tr>
+
+        <tr class="toc-chapter"><td>Appendix A – Questionnaire</td><td class="toc-page">134</td></tr>
+        <tr class="toc-chapter"><td>Appendix B – User Manual</td><td class="toc-page">141</td></tr>
+        <tr class="toc-chapter"><td>References</td><td class="toc-page">142</td></tr>
+        <tr class="toc-chapter"><td>Originality Result</td><td class="toc-page">145</td></tr>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 6 of 95</span></div>
+    </div>
+
+    <!-- PAGE 13: ACKNOWLEDGEMENTS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title" style="text-align: center; margin-bottom: 25px;">Acknowledgements</h2>
+
+      <p class="justified-text">
+        First and foremost, I extend my deepest gratitude and praise to Allah (SWT) for His endless grace, blessings, health, and patience throughout the entire development journey of this Final Year Project. Without His divine guidance and strength, the successful completion of the "Smart Event Equipment Booking and Inventory Management System for Universiti Poly-Tech Malaysia (PinjamGeng)" project would never have been possible.
+      </p>
+      <p class="justified-text">
+        I would like to express my most heartfelt appreciation and gratitude to my dedicated supervisor, <strong>Madam Jihadah Binti Ahmad</strong>, for her continuous mentorship, constructive critiques, insightful recommendations, and unwavering encouragement from the proposal defense until the final project demonstration. Her expertise in systems analysis and user experience design helped me maintain high academic rigor and motivated me to transform a routine booking system into an innovative, package-centric campus inventory solution.
+      </p>
+      <p class="justified-text">
+        My sincere appreciation is also extended to <strong>Madam Noraliza Binti Azizan</strong>, our respected FYP coordinator and examiner, whose valuable feedback during milestone reviews significantly sharpened the scope, architectural integrity, and evaluation metrics of this research. Her guidance ensured that this project strictly complies with the standards of the Faculty of Computing &amp; Multimedia (FCOM).
+      </p>
+      <p class="justified-text">
+        A special, loving dedication goes to my beloved mother and family members. Their continuous prayers, patience, moral support, and financial sacrifices were my greatest source of inspiration and strength during long late-night coding sessions and stressful submission deadlines. Their belief in my potential kept me grounded and determined to complete my Diploma in Computer Science with excellence.
+      </p>
+      <p class="justified-text">
+        Lastly, I wish to thank my precious classmates, close friends, and fellow student committee members at UPTM who actively participated in user requirement surveys and usability testing trials. Their honest feedback, peer support, and camaraderie made this learning journey memorable.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 13 of 95</span></div>
+    </div>
+    
+  
+    <!-- CHAPTER 1: INTRODUCTION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">CHAPTER 1</h1>
+      <h1 class="chapter-title">INTRODUCTION</h1>
+
+      <h2 class="section-title">1.1 Introduction</h2>
+      <p class="justified-text">
+        In higher educational institutions such as Universiti Poly-Tech Malaysia (UPTM), dynamic extracurricular activities, academic conferences, club workshops, and university-wide student events form an integral component of campus life. Organizers ranging from student societies, academic clubs, the Student Representative Council (Majlis Perwakilan Pelajar - MPP), to faculty lecturers constantly execute diverse physical and hybrid events. To guarantee that these activities operate professionally, access to specialized audio-visual (AV), computing, staging, and multimedia equipment—such as digital laser projectors, motorized projection screens, wireless PA sound systems, dynamic handheld microphones, DSLR cameras, studio lighting, HDMI video splitters, and heavy-duty power extension reels—is paramount.
+      </p>
+      <p class="justified-text">
+        Presently, the loan and reservation of campus event gear at UPTM is managed through traditional, manual approaches. Event organizers are required to visit administrative resource offices or faculty technician counters in person, fill out multi-part physical paper requisition forms, obtain multiple physical signatures from club advisors and heads of department, and wait several working days to receive verbal confirmation. Physical logbooks and paper filing folders are maintained at the equipment counter to log reservations, item handovers, and return records.
+      </p>
+      <p class="justified-text">
+        This traditional paper-based process creates profound operational bottlenecks for both borrowers and equipment custodians. Manual paperwork is prone to being misplaced, damaged, or delayed in inter-departmental transit. More critically, physical logbooks fail to provide real-time inventory visibility. Organizers frequently spend substantial time planning event logistics, only to discover at the counter that critical equipment items have already been reserved by another club or are currently out of service for repairs. During peak campus activity windows—such as Faculty Activity Weeks, Career Fairs, and Annual General Meetings (AGMs)—schedule overlaps, double-bookings, and last-minute gear shortages frequently jeopardize the smooth execution of student events.
+      </p>
+      <p class="justified-text">
+        Furthermore, when equipment is returned at the end of an event, the lack of a standardized inspection workflow makes tracking physical item condition challenging. Counter staff often receive returned items during hurried post-event cleanups without systematically checking whether accessories, connection adapters, or microphones are intact and fully functional. Damaged equipment is frequently shelved unnoticed, only to be discovered broken when the next organizer opens the equipment casing hours before an important presentation.
+      </p>
+      <p class="justified-text">
+        To overcome these pervasive inefficiencies, the <strong>Smart Event Equipment Booking and Inventory Management System (PinjamGeng)</strong> is proposed and developed. PinjamGeng establishes a modernized, responsive, and secure web-based platform tailored specifically to the operational realities of UPTM. By digitalizing the entire equipment loan lifecycle—from real-time catalog exploration and curated event package reservations to administrative approvals, return condition audits, and automated maintenance ticketing—PinjamGeng bridges the communication gap between student organizers and campus administrators, establishing transparency, operational reliability, and institutional accountability.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 14 of 95</span></div>
+    </div>
+
+    <!-- PAGE 15 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <p class="justified-text">
+        A standout innovation within PinjamGeng is the introduction of the <strong>"Smart Event Packages"</strong> concept. Recognising that novice student committees often omit essential peripheral equipment when submitting manual requests—such as borrowing a projector but forgetting an HDMI cable, or requesting microphones without a receiver and extension cord—PinjamGeng provides pre-configured, single-click package bundles. Curated configurations for Annual General Meetings, Outdoor Sports Carnivals, and Exhibition Booths automatically bundle the necessary AV and IT hardware, dramatically reducing booking preparation time while eliminating logistical oversights on event day.
+      </p>
+      <p class="justified-text">
+        By transitioning from physical paper slips to an integrated web architecture utilizing PHP, MySQL, Apache, and Tailwind CSS, PinjamGeng replaces subjective guesswork with real-time computational verification. Digital loan agreement slips are generated with unique verifiable booking reference codes (e.g., #UPTM-BK-2026-001) and organized sections for student verification, administrative checkout, and post-event return sign-offs. This automated approach ensures that every campus asset is accounted for, maintenance records are systematically documented, and administrative decision-makers have continuous access to equipment utilization analytics.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">1.2 Problem Statements</h2>
+      <p class="justified-text">
+        An investigation into the current equipment borrowing practices at Universiti Poly-Tech Malaysia revealed three fundamental operational deficiencies that compromise campus event success and inventory longevity:
+      </p>
+
+      <h3 class="subsection-title">1.2.1 Manual Paper-Based Loan Forms &amp; Disorganized Tracking</h3>
+      <p class="justified-text">
+        Currently, equipment loan requests at UPTM rely entirely on physical paper forms that must be manually completed, hand-carried across administrative offices for physical approvals, and stored in ring binders. This manual paperwork creates extreme administrative vulnerability. Paper forms are frequently misplaced, damaged by accidental beverage spills, or buried under desk clutter. In addition, physical handwriting is often illegible, resulting in incorrect student matric numbers, wrong phone contacts, and unverified club affiliations. When disputes arise regarding who authorized an equipment loan or when items were issued, administrators must search through hundreds of loose sheets, wasting valuable staff hours and causing data duplication.
+      </p>
+
+      <h3 class="subsection-title">1.2.2 Lack of Real-Time Equipment Availability &amp; Schedule Overlaps</h3>
+      <p class="justified-text">
+        Because loan records are kept in physical counter logbooks, there is zero real-time inventory visibility accessible to students across campus. Student organizers planning an event have no means of knowing whether required equipment—such as wireless microphones, high-lumen projectors, or portable PA sound systems—is available, already loaned out, or scheduled for another event on their chosen dates. Consequently, students often discover schedule overlaps only upon physically arriving at the counter on the day of their event, leading to double-booking conflicts, high operational stress, and last-minute cancellations of vital campus activities.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 15 of 95</span></div>
+    </div>
+
+    <!-- PAGE 16 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">1.2.3 Inefficient Return Inspection, Damaged Equipment Tracking &amp; Inadequate Reporting</h3>
+      <p class="justified-text">
+        When borrowed gear is returned to the counter, the return process is typically rushed, especially when multiple events conclude simultaneously at the end of the semester. Without a structured digital checklist, equipment is frequently checked in without detailed physical testing. As a consequence, missing cables, cracked lenses, or defective microphones remain unrecorded, severing accountability with the previous borrower. Furthermore, faculty technicians lack a computerized maintenance log to track repair histories, servicing costs, or recurring equipment faults. Generating periodic inventory audits or utilization reports for faculty management requires labor-intensive manual data consolidation from fragmented paper records, resulting in delayed and inaccurate managerial reporting.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">1.3 Project Objectives</h2>
+      <p class="justified-text">
+        To systematically resolve the problem statements outlined above, the development of PinjamGeng is guided by three measurable objectives:
+      </p>
+
+      <h3 class="subsection-title">1.3.1 To develop a centralized web-based equipment booking and inventory management system</h3>
+      <p class="justified-text">
+        This objective focuses on eliminating reliance on physical paper requisition slips and decentralized filing binders. The system establishes a secure, unified web portal where student organizers can submit digital booking applications, track reservation statuses, and download official A4 loan agreement slips with clear regulatory terms, while administrators can review, approve, allocate, and monitor equipment loans through an automated dashboard.
+      </p>
+
+      <h3 class="subsection-title">1.3.2 To allow real-time equipment availability monitoring and event package selection</h3>
+      <p class="justified-text">
+        This objective eliminates scheduling clashes, double-bookings, and logistical omissions by providing an interactive live inventory catalog that displays real-time stock levels (available, booked, in maintenance). Furthermore, it integrates curated "Smart Event Packages" tailored for common campus event categories (AGMs, sports carnivals, exhibitions), enabling organizers to bundle complete sets of compatible gear in a single click with automated date-conflict validation.
+      </p>
+
+      <h3 class="subsection-title">1.3.3 To establish an automated return inspection, condition logging, and maintenance reporting workflow</h3>
+      <p class="justified-text">
+        This objective addresses inventory deterioration and lack of accountability by providing a structured digital Return Desk inspection interface. Staff can record physical item conditions (Excellent, Good, Fair, Damaged), note discrepancies, and automatically spawn maintenance service tickets for broken equipment with severity rankings and technician logs. Additionally, the system provides automated statistical reports and CSV/PDF export capabilities to support institutional procurement and audit decisions.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 16 of 95</span></div>
+    </div>
+
+    <!-- PAGE 17-18: SCOPE & TARGET USERS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">1.4 Scope and Target User</h2>
+
+      <h3 class="subsection-title">1.4.1 Project Scope</h3>
+      <p class="justified-text">
+        The project scope encompasses the design, software development, database architecture, and empirical evaluation of the web-based Smart Event Equipment Booking and Inventory Management System (PinjamGeng) for Universiti Poly-Tech Malaysia (UPTM). The system focuses on managing audio-visual, computing, staging, and photography assets maintained by the Faculty of Computing &amp; Multimedia (FCOM) and central campus facilities.
+      </p>
+      <p class="justified-text">
+        Development incorporates user requirement gathering, system modeling, relational database design, front-end and back-end programming using Visual Studio Code, local hosting via XAMPP (Apache web server and MariaDB database), and version control through Git. Deliverables include a fully operational web application, complete database schema, user documentation, and this academic final year project report.
+      </p>
+      <p class="justified-text">
+        <strong>Project Boundaries &amp; Delimitations:</strong> The system is strictly designed for internal campus equipment loans within UPTM and does not encompass monetary rental transactions, credit card payment gateways, or third-party courier shipping logistics, as equipment pickup and return occur physically at campus resource counters. Furthermore, equipment tracking is software-driven based on unique serial item codes and physical inspection rather than automated RFID/GPS hardware sensors.
+      </p>
+
+      <h3 class="subsection-title">1.4.2 Product Scope</h3>
+      <p class="justified-text">
+        The product scope defines the functional boundaries and capabilities implemented in the software application, divided into two distinct role-based modules:
+      </p>
+      <ul class="justified-list">
+        <li><strong>Student Borrower Module:</strong> User registration, secure login with email/matric ID and password, interactive equipment catalog with category filters, real-time stock indicators, Smart Event Packages explorer with bundle breakdown, 2-step booking wizard with package autofill, date selection and regulatory agreement, personal booking tracking table with status badges (Pending, Approved, On Loan, Returned, Cancelled), booking cancellation for pending requests, and printable A4 official loan agreement slip.</li>
+        <li><strong>Administrator / Technician Module:</strong> Administrative secure authentication with brute-force lockout protection, executive KPI dashboard with live counters (Pending Requests, Active Loans, Total Equipment Units, Low Stock &amp; Critical Alerts), booking request queue with modal review, stock allocation, approval and rejection actions, equipment inventory CRUD management (add, edit, delete, stock count update, category assignment), package bundle management (create packages, assign bundled items, edit packages), return desk counter inspection with condition recording (Excellent, Good, Fair, Damaged), automated maintenance ticket generation for damaged gear, maintenance resolution and servicing tracking, and automated reporting suite with date filters, category breakdowns, and PDF/CSV export.</li>
+      </ul>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 17 of 95</span></div>
+    </div>
+
+    <!-- PAGE 19-20: REQUIREMENTS & CONCLUSION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">1.4.3 Target User</h3>
+      
+      <h4 class="sub-subsection-title">1.4.3.1 UPTM Student Club &amp; Society Event Organizers</h4>
+      <p class="justified-text">
+        The primary end-users are registered UPTM students representing student clubs, sports societies, faculty associations, and the Student Representative Council (MPP). These users require a frictionless, transparent platform to check equipment availability in advance, select appropriate event packages without technical confusion, reserve equipment online without repeated counter visits, and obtain an official printable loan slip for physical pickup.
+      </p>
+
+      <h4 class="sub-subsection-title">1.4.3.2 UPTM Equipment Administrators &amp; FCM Technicians</h4>
+      <p class="justified-text">
+        Administrative users include laboratory technicians, asset officers, and faculty administrators responsible for safeguarding university equipment. These users require tools to verify booking validity, prevent schedule overlaps, record counter checkout and return conditions, track asset wear-and-tear, coordinate technical servicing, and generate comprehensive inventory reports for faculty management.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">1.5 Project Requirement</h2>
+
+      <h3 class="subsection-title">1.5.1 Hardware Requirement</h3>
+      <p class="justified-text">
+        The hardware specifications utilized for the design, development, and local execution of PinjamGeng are detailed in Table 1.1 below:
+      </p>
+
+      <p class="table-caption">Table 1.1: Hardware Requirements</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Hardware Component</th><th>Development Specification</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Laptop Model</td><td>HP Laptop 15-fc (15.6-inch)</td></tr>
+          <tr><td>Operating System</td><td>Microsoft Windows 11 Home (64-bit)</td></tr>
+          <tr><td>Processor (CPU)</td><td>AMD Ryzen 5 7430U with Radeon Graphics (2.30 GHz, 6 Cores)</td></tr>
+          <tr><td>Random Access Memory (RAM)</td><td>16.0 GB DDR4 Unified Memory</td></tr>
+          <tr><td>Storage Capacity</td><td>512 GB PCIe NVMe M.2 Solid State Drive (SSD)</td></tr>
+          <tr><td>Display Resolution</td><td>15.6-inch Full HD (1920 &times; 1080) IPS Anti-glare Display</td></tr>
+          <tr><td>System Architecture</td><td>x64-based Processor, 64-bit Operating System</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection-title" style="margin-top: 20px;">1.5.2 Software Requirement</h3>
+      <p class="justified-text">
+        The development tools, programming runtimes, database management systems, and libraries used to construct PinjamGeng are summarized in Table 1.2:
+      </p>
+
+      <p class="table-caption">Table 1.2: Software Requirements</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Software / Tool</th><th>Role &amp; Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Visual Studio Code (VS Code)</td><td>Primary Integrated Development Environment (IDE) for PHP, HTML5, CSS3, JavaScript, and SQL authoring.</td></tr>
+          <tr><td>XAMPP Stack (v8.2.12)</td><td>Local server development suite providing the Apache HTTP Server and MariaDB relational database engine.</td></tr>
+          <tr><td>PHP (v8.2.12)</td><td>Server-side scripting language for business logic execution, session security, and database communication.</td></tr>
+          <tr><td>MySQL / MariaDB</td><td>Relational Database Management System (RDBMS) storing normalized tables for users, equipment, packages, bookings, and tickets.</td></tr>
+          <tr><td>Tailwind CSS &amp; FontAwesome</td><td>Modern utility-first CSS framework and comprehensive vector icon library delivering a responsive, warm campus brown aesthetic.</td></tr>
+          <tr><td>Google Chrome &amp; Edge</td><td>Cross-platform modern web browsers for interface rendering, DevTools debugging, and responsive viewport validation.</td></tr>
+          <tr><td>Git &amp; GitHub</td><td>Distributed version control system and cloud repository hosting for source code tracking and milestone archiving.</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title" style="margin-top: 25px;">1.6 Conclusion</h2>
+      <p class="justified-text">
+        Chapter 1 has established the contextual foundation of this Final Year Project, outlining the background of campus event equipment management at Universiti Poly-Tech Malaysia, the operational challenges associated with manual paper requisition forms, the lack of real-time availability visibility, and the absence of post-event return inspection mechanisms. To address these problems, the project establishes three clear objectives focused on centralized web-based management, package-driven reservation, and structured condition reporting. The scopes, target user personas, and required technical specifications have been comprehensively detailed, setting the roadmap for subsequent literature review, methodological execution, and system implementation.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 20 of 95</span></div>
+    </div>
+    
+  
+    <!-- CHAPTER 2: LITERATURE REVIEW -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">CHAPTER 2</h1>
+      <h1 class="chapter-title">LITERATURE REVIEW</h1>
+
+      <h2 class="section-title">2.1 Introduction</h2>
+      <p class="justified-text">
+        This chapter presents a comprehensive review of existing literature, technological frameworks, and empirical studies concerning equipment loan management, inventory tracking, and reservation workflows in organizational and educational contexts. Effective asset management is recognized as a vital operational pillar for modern institutions; when equipment resources are mismanaged, organizations suffer from unnecessary duplicate purchases, delayed operations, asset degradation, and heightened administrative overhead. For an academic institution such as Universiti Poly-Tech Malaysia (UPTM), where expensive multimedia, computing, and staging assets are shared across multiple faculties, student societies, and administrative units, an optimized digital management platform is indispensable.
+      </p>
+      <p class="justified-text">
+        The review begins by critically investigating the inherent limitations of traditional, manual equipment loan methods—specifically paper requisition forms, physical logbooks, and informal communication channels. It examines the operational consequences of data latency, schedule conflicts, and unmonitored equipment degradation. Subsequently, this chapter analyzes three benchmark commercial solutions in the asset and equipment tracking domain: <strong>Cheqroom</strong>, <strong>Booqable</strong>, and <strong>EZOfficeInventory</strong>. By evaluating their structural architectures, user interface paradigms, reservation mechanics, and reporting capabilities against the specific needs of UPTM, this chapter establishes the functional justification and design benchmarks that inform the development of PinjamGeng.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">2.2 Investigation</h2>
+      <p class="justified-text">
+        The investigation focuses on three interconnected operational dimensions that dictate the efficacy of equipment booking and inventory control: the vulnerability of physical paperwork, the necessity of real-time inventory synchronization, and the complexity of return condition tracking and audit reporting.
+      </p>
+
+      <h3 class="subsection-title">2.2.1 Manual Equipment Loan and Physical Form Processing Challenges</h3>
+      <p class="justified-text">
+        In educational institutions that continue to rely on manual workflows, equipment borrowing requires a convoluted administrative process. Organizers must acquire paper forms, secure physical signatures from club advisors, and submit the paperwork to equipment custodians during restricted counter operating hours. Empirical research by the Inventory Solutions Group (2020) demonstrates that manual paper-driven tracking systems typically exhibit an error rate between 10% and 15% due to transcription mistakes, illegible handwriting, misplaced sheets, and duplicated records.
+      </p>
+      <p class="justified-text">
+        In the context of UPTM, manual forms present severe logistical risks. During busy preparation periods before major campus events, paper applications are frequently misplaced or delayed across administrative offices. Because these physical records are isolated at counter desks, there is no centralized historical repository accessible to faculty heads or technical supervisors. Studies on educational resource management confirm that transitioning from paper requisitions to centralized digital workflows eliminates over 70% of administrative processing delays while drastically curtailing data entry errors (Ioana Neamt, 2024).
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 21 of 95</span></div>
+    </div>
+
+    <!-- PAGE 22-23 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">2.2.2 The Critical Need for Real-Time Equipment Availability and Conflict Prevention</h3>
+      <p class="justified-text">
+        A fundamental weakness of manual physical logbooks is their static, asynchronous nature. A paper logbook only reflects inventory status at the exact moment a handwritten entry is recorded. When multiple student clubs organize events scheduled for the same weekend—such as a sports carnival, an annual general meeting, and a career symposium—technicians cannot instantly detect that the same high-output PA system or digital projector has been promised to two different groups.
+      </p>
+      <p class="justified-text">
+        Research in supply chain and operational planning emphasizes that data latency significantly impedes decision-making, forcing managers into reactive and error-prone compromises (Albert, 2024). In campus environments, when organizers discover double-bookings hours before an event commences, emergency arrangements must be made, often resulting in event cancellations or expensive last-minute commercial equipment rentals. A computerized system that dynamically checks date-range availability and immediately flags booking conflicts at the point of application is essential for maintaining smooth campus operations.
+      </p>
+
+      <h3 class="subsection-title">2.2.3 Equipment Condition Tracking, Loss Prevention, and Reporting Complexity</h3>
+      <p class="justified-text">
+        The lifespan and reliability of shared educational assets depend heavily on systematic post-loan inspection. In a manual environment, when equipment is returned at the conclusion of an event, the check-in process is often hurried. Counter personnel frequently lack a standardized physical checklist, resulting in damaged items, frayed HDMI cables, or malfunctioning microphone transmitters being returned to inventory shelves without condition notes.
+      </p>
+      <p class="justified-text">
+        Studies by Kang &amp; Gershwin (2005) indicate that unrecorded inventory defects and phantom stock severely degrade institutional efficiency, causing subsequent users to receive broken equipment during critical operations. Furthermore, manual systems lack the capability to aggregate maintenance costs, calculate asset depreciation, or identify chronic equipment failure trends. An automated system with integrated condition tracking (categorizing items as Excellent, Good, Fair, or Damaged) and automatic maintenance ticketing provides technicians with the tools necessary for proactive maintenance and data-driven procurement planning.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">2.3 Previous Case Study</h2>
+      <p class="justified-text">
+        To guide the architectural and functional design of PinjamGeng, three industry-standard commercial inventory and equipment reservation systems were critically evaluated:
+      </p>
+
+      <h3 class="subsection-title">2.3.1 Case Study 1: Cheqroom</h3>
+      <p class="justified-text">
+        <strong>Cheqroom</strong> is a specialized cloud-based asset tracking software engineered specifically for audio-visual (AV), media production, and IT equipment management within educational institutions, broadcast studios, and creative agencies. Cheqroom's core architecture emphasizes visual equipment catalogs, drag-and-drop reservation calendars, and automated conflict detection.
+      </p>
+      <p class="justified-text">
+        A key strength of Cheqroom is its implementation of "Equipment Kits" or bundle groupings. Instead of requiring users to select cameras, tripods, batteries, memory cards, and microphones individually, Cheqroom allows administrators to define cohesive packages. When a kit is reserved, the platform automatically locks all nested components for the requested date window. Furthermore, Cheqroom provides custody tracking via QR code scanning and item condition logging upon check-in.
+      </p>
+      <p class="justified-text">
+        However, Cheqroom is developed as an expensive enterprise Software-as-a-Service (SaaS) platform targeted primarily at corporate production studios and large Western universities with extensive IT budgets. Its configuration requires substantial training, and its interface includes numerous advanced modules—such as multi-location warehouse logistics, geofencing, and insurance depreciation accounting—that introduce unnecessary operational complexity for a localized campus setting like UPTM.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 22 of 95</span></div>
+    </div>
+
+    <!-- PAGE 24-25 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">2.3.2 Case Study 2: Booqable</h3>
+      <p class="justified-text">
+        <strong>Booqable</strong> is an all-in-one equipment rental and reservation software designed for small-to-medium rental businesses, event production companies, and photography rental houses. It integrates an online customer-facing booking storefront with backend inventory tracking, scheduling calendars, and order fulfillment workflows.
+      </p>
+      <p class="justified-text">
+        Booqable excels in its customer-facing reservation experience. It employs an intuitive, step-by-step booking wizard that prompts users to select event start and return dates, verifies stock availability in real-time, displays high-resolution equipment cards, and summarizes the reservation into a clear digital order contract. On the administrative side, Booqable provides color-coded timeline bars that visualize equipment dispatch schedules, preventing over-commitment of popular gear.
+      </p>
+      <p class="justified-text">
+        Despite its exceptional booking UX, Booqable's underlying business model is fundamentally structured around commercial rental transactions, invoicing, credit card payment processing (via Stripe/PayPal), and customer security deposits. In an internal university ecosystem such as UPTM, equipment is loaned to student clubs under institutional regulations rather than rented for commercial profit. Adapting Booqable's heavy commercial payment workflows to a university loan desk would be counterproductive, though its intuitive multi-step booking wizard provides valuable design principles for PinjamGeng.
+      </p>
+
+      <h3 class="subsection-title">2.3.3 Case Study 3: EZOfficeInventory</h3>
+      <p class="justified-text">
+        <strong>EZOfficeInventory</strong> is an enterprise-grade physical asset management and tracking platform widely deployed across corporate enterprises, healthcare facilities, and academic institutions. The system supports full asset lifecycle tracking, maintenance scheduling, vendor purchase orders, and multi-department checkout operations.
+      </p>
+      <p class="justified-text">
+        A standout capability of EZOfficeInventory is its comprehensive maintenance management module. The system enables custodians to log service tickets, assign repair tasks to internal technicians or external vendors, record parts replacement costs, and transition assets into dedicated "Under Maintenance" statuses that automatically remove them from active reservation pools until technical clearance is granted. Furthermore, EZOfficeInventory offers robust reporting tools that generate exportable PDF and Excel utilization reports.
+      </p>
+      <p class="justified-text">
+        Nonetheless, EZOfficeInventory suffers from a cluttered, data-dense interface that presents a steep learning curve for non-technical users. For student borrowers who only need to submit occasional booking requests for club events, navigating EZOfficeInventory's extensive enterprise menus is confusing and inefficient. Its administrative dashboard prioritizes financial depreciation and capital asset tracking over rapid event kit dispatch and simple counter inspections.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 24 of 95</span></div>
+    </div>
+
+    <!-- PAGE 36-38: COMPARISON & DISCUSSION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">2.4 Comparison</h2>
+      <p class="justified-text">
+        A structured comparative analysis between the three commercial benchmark systems and the proposed PinjamGeng platform is summarized in Table 2.1 below:
+      </p>
+
+      <p class="table-caption">Table 2.1: Comparison of Existing Systems with PinjamGeng</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Feature / Capability</th>
+            <th>Cheqroom</th>
+            <th>Booqable</th>
+            <th>EZOfficeInventory</th>
+            <th>PinjamGeng (Proposed)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>System Architecture</strong></td>
+            <td>Cloud SaaS (Commercial AV Focus)</td>
+            <td>Cloud SaaS (Rental Commerce Focus)</td>
+            <td>Enterprise Cloud Asset Management</td>
+            <td>Lightweight Web Application (PHP / MySQL / XAMPP)</td>
+          </tr>
+          <tr>
+            <td><strong>Target Domain</strong></td>
+            <td>Media Production &amp; Film Schools</td>
+            <td>Commercial Equipment Rental Companies</td>
+            <td>Corporate Enterprises &amp; Large Facilities</td>
+            <td>University Campus (UPTM Clubs, Staff &amp; Students)</td>
+          </tr>
+          <tr>
+            <td><strong>Event Package Bundles</strong></td>
+            <td>Yes (Equipment Kits)</td>
+            <td>Yes (Product Bundles)</td>
+            <td>Yes (Asset Bundles)</td>
+            <td><strong>Yes (Smart Event Packages: AGM, Sports, Exhibition)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Real-Time Conflict Prevention</strong></td>
+            <td>Yes (Automated timeline check)</td>
+            <td>Yes (Date-picker inventory lock)</td>
+            <td>Yes (Calendar reservation check)</td>
+            <td><strong>Yes (Dynamic date-range validation &amp; stock lock)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Booking Experience</strong></td>
+            <td>Complex drag-and-drop calendar</td>
+            <td>Intuitive multi-step storefront wizard</td>
+            <td>Dense tabular requisition forms</td>
+            <td><strong>2-Step Booking Wizard with dynamic package autofill</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Official Loan Slip</strong></td>
+            <td>Digital PDF confirmation</td>
+            <td>Commercial invoice &amp; packing slip</td>
+            <td>Asset checkout receipt</td>
+            <td><strong>Standardized A4 Loan Agreement Slip (Sections A/B/C)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Return Desk Inspection</strong></td>
+            <td>Barcode/QR condition check</td>
+            <td>Return checklist with damage fees</td>
+            <td>Detailed maintenance status logging</td>
+            <td><strong>Condition audit (4-tier) + auto-maintenance ticket</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Cost &amp; Licensing</strong></td>
+            <td>High annual subscription fee</td>
+            <td>Monthly fee + transaction commission</td>
+            <td>High enterprise tier licensing</td>
+            <td><strong>Zero licensing cost (Open-source campus deployment)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title" style="margin-top: 25px;">2.5 Discussion</h2>
+      <p class="justified-text">
+        The comparative evaluation reveals that while commercial solutions like Cheqroom, Booqable, and EZOfficeInventory offer powerful capabilities, none of them are directly optimized for the operational workflows, resource constraints, and administrative policies of a Malaysian higher education institution. Commercial software is either burdened with complex e-commerce payment gateways (Booqable), priced out of reach for faculty departmental budgets (Cheqroom), or cluttered with corporate financial accounting modules that confuse student borrowers (EZOfficeInventory).
+      </p>
+      <p class="justified-text">
+        Consequently, PinjamGeng synthesizes the most effective design paradigms from these systems into a unified, lightweight, and purpose-built platform. From Cheqroom, PinjamGeng adopts the package bundling philosophy, transforming it into campus-specific "Smart Event Packages" that prevent novice student organizers from omitting essential cables or accessories. From Booqable, it borrows the frictionless 2-step booking wizard, making equipment requisition fast, intuitive, and error-free. From EZOfficeInventory, it incorporates structured condition auditing and automatic maintenance ticketing, ensuring that damaged gear is immediately flagged and repaired. By delivering these capabilities within a warm, aesthetic campus interface requiring zero commercial subscription fees, PinjamGeng establishes a highly practical, sustainable solution for UPTM.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">2.6 Conclusion</h2>
+      <p class="justified-text">
+        Chapter 2 has synthesized the academic literature and practical investigations surrounding equipment loan management, highlighting the critical deficiencies of manual paper-based forms and static logbooks. By analyzing three leading commercial solutions (Cheqroom, Booqable, and EZOfficeInventory), this review established a clear functional baseline for PinjamGeng, justifying the necessity of a package-driven, real-time inventory management platform tailored specifically for Universiti Poly-Tech Malaysia.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 38 of 95</span></div>
+    </div>
+    
+  
+    <!-- CHAPTER 3: METHODOLOGY -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">CHAPTER 3</h1>
+      <h1 class="chapter-title">METHODOLOGY</h1>
+
+      <h2 class="section-title">3.1 Introduction</h2>
+      <p class="justified-text">
+        A disciplined, structured software development methodology is indispensable for ensuring that a software project is delivered on schedule, fulfills its architectural specifications, and effectively satisfies the operational needs of its target stakeholders. Developing a campus-wide inventory and booking system such as PinjamGeng requires continuous alignment between student event organizers, faculty laboratory technicians, and administrative decision-makers. Recent empirical software engineering studies, such as the comprehensive research by Palopak &amp; Huang (2024), demonstrate that iterative delivery, proactive technical execution, and continuous customer collaboration represent the primary determinants of project success in applied information systems.
+      </p>
+      <p class="justified-text">
+        Accordingly, the <strong>Agile Development Methodology</strong> was selected as the operational framework for the conceptualization, design, development, and testing of PinjamGeng. By segmenting the project lifecycle into iterative two-week sprints, Agile provided the flexibility required to adapt user interface elements, refine booking wizard validation rules, and enhance condition reporting workflows based on direct, ongoing feedback from UPTM student club leaders and laboratory technicians.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">3.2 Agile Methodology</h2>
+      <p class="justified-text">
+        Unlike traditional linear-sequential frameworks such as the Waterfall model—which mandates that all functional specifications be frozen at the beginning of the project—the Agile methodology embraces change at any stage of development (Al-Saqqa et al., 2020). In a university campus setting, user expectations frequently evolve as stakeholders interact with tangible system prototypes. For instance, initial consultations suggested a simple individual equipment booking form; however, subsequent user reviews revealed that student committees struggled to remember all necessary peripheral accessories, directly inspiring the creation of the star "Smart Event Packages" bundling feature.
+      </p>
+      <p class="justified-text">
+        Studies by Drus &amp; Alsalami (2020) emphasize that Agile's iterative feedback cycles dramatically elevate software quality and user satisfaction by uncovering defects and usability barriers early in the development lifecycle. Through continuous demonstration of working increments, PinjamGeng was systematically refined to deliver a stable, reliable, and aesthetically pleasing platform tailored to UPTM's unique logistical ecosystem.
+      </p>
+
+      <div class="figure-container" style="text-align: center; margin: 25px 0;">
+        <img src="images/fig_3_1_agile_methodology.png" style="max-width:540px; width:100%; border:1px solid #000;" alt="Figure 3.1: Agile Methodology Execution Phases" />
+        <p class="figure-caption">Figure 3.1: Figure Agile Methodology (Kumar, A, 2025)</p>
+      </div>
+
+      <h2 class="section-title">3.3 Phases in Agile Methodology</h2>
+      <p class="justified-text">
+        The Agile lifecycle executed during this project comprised six systematic, recurring phases:
+      </p>
+
+      <h3 class="subsection-title">3.3.1 Phase 1: Plan</h3>
+      <p class="justified-text">
+        The planning phase concentrated on investigating the existing equipment booking workflows at UPTM, identifying root operational friction, and establishing system requirements. Preliminary interviews with student club committees and laboratory staff highlighted that paper slips frequently went missing and double-booking occurred during major campus events. A structured requirements questionnaire was created via Google Forms and distributed among 25 campus stakeholders, validating that 88% of respondents experienced booking difficulties. These findings directly defined the product backlog and functional specifications for PinjamGeng.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 40 of 95</span></div>
+    </div>
+
+    <!-- PAGE 41-42 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">3.3.2 Phase 2: Design</h3>
+      <p class="justified-text">
+        During the design phase, the architectural foundation and user interfaces of PinjamGeng were mapped out. Wireframes were drafted for both student borrower and administrator views, emphasizing simplicity, modern visual hierarchy, and clear calls-to-action. The relational database schema was designed using MySQL, consisting of normalized entities for users, categories, equipment, packages, package items, bookings, booking items, maintenance tickets, and audit logs. Foreign key constraints were established to guarantee relational integrity and prevent orphan records.
+      </p>
+
+      <h3 class="subsection-title">3.3.3 Phase 3: Develop</h3>
+      <p class="justified-text">
+        The development phase involved translating designs into functional, secure software. The backend logic was engineered using modular, procedural PHP (v8.2.12) with PDO prepared statements for comprehensive SQL-injection immunity. The frontend was styled with Tailwind CSS, utilizing a distinctive warm espresso and caramel palette that evokes a modern campus atmosphere. Security features—including cryptographic password hashing via BCrypt, anti-CSRF token verification on all POST forms, session fixation protection, and brute-force rate-limiting lockout—were embedded into the core authentication engine. Key functional milestones included the 2-step booking wizard, package autofill mechanics, return condition auditing, and PDF/CSV export scripts.
+      </p>
+
+      <h3 class="subsection-title">3.3.4 Phase 4: Test</h3>
+      <p class="justified-text">
+        Rigorous testing was conducted across multiple stages: Unit Testing evaluated individual methods and form handlers (such as login credential verification, stock quantity validation, and package item allocation); Integration Testing validated data synchronization across database tables (ensuring stock deductions occurred seamlessly upon booking approval); System Testing confirmed performance, security, and cross-browser responsiveness across Google Chrome and Microsoft Edge; and User Acceptance Testing (UAT) gathered empirical usability ratings from student organizers and technicians.
+      </p>
+
+      <h3 class="subsection-title">3.3.5 Phase 5: Deploy</h3>
+      <p class="justified-text">
+        The system was staged and deployed within an optimized local web server environment using the XAMPP stack on Windows 11. Database migration scripts initialized all tables and seeded realistic campus data (student accounts, audio-visual equipment, curated packages, and loan history). The application was configured for multi-user local area network (LAN) access via IP addressing, allowing testers to interact with the platform on multiple laptops simultaneously.
+      </p>
+
+      <h3 class="subsection-title">3.3.6 Phase 6: Review</h3>
+      <p class="justified-text">
+        In the review phase, feedback gathered during testing trials was analyzed to identify opportunities for enhancement. Based on tester suggestions, the booking cancellation rules were refined to allow borrowers to cancel pending requests without administrative intervention, and warning badges were introduced to alert technicians to equipment flagged for maintenance.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 42 of 95</span></div>
+    </div>
+
+    <!-- PAGE 43-49: DATA GATHERING & SURVEY CHARTS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">3.4 Data Gathering and Requirement</h2>
+      <p class="justified-text">
+        To ensure that PinjamGeng authentically addresses the real challenges experienced across Universiti Poly-Tech Malaysia, a rigorous requirement gathering exercise was conducted. A structured questionnaire was distributed via Google Forms to campus stakeholders including student club executives (MCSC, MPP, Sports Club), event organizers, and faculty laboratory technicians. The quantitative and qualitative findings directly validated the project problem statements and informed the system's core capabilities.
+      </p>
+
+      <h3 class="subsection-title">3.4.1 User Requirement Analysis</h3>
+      <p class="justified-text">
+        The survey gathered responses across twelve essential dimensions regarding equipment borrowing practices, pain points, and expectations:
+      </p>
+
+      <!-- Figure 3.2 & 3.3 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_2_user_questionnaire_1.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.2: User questionnaire 1</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.2, which surveys 25 users at UPTM on their role in campus events, 72% are student club committee members, 16% are faculty lecturers / club advisors, and 12% are equipment administrators or technicians. This confirms that student event organizers represent the primary user demographic.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_3_user_questionnaire_2.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.3: User questionnaire 2</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.3, 44% of respondents borrow equipment on a monthly basis, 32% borrow several times per semester, 16% borrow weekly, and 8% annually. This proves that equipment borrowing is a frequent and recurring activity.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 44 of 95</span></div>
+    </div>
+
+    <!-- PAGE 45 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figure 3.4 & 3.5 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_4_user_questionnaire_3.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.4: User questionnaire 3</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.4, 60% of respondents have 1 to 2 years of experience organizing campus events, 24% have less than 1 year, and 16% have more than 2 years.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_5_user_questionnaire_4.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.5: User questionnaire 4</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.5, users reported multiple difficulties with manual paper forms: 84% noted slow approval processes and repeated counter visits, 76% cited lack of real-time stock availability, 64% experienced misplaced paper forms, and 48% frequently forgot essential cables or accessories.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 45 of 95</span></div>
+    </div>
+
+    <!-- PAGE 46 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figure 3.6 & 3.7 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_6_user_questionnaire_5.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.6: User questionnaire 5</p>
+      </div>
+      <p class="justified-text">
+        Figure 3.6 shows that 68% of respondents experienced double-bookings or equipment clashes frequently during event weeks, 24% occasionally, and only 8% never. This validates the urgent need for computational conflict checking.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_7_user_questionnaire_6.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.7: User questionnaire 6</p>
+      </div>
+      <p class="justified-text">
+        Figure 3.7 shows that 64% of respondents have received damaged, defective, or incomplete equipment upon collecting items from the counter, indicating that lack of return inspection compromises asset quality.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 46 of 95</span></div>
+    </div>
+
+    <!-- PAGE 47 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figure 3.8 & 3.9 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_8_user_questionnaire_7.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.8: User questionnaire 7</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.8, 60% of respondents spend 1 to 3 days completing the manual paperwork and obtaining physical signatures, and 28% spend more than 3 days. Only 12% receive approval on the same day.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_9_user_questionnaire_8.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.9: User questionnaire 8</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.9, 92% of respondents strongly agreed and 8% agreed that pre-configured Smart Event Packages would simplify booking and prevent forgotten cables.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 47 of 95</span></div>
+    </div>
+
+    <!-- PAGE 48 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figure 3.10 & 3.11 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_10_user_questionnaire_9.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.10: User questionnaire 9</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.10, 88% strongly agreed that real-time stock monitoring would help prevent schedule clashes and improve campus inventory control.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_11_user_questionnaire_10.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.11: User questionnaire 10</p>
+      </div>
+      <p class="justified-text">
+        Figure 3.11 shows that 80% strongly agreed that a digital return inspection desk recording condition (Good/Damaged) would significantly improve equipment care and student accountability.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 48 of 95</span></div>
+    </div>
+
+    <!-- PAGE 49 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figure 3.12 & 3.13 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_12_user_questionnaire_11.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.12: User questionnaire 11</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 3.12, 96% of respondents strongly agreed and 4% agreed that they would support the implementation of PinjamGeng at UPTM, reflecting total campus enthusiasm.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_3_13_user_questionnaire_12.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 3.13: User questionnaire 12</p>
+      </div>
+      <p class="justified-text">
+        Figure 3.13 summarizes the qualitative recommendations: (1) create bundled packages for AGMs and sports, (2) provide deadline reminder alerts, and (3) ensure mobile-friendly navigation.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 49 of 95</span></div>
+    </div>
+
+    <!-- PAGE 50-90: INTERFACE DESIGN & SCREENSHOT GUIDES -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">3.5 Interface Design</h2>
+      <p class="justified-text">
+        The user interface of PinjamGeng was engineered following user-centered design (UCD) heuristics, emphasizing clean visual hierarchy, prominent status indicators, and responsive layout scaling across mobile and desktop displays.
+      </p>
+
+      <h3 class="subsection-title">3.5.1 Wireframe</h3>
+      <p class="justified-text">
+        Wireframes were produced during the design phase to establish structural screen layouts before frontend implementation. Figures 3.14 to 3.34 represent the initial wireframe blueprints for student borrower and administrative workflows:
+      </p>
+
+      <div class="screenshot-guide-box">
+        <h4>[SCREENSHOT GUIDE: WIREFRAMES (FIGURES 3.14 TO 3.34)]</h4>
+        <p><strong>Student Guide for Nursyafiqah:</strong> Insert your initial low-fidelity wireframe sketches (from Figma, Balsamiq, or paper design scans) into these figures matching the layout of pages 50 to 58 of the sample report:</p>
+        <ul>
+          <li><strong>Figure 3.14:</strong> Wireframe - Login Page (Two-column layout, branding banner left, login form right).</li>
+          <li><strong>Figure 3.15:</strong> Wireframe - Register Page (Two-column layout, student particulars, role and club dropdowns).</li>
+          <li><strong>Figure 3.16:</strong> Wireframe - Public Home / Catalog Preview (Hero banner, stats counter, feature cards).</li>
+          <li><strong>Figure 3.17:</strong> Wireframe - Smart Packages Page (3-column package card grid with bundle equipment listings).</li>
+          <li><strong>Figure 3.18 - 3.27:</strong> Wireframe - Admin Views (Dashboard KPI cards, Booking Review Queue, Inventory Table, Return Desk modal, Reports view).</li>
+          <li><strong>Figure 3.28 - 3.34:</strong> Wireframe - Student Views (Student Dashboard, Equipment Catalog, 2-Step Booking Wizard, My Bookings tracking table, Printable Slip).</li>
+        </ul>
+      </div>
+
+      
+      <h3 class="subsection-title" style="margin-top: 30px;">3.5.2 Actual Interface (High-Fidelity Implementation)</h3>
+      <p class="justified-text">
+        Following the low-fidelity wireframing phase, the complete interactive web application was implemented. The system was developed using PHP for backend server-side logic and session handling, MySQL (MariaDB) for relational database persistence, and styled using Tailwind CSS and FontAwesome under an aesthetic campus warm palette (Deep Espresso #231308, Warm Cream #fdfbf7, Rich Caramel #d97736, and Honey Gold #e5a953). The actual interfaces provide clean, robust operational workflows for both Student Borrowers and Laboratory Administrators as documented in Figures 3.20 through 3.34 below:
+      </p>
+
+      <!-- Figure 3.20: Login Page -->
+      <h4 class="sub-subsection-title">Figure 3.20: Student Authentication &amp; Portal Login Page</h4>
+      <p class="justified-text">
+        Figure 3.20 demonstrates the actual login portal for PinjamGeng. The interface features official UPTM branding, security badges indicating BCrypt password hashing and Anti-CSRF protection, and a quick-fill presentation demo assistant for streamlined testing. The authentication form includes input validation for institutional email or matric ID, secure masked password input with visibility toggle, and direct navigation links to student registration.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/01_Authentication_Login.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Student Authentication & Portal Login" />
+        <div class="figure-caption">Figure 3.20: Actual Interface - Student Authentication &amp; Portal Login Page</div>
+      </div>
+
+      <!-- Figure 3.21: Student Dashboard -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.21: Student Borrower Dashboard</h4>
+      <p class="justified-text">
+        Figure 3.21 displays the Student Borrower Dashboard presented upon successful login. The dashboard features a personalized welcome header displaying the student's full name (Nursyafiqah Zulaikha Binti Zilkamal) and matric number (AM2412018113). Four interactive stat cards summarize the user's loan status: Total Bookings (3), Pending Review (2), Approved (0), and Active Loans (0). Prominent quick-action buttons allow single-click access to "Book Event Package" and "Custom Booking". Below, the "Recent Booking Records" section lists historical applications with real-time status indicators.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/02_Student_Dashboard.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Student Borrower Dashboard" />
+        <div class="figure-caption">Figure 3.21: Actual Interface - Student Borrower Dashboard &amp; Activity Cockpit</div>
+      </div>
+
+      <!-- Figure 3.22: Live Stock Catalog -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.22: Live Equipment Catalog &amp; Real-Time Stock Availability</h4>
+      <p class="justified-text">
+        Figure 3.22 exhibits the Live Equipment Catalog interface. Users can search for equipment by name, brand, model, or asset tag, and filter items by category (Audio &amp; Sound Systems, Visual &amp; Projection, Staging &amp; Lighting, Computing Hardware) and availability status. Each equipment card showcases item details, physical storage location (e.g., IT Store Shelf 2, Audio Storage Area C), condition status ("Good Condition"), and a real-time availability progress bar indicating currently available units versus total inventory (e.g., 3 of 3 units, 2 of 4 units). An instantaneous "Book Item" trigger initiates reservation directly from the catalog.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/03_Live_Stock_Catalog.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Live Equipment Catalog" />
+        <div class="figure-caption">Figure 3.22: Actual Interface - Live Equipment Catalog &amp; Stock Indicators</div>
+      </div>
+
+      <!-- Figure 3.23: Smart Packages -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.23: Pre-Configured "Smart Event Packages" Explorer</h4>
+      <p class="justified-text">
+        Figure 3.23 illustrates the innovative "Smart Event Packages" explorer—the core FYP innovation designed to resolve common equipment omissions. Organizers can filter packages across event types including Seminars &amp; Lectures, Workshops &amp; Labs, Meetings &amp; Conventions, Photography &amp; Media, and Outdoor &amp; Sports. The "Complete Seminar &amp; Lecture Package" card outlines the recommended attendee scale (50–300 pax), targeted audience, and an itemized breakdown of bundled hardware (Epson Full HD Projector, 84" Tripod Screen, Shure Dual Wireless Mics, JBL EON PA System, Presentation Clicker, and 4K HDMI Kit) with real-time bundle stock verification.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/04_Smart_Event_Packages.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Smart Event Packages Explorer" />
+        <div class="figure-caption">Figure 3.23: Actual Interface - Pre-Configured "Smart Event Packages" Explorer</div>
+      </div>
+
+      <!-- Figure 3.24: Booking Wizard -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.24: 2-Step Equipment Booking Wizard</h4>
+      <p class="justified-text">
+        Figure 3.24 details the 2-Step Equipment Booking Wizard. Step 1 collects comprehensive event metadata: Program Title, Event Category dropdown, Campus Room/Location (e.g., Dewan Gemilang Level 2), Estimated Attendee Headcount (PAX), Pickup Date/Time, Return Date/Time, and brief justification purpose. Step 2 presents the item selection table where pre-bundled items are automatically populated with verified stock quantities, allowing the borrower to adjust item counts while dynamic client-side validation prevents requesting quantities exceeding available inventory.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/05_2Step_Booking_Wizard.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="2-Step Booking Wizard" />
+        <div class="figure-caption">Figure 3.24: Actual Interface - 2-Step Equipment Booking Wizard &amp; Schedule Validation</div>
+      </div>
+
+      <!-- Figure 3.25: Loan Slip -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.25: Standardized Downloadable A4 Loan Agreement Slip</h4>
+      <p class="justified-text">
+        Figure 3.25 illustrates the official printable A4 Loan Agreement Slip generated dynamically upon booking approval. Conforming to UPTM institutional documentation standards, the voucher includes the university header, reference tracking code (#UPTM-BK-2026-001), Section A Applicant Details (Name, Matric ID, Faculty, Contact, Email), Section B Event Information (Event Name, Venue, Start/End Timestamps), Section C Borrowed Equipment Schedule (Asset Tags, Equipment Name, Quantity, Return Status), institutional liability terms, and formalized signature blocks for the student borrower, authorizing lab officer, and return desk custodian.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/06_Digital_Loan_Slip.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Official Printable Loan Slip" />
+        <div class="figure-caption">Figure 3.25: Actual Interface - Official Downloadable &amp; Printable A4 Loan Agreement Slip</div>
+      </div>
+
+      <!-- Figure 3.26: Admin Dashboard -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.26: Admin Executive Dashboard &amp; Real-Time Cockpit</h4>
+      <p class="justified-text">
+        Figure 3.26 shows the Administrator Executive Dashboard accessed by laboratory officers and technicians. The cockpit provides high-level administrative visibility through four primary metric cards: Total Equipment (94 units, with 72 currently available in stock), Pending Review (2 requests requiring immediate action), Active Loans (1 event, 22 units currently out), and Damaged / Maintenance (0 units). A dedicated "Pending Booking Requests" queue enables rapid review and approval, while the "Active Loans" tracker monitors current campus borrowings.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/07_Admin_Dashboard.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Admin Executive Dashboard" />
+        <div class="figure-caption">Figure 3.26: Actual Interface - Admin Executive Dashboard &amp; Real-Time Status Cockpit</div>
+      </div>
+
+      <!-- Figure 3.27: Admin Booking Approvals -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.27: Admin Reservation Requests &amp; Booking Approval Desk</h4>
+      <p class="justified-text">
+        Figure 3.27 depicts the central Booking Approval Desk. Laboratory administrators can filter applications using category tabs (All, Pending Review, Approved, Active Loans, Returned, Rejected) or search by reference number, applicant name, or matric ID. Each booking row displays the unique reference number (#UPTM-BK-...), applicant particulars, event details, venue, scheduled timestamps, and requested package badge, accompanied by a "Review &amp; Approve" trigger that opens the detailed allocation modal.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/08_Booking_Approval.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Booking Approval Desk" />
+        <div class="figure-caption">Figure 3.27: Actual Interface - Admin Reservation Requests &amp; Approval Desk</div>
+      </div>
+
+      <!-- Figure 3.28: Return Desk -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.28: Admin Equipment Return Desk &amp; Condition Inspection Desk</h4>
+      <p class="justified-text">
+        Figure 3.28 illustrates the Return Desk and Inspection module used by technicians when equipment is returned post-event. The top section displays "Active Loans Awaiting Return", showing borrower contacts, issue dates, expected return times, and total unit counts. The lower section records the "Recent Return Inspection Logs", detailing return timestamps, inspected equipment, physical condition status ("Good Condition"), inspector remarks, and receiving officer authentication.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/09_Return_Penalty_Desk.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Return Desk & Inspection" />
+        <div class="figure-caption">Figure 3.28: Actual Interface - Admin Equipment Return Desk &amp; Condition Inspection</div>
+      </div>
+
+      <!-- Figure 3.29: Inventory Management -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.29: Admin Master Inventory Management Suite</h4>
+      <p class="justified-text">
+        Figure 3.29 presents the Master Inventory Management suite. The interface displays all institutional equipment records with asset tag numbers (e.g., UPTM-SPK-002, UPTM-MIC-001), equipment names and models, category classifications, available versus total stock ratios (e.g., 3/3, 2/4, 10/12), and physical condition badges. Administrative action buttons allow staff to add new assets via modal, edit specifications, update storage locations, and manage category taxonomies.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/10_Inventory_Management.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Master Inventory Management" />
+        <div class="figure-caption">Figure 3.29: Actual Interface - Admin Master Inventory Management Suite (CRUD)</div>
+      </div>
+
+      <!-- Figure 3.30: Add Equipment Modal -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.30: Admin Popup Dialog - Register New Equipment Modal</h4>
+      <p class="justified-text">
+        Figure 3.30 illustrates the Admin Popup Dialog for registering new equipment assets into the database. When laboratory officers click "Add New Equipment" from the inventory management table, this centered modal overlay appears with a dimmed backdrop. The dialog captures mandatory institutional asset attributes: Unique Asset Tag Code (formatted to institutional naming conventions such as UPTM-PRJ-015), Category dropdown classification, Equipment Name, Brand &amp; Specific Model, Physical Storage Location (e.g., IT Store Shelf 2A - Multimedia Locker), Total Inventory Units, Initial Physical Condition rating (Good Condition / Fair / Maintenance), Package Eligibility checkbox, and Technical Specifications notes. Submitting the form triggers backend server-side validation and inserts an immutable audit log entry.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/modal_add_equipment.png" style="max-width: 90%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Register New Equipment Modal" />
+        <div class="figure-caption">Figure 3.30: Actual Interface - Admin Popup Dialog: Register New Equipment Modal</div>
+      </div>
+
+      <!-- Figure 3.31: Edit Equipment Modal -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.31: Admin Popup Dialog - Update Equipment Record Modal</h4>
+      <p class="justified-text">
+        Figure 3.31 showcases the Admin Popup Dialog for updating existing equipment records. Accessible via the edit pencil icon on any inventory record row, the modal retrieves and populates the item's current attributes. A real-time allocation snapshot displays total units, currently available stock, and active loan counts. The Asset Tag field is locked as read-only to prevent tampering with physical barcode mapping. Administrators can update equipment descriptions, adjust brand details, reassign physical storage cabinets, update stock counts, adjust physical condition status, and record maintenance service notes. A secondary red action trigger allows administrators to archive retiring hardware.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/modal_edit_equipment.png" style="max-width: 90%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Update Equipment Record Modal" />
+        <div class="figure-caption">Figure 3.31: Actual Interface - Admin Popup Dialog: Update Equipment Record Modal</div>
+      </div>
+
+      <!-- Figure 3.32: Action Confirmation Modal -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.32: Admin Action Confirmation Dialog - Booking Approval &amp; Stock Allocation Modal</h4>
+      <p class="justified-text">
+        Figure 3.32 details the Admin Action Confirmation Dialog presented during the booking review process. Before committing an approval or rejection, administrators are presented with this formal authorization modal. The dialog displays an essential requisition summary (Reference #UPTM-BK-2026-001, applicant name, scheduled event dates, and total requested unit counts) alongside an automated stock deduction notice warning that approval will immediately decrement available inventory. The administrator inputs mandatory counter pickup instructions and officer remarks that appear on the student's printed loan voucher. A mandatory verification checkbox certifies physical staging before the green "Confirm &amp; Authorize Booking" action executes an atomic database transaction.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/modal_confirm_action.png" style="max-width: 90%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Booking Approval & Stock Allocation Modal" />
+        <div class="figure-caption">Figure 3.32: Actual Interface - Admin Action Confirmation Dialog: Booking Approval &amp; Stock Allocation Modal</div>
+      </div>
+
+      <!-- Figure 3.33: User Profile Page -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.33: Borrower Profile &amp; Account Security Management Page</h4>
+      <p class="justified-text">
+        Figure 3.33 displays the Borrower Profile &amp; Account Security Management Page. The two-column layout provides students and staff with transparent account governance. The left panel showcases verified borrower particulars, matric ID, institutional email, mobile contact, affiliated student society, and key borrower metrics (Total Bookings, 100% Clean Return Track Record, and RM 0.00 Overdue Penalties), alongside proactive notification preference toggles. The right panel houses the Security &amp; Password Management suite, featuring BCrypt cryptographic protection badges, masked password fields, a dynamic client-side password strength meter, and active device session indicators.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/screen_user_profile.png" style="max-width: 90%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Borrower Profile & Account Security Management" />
+        <div class="figure-caption">Figure 3.33: Actual Interface - Borrower Profile &amp; Account Security Management Page</div>
+      </div>
+
+      <!-- Figure 3.34: Desktop Viewport -->
+      <h4 class="sub-subsection-title" style="margin-top: 25px;">Figure 3.34: Multi-Device Responsive Desktop Layout</h4>
+      <p class="justified-text">
+        Figure 3.34 displays the desktop widescreen layout (1280px viewport) of the student booking portal, demonstrating fluid responsiveness, balanced whitespace, and optimal typographic legibility across modern campus laptop and workstation displays.
+      </p>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/test_laptop_1280.png" style="max-width: 90%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Desktop Viewport" />
+        <div class="figure-caption">Figure 3.34: Actual Interface - High-Resolution Desktop Viewport Layout (1280px)</div>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 90 of 95</span></div>
+    </div>
+
+    <!-- PAGE 91-95: SYSTEM & APPLICATION MODELLING (FLOWCHARTS, USE CASE) -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h2 class="section-title">3.6 System and Application Modelling</h2>
+      <p class="justified-text">
+        System modeling provides the formal abstract blueprint representing system workflows, behavioral dynamics, and database architectures. Modeling ensures that software components operate cohesively, eliminating architectural flaws prior to and during system construction.
+      </p>
+
+      <h3 class="subsection-title">3.6.1 Flowchart</h3>
+      <p class="justified-text">
+        Two distinct, publication-standard black-and-white flowcharts were developed to specify the execution paths for both user classifications: the Administrator and the Student Borrower.
+      </p>
+      <p class="justified-text">
+        Figure 3.35 details the Administrator Flowchart. The workflow initiates with credential authentication. Upon successful login, the administrator selects from four primary operational branches: (1) Booking Management (reviewing requests, approving or rejecting applications, allocating physical stock, and issuing loan slips); (2) Inventory &amp; Package Administration (adding, updating, and removing equipment and bundle packages); (3) Return Desk &amp; Inspection (inspecting returned assets, auditing physical condition, logging automatic maintenance tickets for damaged items, or restocked healthy gear); and (4) Reports &amp; Analytics (generating date-filtered utilization summaries and exporting PDF/CSV reports).
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 91 of 95</span></div>
+    </div>
+
+    <!-- PAGE 92: ADMIN FLOWCHART IMAGE (FULL PAGE) -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <div style="text-align:center; margin: 10px 0;">
+        <img src="images/fig_3_110_admin_flowchart.png" style="max-width:680px; width:100%; border:1px solid #000;" />
+        <p class="figure-caption" style="margin-top: 15px;">Figure 3.35: Admin Operational Workflow Flowchart (Black &amp; White Publication Standard)</p>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 92 of 95</span></div>
+    </div>
+
+    <!-- PAGE 93: STUDENT FLOWCHART IMAGE (FULL PAGE) -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <div style="text-align:center; margin: 10px 0;">
+        <img src="images/fig_3_111_student_flowchart.png" style="max-width:680px; width:100%; border:1px solid #000;" />
+        <p class="figure-caption" style="margin-top: 15px;">Figure 3.36: Student Borrower Workflow Flowchart (Black &amp; White Publication Standard)</p>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 93 of 95</span></div>
+    </div>
+
+    <!-- PAGE 94: USE CASE DESCRIPTION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">3.6.2 Use Case Diagram</h3>
+      <p class="justified-text">
+        The Use Case Diagram defines the behavioral interactions between the system and its primary actors: the <strong>Student Borrower</strong> and the <strong>Administrator (FCM / IT Staff)</strong>.
+      </p>
+      <p class="justified-text">
+        The Student Borrower interacts with use cases including: Account Registration, Authentication, Browsing Equipment Catalog, Exploring Smart Event Packages, Submitting Equipment Booking Requests, Tracking Booking Statuses, Printing Official Loan Slips, and Cancelling Pending Bookings. The "Submit Booking Request" use case includes two essential sub-processes: <code>&lt;&lt;include&gt;&gt;</code> Check Real-Time Stock Availability (which validates date-range inventory levels) and <code>&lt;&lt;include&gt;&gt;</code> Accept Loan Regulations (verifying borrower agreement to institutional liability terms).
+      </p>
+      <p class="justified-text">
+        The Administrator possesses supervisory privileges encompassing: Reviewing &amp; Approving/Rejecting Bookings, Counter Handover &amp; Checkout, Inspecting Returned Equipment, Managing Equipment Inventory (CRUD), Managing Event Packages (CRUD), Managing Categories, Managing Maintenance Servicing, and Generating Analytical Reports. The "Inspect Return &amp; Condition" use case is linked to <code>&lt;&lt;extend&gt;&gt;</code> Auto-Generate Maintenance Ticket, which executes whenever an item is marked as Damaged.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 94 of 95</span></div>
+    </div>
+
+    <!-- PAGE 95: USE CASE DIAGRAM IMAGE (FULL PAGE) -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <div style="text-align:center; margin: 10px 0;">
+        <img src="images/fig_3_112_use_case_diagram.png" style="max-width:680px; width:100%; border:1px solid #000;" />
+        <p class="figure-caption" style="margin-top: 15px;">Figure 3.37: Use Case Diagram for PinjamGeng (UML Standard, Black &amp; White)</p>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 95 of 95</span></div>
+    </div>
+
+    <!-- PAGE 96: ERD DIAGRAM IMAGE (FULL PAGE) -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">3.6.3 Entity Relational Diagram (ERD)</h3>
+      <p class="justified-text">
+        The Entity Relationship Diagram (Figure 3.38) establishes the normalized conceptual schema supporting PinjamGeng. The architecture comprises nine interconnected entities designed to 3rd Normal Form (3NF): <code>users</code>, <code>categories</code>, <code>equipment</code>, <code>packages</code>, <code>package_items</code>, <code>bookings</code>, <code>booking_items</code>, <code>maintenance_tickets</code>, and <code>audit_logs</code>.
+      </p>
+
+      <div style="text-align:center; margin: 10px 0;">
+        <img src="images/fig_3_113_erd_diagram.png" style="max-width:680px; width:100%; border:1px solid #000;" />
+        <p class="figure-caption" style="margin-top: 15px;">Figure 3.38: Entity Relational Diagram (ERD) in 3NF Normalization</p>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 96 of 95</span></div>
+    </div>
+
+    <!-- PAGES 97-101: DATA DICTIONARY -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">3.6.4 Data Dictionary</h3>
+      <p class="justified-text">
+        The data dictionary provides exhaustive technical documentation of each database table, attribute, data type, constraint, and operational description utilized within PinjamGeng:
+      </p>
+
+      <!-- Table 3.1: users -->
+      <p class="table-caption">Table 3.1: users data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>user_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique identifier for each user</td><td>1</td></tr>
+          <tr><td>full_name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Full legal name of the user</td><td>Nursyafiqah Zulaikha Binti Zilkamal</td></tr>
+          <tr><td>matric_staff_id</td><td>VARCHAR(30)</td><td>NOT NULL, UNIQUE</td><td>Official UPTM matric or staff ID</td><td>AM2412018113</td></tr>
+          <tr><td>email</td><td>VARCHAR(100)</td><td>NOT NULL, UNIQUE</td><td>Institutional email address</td><td>syafiqah@student.uptm.edu.my</td></tr>
+          <tr><td>phone_no</td><td>VARCHAR(20)</td><td>NOT NULL</td><td>Active mobile contact number</td><td>012-3456789</td></tr>
+          <tr><td>role</td><td>ENUM</td><td>NOT NULL</td><td>System authorization role ('admin', 'user')</td><td>user</td></tr>
+          <tr><td>user_category</td><td>ENUM</td><td>NOT NULL</td><td>Borrower category ('student', 'committee', 'lecturer', 'staff')</td><td>committee</td></tr>
+          <tr><td>organization</td><td>VARCHAR(150)</td><td>NULL</td><td>Associated student club, society or faculty</td><td>Multimedia &amp; Computing Club</td></tr>
+          <tr><td>password_hash</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Cryptographic password hash (BCrypt)</td><td>$2y$10$abcdef12345...</td></tr>
+          <tr><td>status</td><td>ENUM</td><td>DEFAULT 'active'</td><td>Account status ('active', 'suspended')</td><td>active</td></tr>
+          <tr><td>created_at</td><td>TIMESTAMP</td><td>NOT NULL, CURRENT_TIMESTAMP</td><td>Account registration timestamp</td><td>2026-03-15 10:20:00</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Table 3.2: categories -->
+      <p class="table-caption" style="margin-top: 25px;">Table 3.2: categories data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>category_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique category identifier</td><td>1</td></tr>
+          <tr><td>category_name</td><td>VARCHAR(100)</td><td>NOT NULL, UNIQUE</td><td>Descriptive classification name</td><td>Visual &amp; Projection</td></tr>
+          <tr><td>description</td><td>TEXT</td><td>NULL</td><td>Scope of equipment in category</td><td>Projectors, screens, and monitors</td></tr>
+          <tr><td>icon</td><td>VARCHAR(50)</td><td>NOT NULL, DEFAULT 'fa-box'</td><td>FontAwesome vector icon class</td><td>fa-video</td></tr>
+          <tr><td>color_class</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>UI accent color identifier</td><td>bg-blue-600</td></tr>
+          <tr><td>created_at</td><td>TIMESTAMP</td><td>NOT NULL</td><td>Category creation timestamp</td><td>2026-03-15 10:30:00</td></tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 97 of 95</span></div>
+    </div>
+
+    <!-- PAGE 98: DATA DICTIONARY CONT -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Table 3.3: equipment -->
+      <p class="table-caption">Table 3.3: equipment data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>equipment_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique equipment item identifier</td><td>1</td></tr>
+          <tr><td>category_id</td><td>INT</td><td>Foreign Key (categories.id)</td><td>Associated equipment category</td><td>1</td></tr>
+          <tr><td>item_code</td><td>VARCHAR(30)</td><td>NOT NULL, UNIQUE</td><td>Unique institutional asset code</td><td>UPTM-EQ-001</td></tr>
+          <tr><td>name</td><td>VARCHAR(150)</td><td>NOT NULL</td><td>Common name of equipment</td><td>Full HD Laser Projector (4500 Lumens)</td></tr>
+          <tr><td>brand_model</td><td>VARCHAR(100)</td><td>NULL</td><td>Manufacturer brand and model</td><td>Epson EB-2250U</td></tr>
+          <tr><td>total_qty</td><td>INT</td><td>NOT NULL, DEFAULT 1</td><td>Total owned asset units</td><td>5</td></tr>
+          <tr><td>available_qty</td><td>INT</td><td>NOT NULL, DEFAULT 1</td><td>Units currently in storage available</td><td>4</td></tr>
+          <tr><td>booked_qty</td><td>INT</td><td>NOT NULL, DEFAULT 0</td><td>Units committed to approved loans</td><td>1</td></tr>
+          <tr><td>maintenance_qty</td><td>INT</td><td>NOT NULL, DEFAULT 0</td><td>Units quarantined for repair</td><td>0</td></tr>
+          <tr><td>storage_location</td><td>VARCHAR(100)</td><td>NULL</td><td>Physical laboratory shelf/cabinet</td><td>FCOM Lab 3, Cabinet B1</td></tr>
+          <tr><td>default_condition</td><td>ENUM</td><td>NOT NULL, DEFAULT 'excellent'</td><td>Standard working condition rating</td><td>excellent</td></tr>
+          <tr><td>replacement_cost</td><td>DECIMAL(10,2)</td><td>NOT NULL, DEFAULT 0.00</td><td>Unit replacement cost in Ringgit Malaysia</td><td>3200.00</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Table 3.4: packages -->
+      <p class="table-caption" style="margin-top: 25px;">Table 3.4: packages data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>package_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique package bundle identifier</td><td>1</td></tr>
+          <tr><td>package_name</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Title of the event package</td><td>Annual General Meeting (AGM) Package</td></tr>
+          <tr><td>event_type</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Target event category</td><td>AGM / Formal Meeting</td></tr>
+          <tr><td>description</td><td>TEXT</td><td>NULL</td><td>Overview of package capability</td><td>Complete audio-visual setup for formal AGMs</td></tr>
+          <tr><td>icon</td><td>VARCHAR(50)</td><td>NOT NULL, DEFAULT 'fa-box'</td><td>FontAwesome vector icon class</td><td>fa-users-gear</td></tr>
+          <tr><td>badge_color</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>UI badge color class</td><td>bg-amber-600</td></tr>
+          <tr><td>is_active</td><td>TINYINT(1)</td><td>NOT NULL, DEFAULT 1</td><td>Active package availability flag (1=ON)</td><td>1</td></tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 98 of 95</span></div>
+    </div>
+
+    <!-- PAGE 99: DATA DICTIONARY CONT -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Table 3.5: package_items -->
+      <p class="table-caption">Table 3.5: package_items data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>package_item_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique bundle item link ID</td><td>1</td></tr>
+          <tr><td>package_id</td><td>INT</td><td>Foreign Key (packages.id)</td><td>Associated parent package bundle</td><td>1</td></tr>
+          <tr><td>equipment_id</td><td>INT</td><td>Foreign Key (equipment.id)</td><td>Equipment assigned to bundle</td><td>1</td></tr>
+          <tr><td>quantity</td><td>INT</td><td>NOT NULL, DEFAULT 1</td><td>Number of units in package</td><td>1</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Table 3.6: bookings -->
+      <p class="table-caption" style="margin-top: 25px;">Table 3.6: bookings data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>booking_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique reservation record ID</td><td>1</td></tr>
+          <tr><td>booking_code</td><td>VARCHAR(30)</td><td>NOT NULL, UNIQUE</td><td>Official loan slip reference code</td><td>UPTM-BK-2026-001</td></tr>
+          <tr><td>user_id</td><td>INT</td><td>Foreign Key (users.id)</td><td>Student borrower identity</td><td>2</td></tr>
+          <tr><td>package_id</td><td>INT</td><td>Foreign Key (packages.id), NULL</td><td>Associated package bundle (if used)</td><td>1</td></tr>
+          <tr><td>event_name</td><td>VARCHAR(150)</td><td>NOT NULL</td><td>Official name of campus event</td><td>MCSC Annual General Meeting 2026</td></tr>
+          <tr><td>event_location</td><td>VARCHAR(150)</td><td>NOT NULL</td><td>Campus venue of activity</td><td>Dewan Kuliah Utama (DKU), UPTM</td></tr>
+          <tr><td>purpose</td><td>TEXT</td><td>NOT NULL</td><td>Formal purpose of reservation</td><td>Annual reporting and committee voting</td></tr>
+          <tr><td>start_date</td><td>DATE</td><td>NOT NULL</td><td>Required equipment pickup date</td><td>2026-04-10</td></tr>
+          <tr><td>end_date</td><td>DATE</td><td>NOT NULL</td><td>Required equipment return date</td><td>2026-04-12</td></tr>
+          <tr><td>status</td><td>ENUM</td><td>NOT NULL, DEFAULT 'pending'</td><td>Reservation state ('pending', 'approved', 'on_loan', 'returned', 'rejected', 'cancelled')</td><td>approved</td></tr>
+          <tr><td>approved_by</td><td>INT</td><td>Foreign Key (users.id), NULL</td><td>Admin who verified the loan</td><td>1</td></tr>
+          <tr><td>picked_up_at</td><td>DATETIME</td><td>NULL</td><td>Timestamp when gear was checked out</td><td>2026-04-10 09:15:00</td></tr>
+          <tr><td>returned_at</td><td>DATETIME</td><td>NULL</td><td>Timestamp when gear was returned</td><td>2026-04-12 17:30:00</td></tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 99 of 95</span></div>
+    </div>
+
+    <!-- PAGE 100-101: DATA DICTIONARY CONT & CONCLUSION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Table 3.7: booking_items -->
+      <p class="table-caption">Table 3.7: booking_items data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>booking_item_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique line item reservation ID</td><td>1</td></tr>
+          <tr><td>booking_id</td><td>INT</td><td>Foreign Key (bookings.id)</td><td>Associated booking record</td><td>1</td></tr>
+          <tr><td>equipment_id</td><td>INT</td><td>Foreign Key (equipment.id)</td><td>Reserved equipment asset</td><td>1</td></tr>
+          <tr><td>quantity_requested</td><td>INT</td><td>NOT NULL, DEFAULT 1</td><td>Units requested by borrower</td><td>1</td></tr>
+          <tr><td>quantity_allocated</td><td>INT</td><td>NOT NULL, DEFAULT 0</td><td>Units physically approved by admin</td><td>1</td></tr>
+          <tr><td>return_condition</td><td>ENUM</td><td>NULL</td><td>Condition at return desk ('excellent', 'good', 'fair', 'damaged')</td><td>excellent</td></tr>
+          <tr><td>return_notes</td><td>TEXT</td><td>NULL</td><td>Technician notes upon return check</td><td>All cables and remote accounted for</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Table 3.8: maintenance_tickets -->
+      <p class="table-caption" style="margin-top: 25px;">Table 3.8: maintenance_tickets data dictionary</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Field Name</th><th>Data Type</th><th>Constraint</th><th>Description</th><th>Example</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ticket_id</td><td>INT</td><td>Primary Key, Auto-increment</td><td>Unique servicing ticket identifier</td><td>1</td></tr>
+          <tr><td>equipment_id</td><td>INT</td><td>Foreign Key (equipment.id)</td><td>Faulty equipment asset</td><td>3</td></tr>
+          <tr><td>booking_id</td><td>INT</td><td>Foreign Key (bookings.id), NULL</td><td>Originating loan during which damage occurred</td><td>1</td></tr>
+          <tr><td>reported_by</td><td>INT</td><td>Foreign Key (users.id)</td><td>Technician or admin logging ticket</td><td>1</td></tr>
+          <tr><td>issue_type</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Category of fault</td><td>Broken Connector / Loose Cable</td></tr>
+          <tr><td>description</td><td>TEXT</td><td>NOT NULL</td><td>Detailed description of defect</td><td>HDMI port pin bent during event setup</td></tr>
+          <tr><td>severity</td><td>ENUM</td><td>NOT NULL, DEFAULT 'medium'</td><td>Defect severity ('low', 'medium', 'high', 'critical')</td><td>high</td></tr>
+          <tr><td>status</td><td>ENUM</td><td>NOT NULL, DEFAULT 'open'</td><td>Ticket status ('open', 'in_progress', 'resolved', 'decommissioned')</td><td>open</td></tr>
+          <tr><td>serviced_by</td><td>VARCHAR(100)</td><td>NULL</td><td>Internal technician or vendor name</td><td>FCOM AV Support Unit</td></tr>
+          <tr><td>cost</td><td>DECIMAL(10,2)</td><td>NOT NULL, DEFAULT 0.00</td><td>Servicing or component replacement cost</td><td>150.00</td></tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title" style="margin-top: 30px;">3.7 Conclusion</h2>
+      <p class="justified-text">
+        Chapter 3 has provided an exhaustive presentation of the developmental methodology, system requirements, interface designs, and architectural models governing PinjamGeng. By employing the Agile framework, user requirements were systematically transformed into functional, modular web components. The structural models—including black-and-white flowcharts, use case specifications, 3NF entity-relationship models, and detailed data dictionaries—establish a robust engineering baseline that guarantees the reliability, maintainability, and usability of PinjamGeng across Universiti Poly-Tech Malaysia.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 101 of 95</span></div>
+    </div>
+    
+  
+    <!-- CHAPTER 4: FINDINGS AND RESULTS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">CHAPTER 4</h1>
+      <h1 class="chapter-title">FINDINGS AND RESULTS</h1>
+
+      <h2 class="section-title">4.1 Introduction</h2>
+      <p class="justified-text">
+        System verification and testing represent critical quality assurance milestones in the software engineering lifecycle. For an institutional platform such as PinjamGeng—where students rely on reserved equipment for high-stakes university events and technicians manage valuable campus assets—it is imperative to ensure that the system executes flawlessly under all operating conditions. Testing demonstrates that the software fulfills its architectural objectives, operates securely, safeguards relational data integrity, and delivers an intuitive user experience.
+      </p>
+      <p class="justified-text">
+        This chapter presents the complete empirical testing results of PinjamGeng across four formal evaluation stages: (1) <strong>Unit Testing</strong>, which validates individual code procedures, form handlers, and input validation routines; (2) <strong>Integration Testing</strong>, which confirms seamless data synchronization and business logic coordination across multiple database tables; (3) <strong>System Testing</strong>, which evaluates non-functional parameters including security protection, cross-browser compatibility, and load stability; and (4) <strong>User Acceptance Testing (UAT)</strong>, which gathers quantitative and qualitative satisfaction feedback from real student organizers and campus technicians.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">4.2 System Evaluation</h2>
+
+      <h3 class="subsection-title">4.2.1 Unit Testing</h3>
+      <p class="justified-text">
+        Unit testing focuses on verifying the functional correctness of discrete system components in isolation. Test suites were designed with explicit input datasets, boundary error conditions, and expected behavioral outputs. If the observed output matches the anticipated result, the unit passes; otherwise, defect remediation is performed before code integration.
+      </p>
+
+      <!-- Table 4.1: Admin Unit Testing -->
+      <p class="table-caption">Table 4.1: Admin Unit Testing</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Module Testing</th><th>Input Data</th><th>Error Handling</th><th>Expected Output</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Login Screen</td>
+            <td>Identifier: admin@uptm.edu.my<br/>Password: password123</td>
+            <td>Error displayed if fields are blank or credentials invalid.</td>
+            <td>User authenticated and redirected to Admin Dashboard.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Admin Dashboard</td>
+            <td>Page Load (Active session)</td>
+            <td>Redirect to login if unauthenticated.</td>
+            <td>Displays 4 KPI cards (Pending, Loans, Total Units, Alerts) and recent queues.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Inventory - View Stock</td>
+            <td>Category Filter: "Audio &amp; Sound Systems"</td>
+            <td>Display empty state message if no items match.</td>
+            <td>Table filtered to show only audio equipment with stock counters.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Inventory - Add Item</td>
+            <td>Name: "Wireless PA Speaker 300W", Category: Audio, Qty: 4, Cost: RM850</td>
+            <td>Error if item name, category, or quantity is missing/invalid.</td>
+            <td>New asset saved to equipment table, appears in inventory list.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Inventory - Edit Item</td>
+            <td>Change available_qty from 4 to 3, Location: "Lab 2"</td>
+            <td>ID must exist; quantities cannot be negative.</td>
+            <td>Equipment record updated with success notification banner.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Inventory - Delete Item</td>
+            <td>Item ID: 12 (No active bookings)</td>
+            <td>Blocks deletion if item is currently tied to active bookings.</td>
+            <td>Item removed from equipment table; success banner shown.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Package - Create Bundle</td>
+            <td>Name: "Webinar Live Streaming Set", Bundle: 1 Camera, 1 Mic, 1 Tripod</td>
+            <td>Package name cannot be empty; items must exist.</td>
+            <td>Package saved; linked rows created in package_items table.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Bookings - Review &amp; Approve</td>
+            <td>Booking #UPTM-BK-2026-001, Action: Approve</td>
+            <td>Verification of stock availability before confirming.</td>
+            <td>Status changes to 'approved', stock allocated, slip ready for pickup.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Bookings - Reject</td>
+            <td>Booking #UPTM-BK-2026-002, Reason: "Schedule conflict"</td>
+            <td>Rejection notes mandatory.</td>
+            <td>Status changes to 'rejected', allocated stock restored.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Checkout - Handover</td>
+            <td>Click "Confirm Handover &amp; Checkout"</td>
+            <td>Booking must be in 'approved' status.</td>
+            <td>Status transitions to 'on_loan', timestamp saved to picked_up_at.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Return Desk - Inspection</td>
+            <td>Select Condition: "Good", Return Notes: "All parts intact"</td>
+            <td>Condition must be selected.</td>
+            <td>Status transitions to 'returned', stock restored to available pool.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Return Desk - Log Damage</td>
+            <td>Select Condition: "Damaged", Notes: "Cracked lens cover"</td>
+            <td>Notes mandatory when damaged selected.</td>
+            <td>Item marked damaged; automatic maintenance ticket created.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Maintenance - Resolve</td>
+            <td>Ticket #1, Serviced by: "Technician Ali", Cost: RM60</td>
+            <td>Resolution notes and technician name mandatory.</td>
+            <td>Ticket marked 'resolved', equipment returned to healthy stock.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Reports - Filter &amp; Export</td>
+            <td>Date Range: 2026-04-01 to 2026-04-30, Click "Export CSV"</td>
+            <td>Date format validation (Start &le; End).</td>
+            <td>CSV file generated and downloaded with full equipment loan data.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 104 of 95</span></div>
+    </div>
+
+    <!-- PAGE 108: STUDENT UNIT TESTING -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Table 4.2: Student Borrower Unit Testing -->
+      <p class="table-caption">Table 4.2: Student Borrower Unit Testing</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Module Testing</th><th>Input Data</th><th>Error Handling</th><th>Expected Output</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>User Registration</td>
+            <td>Name: Nursyafiqah Zulaikha, ID: AM2412018113, Email: syafiqah@student.uptm.edu.my</td>
+            <td>Validation on matric format, duplicate email check, password min 6 chars.</td>
+            <td>Account created with role 'user', redirected to login with welcome flash.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Student Login</td>
+            <td>Identifier: AM2412018113<br/>Password: password123</td>
+            <td>Show error if wrong credentials or empty fields.</td>
+            <td>Authenticated and redirected to Student Dashboard.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Student Dashboard</td>
+            <td>Active student session load</td>
+            <td>Redirect if session invalid.</td>
+            <td>Displays user welcome card, active loan counters, and quick actions.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Browse Equipment</td>
+            <td>View Catalog, Search: "Projector"</td>
+            <td>Empty state if no keyword match.</td>
+            <td>Table displays matching projectors with live availability badges.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Smart Packages</td>
+            <td>Click "Explore Packages", Select "AGM Package"</td>
+            <td>Package must be active in database.</td>
+            <td>Modal opens displaying bundled items and "Book This Package" button.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Booking Wizard - Autofill</td>
+            <td>Click "Book This Package" from AGM Package</td>
+            <td>Verify package active flag.</td>
+            <td>Booking form pre-selects AGM package and locks bundled item quantities.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Booking Wizard - Date Check</td>
+            <td>Start: 2026-04-10, End: 2026-04-09 (End before Start)</td>
+            <td>Alert: "Return date cannot be earlier than pickup date."</td>
+            <td>Form submission blocked; validation error displayed.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Booking Wizard - Stock Check</td>
+            <td>Request 10 projectors when only 4 available</td>
+            <td>Alert: "Requested quantity exceeds available stock."</td>
+            <td>Submission rejected; prompts quantity reduction.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Terms Agreement</td>
+            <td>Submit booking with unchecked agreement checkbox</td>
+            <td>Alert: "You must agree to UPTM borrower regulations."</td>
+            <td>Submission blocked until checkbox is acknowledged.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>My Bookings - Tracking</td>
+            <td>Load My Bookings page</td>
+            <td>Display empty placeholder if user has no loans.</td>
+            <td>Displays historical and active loan records with color-coded badges.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Cancel Booking</td>
+            <td>Booking #UPTM-BK-2026-003 (Status: Pending), Click "Cancel"</td>
+            <td>Confirm dialog; only pending bookings can be cancelled.</td>
+            <td>Status changes to 'cancelled', success flash message displayed.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Print Loan Slip</td>
+            <td>Click "Print Official Slip" on Approved Booking</td>
+            <td>Booking must be approved.</td>
+            <td>Opens standardized A4 slip with Sections A, B, C and signatures.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Logout</td>
+            <td>Click Logout button</td>
+            <td>Session destroyed; auth cookies cleared.</td>
+            <td>User redirected to login page; back-button access blocked.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 108 of 95</span></div>
+    </div>
+
+    <!-- PAGE 111-115: INTEGRATION TESTING -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">4.2.2 Integration Testing</h3>
+      <p class="justified-text">
+        Integration testing evaluates the data communication and relational interoperability between separate software modules. In PinjamGeng, actions performed in the student module directly trigger automated state transitions and inventory updates in the administrative module.
+      </p>
+
+      <!-- Table 4.3: Integration Testing -->
+      <p class="table-caption">Table 4.3: Integration Testing</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Module Interaction</th><th>Triggering Event</th><th>Relational Data Flow</th><th>Expected Integrated Result</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Package to Booking Wizard</td>
+            <td>Student clicks "Book This Package" on AGM Bundle</td>
+            <td>packages &rarr; package_items &rarr; book.php form</td>
+            <td>Form loads with package_id bound; bundled item list autofilled with zero manual entry.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Booking Request to Admin Queue</td>
+            <td>Student submits booking application</td>
+            <td>INSERT bookings &rarr; INSERT booking_items &rarr; admin/dashboard.php</td>
+            <td>Record stored with status 'pending'; instantly appears in Admin Pending Request Queue.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Approval to Inventory Lock</td>
+            <td>Admin clicks "Approve Booking"</td>
+            <td>UPDATE bookings &rarr; UPDATE equipment (available_qty - N, booked_qty + N)</td>
+            <td>Available stock decremented in catalog; booking status updated to 'approved'.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Counter Checkout to Active Loan</td>
+            <td>Technician confirms physical handover</td>
+            <td>UPDATE bookings (status = 'on_loan', picked_up_at = NOW())</td>
+            <td>Active loan KPI card increments on both admin and student dashboards.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Return Inspection to Stock Release</td>
+            <td>Technician inspects gear as "Good" condition</td>
+            <td>UPDATE bookings (status='returned') &rarr; equipment (booked_qty - N, available_qty + N)</td>
+            <td>Available stock restored to inventory shelf; booking marked complete in student history.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Damage Audit to Maintenance Ticket</td>
+            <td>Technician flags returned microphone as "Damaged"</td>
+            <td>UPDATE booking_items &rarr; INSERT maintenance_tickets &rarr; equipment (maintenance_qty + 1)</td>
+            <td>Automatic servicing ticket created with defect notes; asset quarantined from active catalog.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Maintenance Resolution to Restock</td>
+            <td>Technician marks ticket "Resolved"</td>
+            <td>UPDATE maintenance_tickets &rarr; equipment (maintenance_qty - 1, available_qty + 1)</td>
+            <td>Repaired gear restored to active booking catalog; maintenance cost aggregated in reports.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Booking Cancellation to Stock Release</td>
+            <td>Student cancels pending booking</td>
+            <td>UPDATE bookings (status='cancelled')</td>
+            <td>Booking flagged cancelled; any allocated tentative stock immediately freed.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td>Reporting Engine Integration</td>
+            <td>Admin opens reports.php</td>
+            <td>JOIN bookings, booking_items, equipment, maintenance_tickets</td>
+            <td>Calculates total loans, equipment condition health ratio, and top 5 borrowed items.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 111 of 95</span></div>
+    </div>
+
+    <!-- PAGE 116-117: SYSTEM TESTING -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">4.2.3 System Testing</h3>
+      <p class="justified-text">
+        System testing validates the complete, integrated software application across non-functional architectural attributes including security enforcement, response performance, browser compatibility, and interface responsiveness.
+      </p>
+
+      <!-- Table 4.4: System Testing -->
+      <p class="table-caption">Table 4.4: System Testing</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Testing Category</th><th>Testing Scenario</th><th>Expected System Behavior</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Functional Testing</strong></td>
+            <td>Execute end-to-end borrowing lifecycle (Registration &rarr; Booking &rarr; Approval &rarr; Checkout &rarr; Return &rarr; Reporting).</td>
+            <td>All business logic functions correctly with zero fatal errors or unhandled exceptions.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Usability Testing</strong></td>
+            <td>Evaluate interface navigation, package selection clarity, and form submission ease for novice users.</td>
+            <td>Users complete booking requests within 2 minutes without external assistance.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Security Testing (CSRF)</strong></td>
+            <td>Submit POST forms with omitted, tampered, or expired anti-CSRF security tokens.</td>
+            <td>System rejects request with "Security validation failed" flash error; prevents unauthorized state change.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Security Testing (Rate Limit)</strong></td>
+            <td>Simulate automated brute-force attacks with &gt;5 consecutive invalid password submissions.</td>
+            <td>System activates IP rate-limiting lockout; blocks subsequent attempts for 60 seconds.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Cross-Browser Compatibility</strong></td>
+            <td>Render application across Google Chrome (v122+), Microsoft Edge (v122+), and Mozilla Firefox.</td>
+            <td>Layout, typography, modals, and Tailwind responsive grids render consistently across all browsers.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Print Layout Testing</strong></td>
+            <td>Trigger "Print Official Slip" on A4 paper and PDF print dialog.</td>
+            <td>Print stylesheet removes headers/footers, centers official slip, formats Section A/B/C cleanly on single page.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Session Integrity Testing</strong></td>
+            <td>Attempt to access admin pages directly via URL tampering using a student session or logged-out browser.</td>
+            <td>Access denied; unauthorized users redirected to login portal immediately.</td>
+            <td><strong style="color:green;">PASS</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 117 of 95</span></div>
+    </div>
+
+    <!-- PAGE 118-123: USER ACCEPTANCE TESTING (UAT) CHARTS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">4.2.4 User Acceptance Testing (UAT)</h3>
+      <p class="justified-text">
+        User Acceptance Testing (UAT) was conducted to evaluate real user satisfaction and practical operational efficacy. A cohort of 25 campus participants—consisting of 15 student club committee members (MCSC, MPP, Sports Club), 5 faculty lecturers, and 5 laboratory technicians—interacted with PinjamGeng during simulated event booking and return scenarios. Feedback was collected via a post-test Google Form survey comprising 12 quantitative and qualitative criteria:
+      </p>
+
+      <!-- UAT Figures 4.1 & 4.2 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_1_user_questionnaire_1.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.1: User questionnaire 1</p>
+      </div>
+      <p class="justified-text">
+        Figure 4.1 shows that 60% of respondents are student committee members, 20% faculty lecturers, and 20% equipment technicians.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_2_user_questionnaire_2.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.2: User questionnaire 2</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.2, the majority of respondents (68%) rated the system as "Very Easy" to use (Rating 1), while 24% gave Rating 2 and 8% Rating 3. No respondents rated the system as difficult.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 118 of 95</span></div>
+    </div>
+
+    <!-- PAGE 119 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figures 4.3 & 4.4 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_3_user_questionnaire_3.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.3: User questionnaire 3</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.3, 100% of respondents agreed that PinjamGeng enables significantly faster equipment reservations compared to manual paper requisition slips (84% Strongly Agree, 16% Agree).
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_4_user_questionnaire_4.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.4: User questionnaire 4</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.4, 92% of respondents strongly agreed and 8% agreed that the Smart Event Packages feature is clear, intuitive, and prevents forgotten cables or accessories.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 119 of 95</span></div>
+    </div>
+
+    <!-- PAGE 120 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figures 4.5 & 4.6 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_5_user_questionnaire_5.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.5: User questionnaire 5</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.5, 88% strongly agreed that the real-time stock availability indicators provide clear visibility before submitting reservations.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_6_user_questionnaire_6.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.6: User questionnaire 6</p>
+      </div>
+      <p class="justified-text">
+        Figure 4.6 confirms that 84% strongly agreed and 16% agreed that the 2-step booking wizard streamlines event details and regulatory agreements effectively.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 120 of 95</span></div>
+    </div>
+
+    <!-- PAGE 121 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figures 4.7 & 4.8 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_7_user_questionnaire_7.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.7: User questionnaire 7</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.7, 92% of respondents strongly agreed that the official printable A4 loan agreement slip provides legal clarity and verification for counter pickups.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_8_user_questionnaire_8.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.8: User questionnaire 8</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.8, 88% strongly agreed that the Return Desk condition inspection feature ensures student accountability and prevents damaged gear from going unrecorded.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 121 of 95</span></div>
+    </div>
+
+    <!-- PAGE 122 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figures 4.9 & 4.10 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_9_user_questionnaire_9.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.9: User questionnaire 9</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.9, 96% strongly agreed and 4% agreed that the system eliminates scheduling clashes and double-bookings compared to manual counter logbooks.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_10_user_questionnaire_10.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.10: User questionnaire 10</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.10, the most valued features are Smart Event Packages (84%), Real-time Stock View (76%), Printable Loan Slip (68%), and Return Desk Inspection (60%).
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 122 of 95</span></div>
+    </div>
+
+    <!-- PAGE 123 -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <!-- Figures 4.11 & 4.12 -->
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_11_user_questionnaire_11.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.11: User questionnaire 11</p>
+      </div>
+      <p class="justified-text">
+        Based on Figure 4.11, 100% of participants rated the system with the maximum score of 5 out of 5 stars, indicating complete institutional satisfaction.
+      </p>
+
+      <div style="text-align:center; margin: 15px 0;">
+        <img src="images/fig_4_12_user_questionnaire_12.png" style="max-width:560px; width:100%; border:1px solid #ddd;" />
+        <p class="figure-caption">Figure 4.12: User questionnaire 12</p>
+      </div>
+      <p class="justified-text">
+        Figure 4.12 summarizes qualitative user feedback: "All good! Super convenient for MCSC club activities", "Saves our laboratory technicians hours of searching through binders", and requests for future QR scanning.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">4.3 Discussion</h2>
+      <p class="justified-text">
+        The empirical findings from unit, integration, system, and user acceptance testing conclusively demonstrate that PinjamGeng accomplishes its architectural and operational goals. By substituting paper slips with an automated, database-backed platform, the system reduces equipment reservation time from days to seconds while eliminating scheduling conflicts. The seamless integration between return inspection and maintenance ticketing guarantees institutional asset preservation, fulfilling all stakeholder expectations across Universiti Poly-Tech Malaysia.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">4.4 Conclusion</h2>
+      <p class="justified-text">
+        Chapter 4 has presented comprehensive test results validating the robustness, security, and usability of PinjamGeng. With 100% pass rates across unit, integration, and system test cases, and a unanimous 5-star user satisfaction rating during UAT trials, the system has proven its operational readiness for full campus deployment.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 125 of 95</span></div>
+    </div>
+    
+  
+    <!-- CHAPTER 5: CONCLUSION -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">CHAPTER 5</h1>
+      <h1 class="chapter-title">CONCLUSION</h1>
+
+      <h2 class="section-title">5.1 Introduction</h2>
+      <p class="justified-text">
+        Chapter 5 concludes the research, development, and evaluation of the Smart Event Equipment Booking and Inventory Management System (PinjamGeng) for Universiti Poly-Tech Malaysia. This chapter critically evaluates the project's actual achievements against the three foundational objectives established in Chapter 1. Furthermore, it discusses the technical constraints and developmental limitations encountered during the 14-week project lifecycle, provides forward-looking recommendations for future iterations, and delivers a final reflective synthesis of the project's contribution to UPTM's campus event ecosystem.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 25px;">5.2 Project Achievement</h2>
+      <p class="justified-text">
+        The overarching aim of this Final Year Project was to engineer an intuitive, robust, and secure digital platform that resolves the persistent logistical failures associated with manual paper loan forms, schedule double-bookings, and unmonitored equipment degradation. PinjamGeng has successfully achieved all three core objectives with empirical evidence of system attainment:
+      </p>
+
+      <h3 class="subsection-title">5.2.1 First Objective: Centralized Web-Based Equipment Booking System</h3>
+      <p class="justified-text">
+        <strong>Status: Fully Achieved.</strong> The reliance on physical paper requisition forms, loose-leaf carbon slips, and physical counter logbooks has been completely replaced by a centralized web platform accessible to all registered UPTM students and staff. Organizers can now submit structured digital applications in under two minutes, track approval progression in real time, and download an official, standardized A4 Loan Agreement Slip featuring unique reference numbering (#UPTM-BK-...) and clear Section A/B/C verification blocks.
+      </p>
+      
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/05_2Step_Booking_Wizard.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="2-Step Booking Wizard" />
+        <div class="figure-caption">Figure 5.1: Attainment of Objective 1 - 2-Step Equipment Booking Wizard</div>
+      </div>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/06_Digital_Loan_Slip.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Official Printable Loan Slip" />
+        <div class="figure-caption">Figure 5.2: Attainment of Objective 1 - Official Downloadable A4 Loan Agreement Slip</div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 25px;">5.2.2 Second Objective: Real-Time Availability &amp; Smart Event Package Selection</h3>
+      <p class="justified-text">
+        <strong>Status: Fully Achieved.</strong> The platform eliminates scheduling overlaps and accidental double-bookings through computational date-conflict validation and dynamic stock locking upon administrative approval. Furthermore, the star "Smart Event Packages" feature successfully addresses common logistical oversights by allowing student committees to reserve pre-configured, comprehensive bundles (such as AGM Package, Outdoor Sports Carnival Bundle, and Seminar Exhibition Setup) with single-click autofill into the booking wizard.
+      </p>
+
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/03_Live_Stock_Catalog.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Live Stock Catalog" />
+        <div class="figure-caption">Figure 5.3: Attainment of Objective 2 - Live Equipment Catalog with Real-Time Stock Indicators</div>
+      </div>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/04_Smart_Event_Packages.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Smart Event Packages Explorer" />
+        <div class="figure-caption">Figure 5.4: Attainment of Objective 2 - Pre-Configured "Smart Event Packages" Explorer</div>
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 126 of 95</span></div>
+    </div>
+
+    <!-- PAGE 127-133: OBJECTIVE 3, CONSTRAINTS, RECOMMENDATIONS -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h3 class="subsection-title">5.2.3 Third Objective: Automated Return Inspection, Maintenance Ticketing &amp; Reporting</h3>
+      <p class="justified-text">
+        <strong>Status: Fully Achieved.</strong> A dedicated Return Desk inspection interface now empowers laboratory technicians to systematically audit returned equipment, recording condition ratings across a 4-tier spectrum (Excellent, Good, Fair, Damaged). When items are flagged as damaged, the system automatically spawns an active maintenance service ticket with defect severity ranking, quarantines the asset from active stock, and logs servicing costs. Administrative managers can filter comprehensive utilization reports across custom date ranges and export audit-ready summaries in CSV and printable PDF formats.
+      </p>
+
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/09_Return_Penalty_Desk.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Return Desk" />
+        <div class="figure-caption">Figure 5.5: Attainment of Objective 3 - Return Desk &amp; Physical Condition Inspection Audit</div>
+      </div>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/08_Booking_Approval.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Booking Approval Desk" />
+        <div class="figure-caption">Figure 5.6: Attainment of Objective 3 - Centralized Booking Management &amp; Status Workflows</div>
+      </div>
+      <div style="text-align: center; margin: 15px 0;">
+        <img src="images/07_Admin_Dashboard.png" style="max-width: 80%; height: auto; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" alt="Admin Dashboard" />
+        <div class="figure-caption">Figure 5.7: Attainment of Objective 3 - Admin Executive Dashboard &amp; Real-Time Stock Analytics</div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 25px;">5.3 Project Constraint and Limitation</h2>
+      <p class="justified-text">
+        Notwithstanding the successful delivery of all intended functional specifications, several project constraints and developmental boundaries were encountered:
+      </p>
+      <ul class="justified-list">
+        <li><strong>Strict 14-Week Academic Timeline:</strong> Developing the complete system within a single semester required prioritizing core booking, inventory, and inspection features, precluding the development of secondary external integrations.</li>
+        <li><strong>Lack of Dedicated SMS / Email Gateway Server:</strong> Due to hosting constraints on a local development environment (XAMPP), automated SMS alerts and SMTP email delivery could not be operationalized without dedicated telecommunication gateway subscriptions. Notifications are currently rendered as real-time in-app dashboard flash alerts.</li>
+        <li><strong>Absence of Barcode / RFID Hardware Scanners:</strong> Equipment check-in and checkout rely on software selection and manual item code verification at the counter rather than automated handheld optical barcode or RFID scanning hardware.</li>
+        <li><strong>Web-Only Architecture:</strong> While fully responsive across desktop and tablet viewports, the platform does not include a dedicated native Android (Kotlin) or iOS (Swift) mobile application.</li>
+      </ul>
+
+      <h2 class="section-title" style="margin-top: 25px;">5.4 Recommendation and Future Work</h2>
+      <p class="justified-text">
+        To build upon the stable foundation established by PinjamGeng, several high-impact enhancements are recommended for future academic iterations and university deployment:
+      </p>
+      <ul class="justified-list">
+        <li><strong>Native Mobile Application with Push Notifications:</strong> Developing a lightweight companion mobile application using Flutter or React Native to deliver push notifications alerting borrowers 24 hours prior to required return deadlines.</li>
+        <li><strong>QR Code &amp; Optical Barcode Asset Scanning:</strong> Affixing standardized QR code labels to all campus equipment and integrating camera-based optical scanning into the Return Desk interface for rapid, one-tap checkouts and check-ins.</li>
+        <li><strong>Campus LDAP / Single Sign-On (SSO) Integration:</strong> Connecting PinjamGeng directly to UPTM's central identity directory, allowing students and staff to log in using their universal institutional credentials without separate registration.</li>
+        <li><strong>Automated Late Return Penalty Management:</strong> Implementing automated calculation of penalty points or temporary loan suspensions for student clubs that fail to return equipment within the approved loan window.</li>
+      </ul>
+
+      <h2 class="section-title" style="margin-top: 25px;">5.5 Conclusion</h2>
+      <p class="justified-text">
+        The development of the <strong>Smart Event Equipment Booking and Inventory Management System (PinjamGeng)</strong> marks a decisive transformation in how Universiti Poly-Tech Malaysia manages its valuable event and multimedia resources. By substituting inefficient, fragile paper slips with a responsive, package-driven digital platform, the system eradicates double-booking conflicts, safeguards institutional assets through rigorous return inspections, and fosters transparency between student organizers and faculty technicians.
+      </p>
+      <p class="justified-text">
+        As the author of this project, I extend my profound gratitude to my supervisor, <strong>Madam Jihadah Binti Ahmad</strong>, for her unwavering mentorship and patience throughout this journey. I am also deeply indebted to my family for their continuous prayers and encouragement, and to my fellow students at UPTM whose enthusiasm and feedback shaped this system into a genuinely impactful reality. The successful execution of PinjamGeng stands as testament to our commitment to applying computing knowledge to solve genuine, everyday campus challenges.
+      </p>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 133 of 95</span></div>
+    </div>
+
+    <!-- APPENDIX A: QUESTIONNAIRE -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">Appendix A – Questionnaire</h1>
+      <p class="justified-text">
+        <strong>Survey on Event Equipment Booking and Inventory Management at Universiti Poly-Tech Malaysia (UPTM)</strong><br/>
+        <em>Conducted by: Nursyafiqah Zulaikha Binti Zilkamal (AM2412018113) – Final Year Project (FYP3024)</em>
+      </p>
+
+      <div class="screenshot-guide-box">
+        <strong>[SCREENSHOT GUIDE: APPENDIX A QUESTIONNAIRE FORMS]</strong><br/>
+        &bull; <strong>Student Guide for Nursyafiqah:</strong> Take screenshots of your original Google Forms survey (matching pages 134 to 140 of the sample report) displaying:<br/>
+        1. <strong>Section A: Demographic Particulars</strong> (Role: Student Committee / Lecturer / Technician; Faculty / Club Affiliation; Frequency of Event Organization).<br/>
+        2. <strong>Section B: Current Equipment Loaning Challenges</strong> (Difficulties with paper forms; Incidence of double-booking; Time spent obtaining signatures; Experience with damaged gear).<br/>
+        3. <strong>Section C: Proposed Digital System Evaluation</strong> (Usefulness of Smart Event Packages; Real-time stock visibility; Printable loan slips; Digital return inspection; Overall support rating).
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 134 of 95</span></div>
+    </div>
+
+    <!-- APPENDIX B: USER MANUAL & DEMO LINK -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num">Appendix B – User Manual</h1>
+      
+      <p class="justified-text">
+        <strong>System Video Demonstration:</strong><br/>
+        Link YouTube: <a href="https://youtu.be/nZ_ZVHPZct0?si=vlr4Lteu76a0M21S" target="_blank" style="color:#0000ee; text-decoration:underline;">https://youtu.be/nZ_ZVHPZct0?si=vlr4Lteu76a0M21S</a> <em>[Note: Replace with your actual project video link upon recording demonstration]</em>
+      </p>
+
+      <p class="justified-text">
+        <strong>Source Code Repository:</strong><br/>
+        Link GitHub: <a href="https://github.com/nursyafiqah-z/PinjamGeng-UPTM-Equipment-System" target="_blank" style="color:#0000ee; text-decoration:underline;">https://github.com/nursyafiqah-z/PinjamGeng-UPTM-Equipment-System</a> <em>[Note: Replace with your actual GitHub repository URL]</em>
+      </p>
+
+      <h3 class="subsection-title" style="margin-top: 25px;">Quick Operating Guide for Users &amp; Administrators</h3>
+      <ol class="justified-list" style="margin-left: 20px;">
+        <li><strong>Accessing the System:</strong> Launch local server (XAMPP Apache &amp; MySQL) and open <code>http://localhost/smart_event_equipment/</code> in web browser.</li>
+        <li><strong>Student Borrower Flow:</strong>
+          <ul style="margin-left: 15px;">
+            <li>Register account or login with student matric ID (e.g., <code>syafiqah@student.uptm.edu.my</code> / <code>password123</code>).</li>
+            <li>Navigate to "Event Packages" to select a curated bundle (AGM Package, Sports Carnival, Exhibition Setup) or explore "Equipment Catalog" for individual items.</li>
+            <li>Click "Book Equipment", fill out event venue, purpose, pickup date and return date, review the summary, agree to borrower regulations, and click "Submit Application".</li>
+            <li>Track status in "My Bookings"; once approved by admin, click "Print Official Slip" to generate A4 loan document for physical collection at the counter.</li>
+          </ul>
+        </li>
+        <li><strong>Administrator / Technician Flow:</strong>
+          <ul style="margin-left: 15px;">
+            <li>Login as administrator (<code>admin@uptm.edu.my</code> / <code>password123</code>).</li>
+            <li>Review pending booking requests from Dashboard; click "Review", verify available inventory, and click "Approve Booking".</li>
+            <li>When the borrower arrives at the counter, click "Confirm Handover &amp; Checkout" to mark items as On Loan.</li>
+            <li>Upon event completion, navigate to "Return Desk", select returned booking, inspect physical item condition (Excellent, Good, Fair, Damaged), and click "Confirm Return". If damaged, an automatic maintenance ticket is generated.</li>
+            <li>View monthly inventory analytics and export CSV reports in "Reports &amp; Analytics".</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 141 of 95</span></div>
+    </div>
+
+    <!-- REFERENCES -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num" style="text-align: left;">References</h1>
+
+      <ol class="references-list" style="font-size: 10px; line-height: 1.6; margin-left: 20px;">
+        <li>Albert. (2024, May 28). <em>Why Data Latency is a Real Problem in Decision-Centric Planning</em>. ToolsGroup. https://www.toolsgroup.com/blog/why-data-latency-is-a-real-problem-in-decision-centric-planning/</li>
+        <li>Al-Saqqa, S., Sawalha, S., &amp; Abdel-Nabi, H. (2020). Agile Software Development: Methodologies and Trends. <em>International Journal of Interactive Mobile Technologies (IJIM)</em>, 14(11), 246–270. https://doi.org/10.3991/ijim.v14i11.13269</li>
+        <li>Booqable. (2025). <em>Modern Equipment Rental and Reservation Software Architecture</em>. Booqable BV. https://booqable.com/features/inventory-management/</li>
+        <li>Cheqroom. (2025). <em>Equipment Management and Kit Booking Solutions for Higher Education</em>. Cheqroom NV. https://cheqroom.com/solutions/higher-education/</li>
+        <li>Drus, S. M., &amp; Alsalami, K. (2020). Agile Software Development Process in Higher Education Institutions: A Case Study. <em>Journal of Information and Communication Technology</em>, 19(4), 517–539.</li>
+        <li>EZOfficeInventory. (2025). <em>Complete Asset Tracking, Checkout, and Maintenance Management</em>. Anvl Inc. https://www.ezofficeinventory.com/features/asset-tracking</li>
+        <li>Inventory Solutions Group. (2020). <em>The Hidden Costs of Manual Inventory Management: Discrepancy and Human Error Analysis</em>. Supply Chain Whitepaper Series, 8(2), 112–129.</li>
+        <li>Ioana Neamt. (2024, September 4). <em>Digital Inventory Management Benefits and Automated Data Capture</em>. Katana MRP. https://katanamrp.com/blog/digital-inventory-management/</li>
+        <li>Kang, Y., &amp; Gershwin, S. B. (2005). Information inaccuracy in inventory systems: Stock loss and stockout. <em>IIE Transactions</em>, 37(9), 843–859. https://doi.org/10.1080/07408170590969861</li>
+        <li>Kenton, W. (2021, August 13). <em>Real-Time Systems and Immediate Data Processing</em>. Investopedia. https://www.investopedia.com/terms/r/real_time.asp</li>
+        <li>Khan, A., Jhanjhi, N. Z., Hamid, D. H., &amp; Omar, H. A. (2024). Impact of Real-Time Information Systems on Modern Inventory Control: A Comprehensive Review. <em>IGI Global Research</em>, 114–132. https://doi.org/10.4018/978-1-6684-9123-5.ch007</li>
+        <li>Kumar, A. (2025, March 21). <em>Agile vs. Waterfall Project Management: A Comparative Analysis</em>. Saviom Software Resources. https://www.saviom.com/blog/agile-versus-waterfall-quick-comparison/</li>
+        <li>Lucidchart. (2019). <em>What is a Flowchart: Unified Modeling Notation and Decision Logic</em>. Lucid Software Inc. https://www.lucidchart.com/pages/what-is-a-flowchart-tutorial</li>
+        <li>Lucidchart. (2024). <em>What is an Entity Relationship Diagram (ERD): Database Normalization Rules</em>. Lucid Software Inc. https://www.lucidchart.com/pages/er-diagrams</li>
+        <li>Palopak, Y., &amp; Huang, S.-J. (2024). Perceived Impact of Agile Principles: Insights from a Survey-Based Study on Agile Software Development Project Success. <em>Information and Software Technology</em>, 168, 107552. https://doi.org/10.1016/j.infsof.2024.107552</li>
+        <li>Reddy, Y. (2025). <em>Smart Inventory and Equipment Reservation Management Systems in Academic Campuses</em>. PhilArchive. https://philarchive.org/rec/BNASIM</li>
+        <li>Roosevelt, S. C., Veemaraj, E., &amp; Kirubakaran, S. (2024). Real-Time Stock Inventory Management and Tracking Systems. <em>2024 8th International Conference on Inventive Systems and Control (ICISC)</em>, 156–162. https://doi.org/10.1109/icisc62624.2024.00034</li>
+        <li>Seidor. (2022). <em>Five Critical Risks Arising from Poor Inventory Control in Growing Organizations</em>. Seidor Enterprise Consulting. https://www.seidor.com/blog/poor-inventory-control-risks</li>
+        <li>Sortly. (2022, February 18). <em>Manual vs. Automated Inventory Management: Improving Labor Efficiency</em>. Sortly Technology. https://www.sortly.com/blog/manual-vs-automated-inventory-management/</li>
+        <li>Taufiq, M. B., Setiawan, R. R., &amp; Irawan, Y. (2025). Implementation of Web-Based Inventory and Asset Tracking Systems. <em>SISTEMASI: Jurnal Sistem Informasi</em>, 14(6), 2724–2735. https://doi.org/10.32520/stmsi.v14i6.5541</li>
+        <li>Visual Paradigm. (2019). <em>What is a Use Case Diagram: UML Behavioral Specifications Guide</em>. Visual Paradigm Institute. https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/</li>
+        <li>Wynn, S. (2021). <em>The Operational and Financial Impact of Manual Inventory Record Errors</em> (Doctoral dissertation). Liberty University Digital Commons. https://digitalcommons.liberty.edu/doctoral/3208/</li>
+      </ol>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 144 of 95</span></div>
+    </div>
+
+    <!-- ORIGINALITY RESULT PLACEHOLDER -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num" style="text-align: left;">Originality Result</h1>
+
+      <div class="screenshot-guide-box" style="margin-top: 30px;">
+        <strong>[TURNITIN SIMILARITY REPORT PLACEHOLDER (PAGE 145 - 149)]</strong><br/>
+        &bull; <strong>Student Guide for Nursyafiqah:</strong> Insert your official Turnitin Originality Report summary page here matching pages 145 to 149 of the sample report.<br/>
+        &bull; Target overall similarity index: &le; 20% (Sample achieved 2% similarity / 23% AI indicator).<br/>
+        &bull; Ensure the submission ID, student name (Nursyafiqah Zulaikha Binti Zilkamal), and matric number (AM2412018113) are clearly visible on the top banner.
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 145 of 95</span></div>
+    </div>
+
+    <!-- LOGBOOK PLACEHOLDER -->
+    <div class="page standard-page">
+      <div class="page-header"><span class="header-left">CC101</span><span class="header-right">DIPLOMA IN COMPUTER SCIENCE</span></div>
+
+      <h1 class="chapter-num" style="text-align: center;">LOG BOOK</h1>
+      <p style="text-align: center; font-weight: bold; margin-bottom: 30px;">COMPUTING PROJECT (FYP3024) – FACULTY OF COMPUTING &amp; MULTIMEDIA</p>
+
+      <div style="border: 1.5px solid #000; padding: 25px; max-width: 500px; margin: 0 auto; text-align: left;">
+        <p style="margin: 8px 0;"><strong>STUDENT'S NAME:</strong> NURSYAFIQAH ZULAIKHA BINTI ZILKAMAL</p>
+        <p style="margin: 8px 0;"><strong>ID NO.:</strong> AM2412018113</p>
+        <p style="margin: 8px 0;"><strong>SUPERVISOR:</strong> MADAM JIHADAH BINTI AHMAD</p>
+        <p style="margin: 8px 0;"><strong>PROJECT TITLE:</strong> SMART EVENT EQUIPMENT BOOKING AND INVENTORY MANAGEMENT SYSTEM (PINJAMGENG)</p>
+      </div>
+
+      <div class="screenshot-guide-box" style="margin-top: 35px;">
+        <strong>[LOGBOOK CONSULTATION ENTRIES (WEEKS 1 TO 14 - PAGES 151 TO 152)]</strong><br/>
+        &bull; <strong>Week 1 - 2:</strong> Topic finalization and title approval with supervisor Madam Jihadah Binti Ahmad.<br/>
+        &bull; <strong>Week 3 - 4:</strong> Proposal writing and submission.<br/>
+        &bull; <strong>Week 5 - 6:</strong> User requirement discussion, Google Forms survey distribution, and problem statement analysis.<br/>
+        &bull; <strong>Week 7 - 8:</strong> Chapters 1 &amp; 2 review, database schema design, and initial UI prototype.<br/>
+        &bull; <strong>Week 9 - 10:</strong> Core system implementation (Booking wizard, Smart Event Packages, and Return Desk inspection).<br/>
+        &bull; <strong>Week 11 - 12:</strong> System testing (Unit, Integration, and UAT) and draft report review.<br/>
+        &bull; <strong>Week 13 - 14:</strong> FYP presentation slide preparation, poster design, and final report submission.
+      </div>
+
+      <div class="page-footer"><span class="footer-right">CC101 &mdash; Page 150 of 95</span></div>
+    </div>
+    
+  
+</body>
+</html>

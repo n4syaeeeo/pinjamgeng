@@ -1,0 +1,223 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  body { background: #FFFFFF; padding: 30px; display: flex; justify-content: center; }
+  .wireframe-browser {
+    width: 900px;
+    border: 2px solid #4B5563;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .browser-bar {
+    background: #F3F4F6;
+    border-bottom: 1.5px solid #4B5563;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .browser-dot { width: 10px; height: 10px; border: 1.5px solid #6B7280; border-radius: 50%; display: inline-block; }
+  .browser-url {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #4B5563;
+    margin-left: 10px;
+  }
+  .wf-header {
+    border-bottom: 1.5px solid #9CA3AF;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FAFAFA;
+  }
+  .wf-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #111827;
+  }
+  .wf-logo-box {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background: #E5E7EB;
+  }
+  .wf-nav {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #4B5563;
+  }
+  .wf-nav-item { border-bottom: 2px solid transparent; padding: 4px 2px; }
+  .wf-nav-item.active { border-bottom: 2px solid #111827; font-weight: bold; color: #111827; }
+  .wf-body { padding: 24px; background: #FFFFFF; min-height: 480px; }
+  .wf-box {
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    background: #FFFFFF;
+  }
+  .wf-input {
+    width: 100%;
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #6B7280;
+    background: #FAFAFA;
+    margin-top: 4px;
+  }
+  .wf-btn {
+    border: 1.5px solid #111827;
+    background: #E5E7EB;
+    color: #111827;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: default;
+    text-align: center;
+  }
+  .wf-btn-primary { background: #374151; color: #FFFFFF; }
+  .image-placeholder {
+    border: 1.5px solid #9CA3AF;
+    background: #F3F4F6;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+    font-size: 11px;
+  }
+  .image-placeholder::before, .image-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #D1D5DB;
+  }
+  .image-placeholder::before { transform: rotate(24deg); }
+  .image-placeholder::after { transform: rotate(-24deg); }
+  .wf-badge {
+    display: inline-block;
+    border: 1px solid #6B7280;
+    background: #F3F4F6;
+    color: #374151;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .wf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .wf-table th, .wf-table td {
+    border: 1px solid #9CA3AF;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .wf-table th { background: #E5E7EB; color: #111827; font-weight: bold; }
+  .wf-caption {
+    font-size: 11px;
+    color: #6B7280;
+    margin-top: 4px;
+  }
+</style></head><body>
+<div class="wireframe-browser" style="width: 780px;">
+  <div class="browser-bar">
+    <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+    <span class="browser-url">https://pinjamgeng.uptm.edu.my/loan_slip.php?id=PG-2026-0842</span>
+  </div>
+  <div class="wf-body" style="padding: 30px;">
+    <!-- Slip Header -->
+    <div style="border: 1.5px solid #111827; padding: 20px; background: #FFFFFF;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #111827; padding-bottom: 12px; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="wf-logo-box" style="width: 36px; height: 36px; font-size: 12px;">UPTM</div>
+          <div>
+            <div style="font-size: 14px; font-weight: bold; letter-spacing: 0.5px;">UNIVERSITI POLY-TECH MALAYSIA</div>
+            <div style="font-size: 11px; color: #4B5563;">FACULTY OF COMPUTING & MULTIMEDIA (FCOM)</div>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 14px; font-weight: bold; color: #111827;">OFFICIAL EQUIPMENT LOAN VOUCHER</div>
+          <div style="font-size: 11px; font-weight: bold; color: #4B5563;">REF: PG-2026-0842</div>
+        </div>
+      </div>
+
+      <!-- Applicant Details Grid -->
+      <table class="wf-table" style="margin-bottom: 14px;">
+        <tr>
+          <td style="width: 25%; font-weight: bold; background: #F3F4F6;">Applicant Name:</td>
+          <td>Nursyafiqah Zulaikha Binti Zilkamal</td>
+          <td style="width: 20%; font-weight: bold; background: #F3F4F6;">Student ID:</td>
+          <td>AM2412018113</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; background: #F3F4F6;">Club / Society:</td>
+          <td>Computer Science Society (COMSS)</td>
+          <td style="font-weight: bold; background: #F3F4F6;">Contact Phone:</td>
+          <td>011-23456789</td>
+        </tr>
+        <tr>
+          <td style="font-weight: bold; background: #F3F4F6;">Event Name:</td>
+          <td>UPTM Career Fair 2026</td>
+          <td style="font-weight: bold; background: #F3F4F6;">Loan Duration:</td>
+          <td>15/11/2026 – 17/11/2026</td>
+        </tr>
+      </table>
+
+      <!-- Itemized Table -->
+      <h4 style="font-size: 11px; font-weight: bold; margin-bottom: 6px; text-transform: uppercase;">Equipment Schedule & Custody Log</h4>
+      <table class="wf-table" style="margin-bottom: 14px;">
+        <thead>
+          <tr>
+            <th style="width: 40px; text-align: center;">No</th>
+            <th>Item Description</th>
+            <th style="width: 90px;">Serial / Tag</th>
+            <th style="width: 50px; text-align: center;">Qty</th>
+            <th style="width: 110px;">Issue Condition</th>
+            <th style="width: 110px;">Return Condition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="text-align: center;">1</td><td>EPSON EB-E01 Projector</td><td>UPTM-PRJ-014</td><td style="text-align: center;">1</td><td>Good / Complete</td><td>[ Good ]</td></tr>
+          <tr><td style="text-align: center;">2</td><td>Retractable 70" Screen</td><td>UPTM-SCR-008</td><td style="text-align: center;">1</td><td>Good / Complete</td><td>[ Good ]</td></tr>
+          <tr><td style="text-align: center;">3</td><td>Shure Wireless Mic (Pair)</td><td>UPTM-MIC-021</td><td style="text-align: center;">2</td><td>Good / Complete</td><td>[ Good ]</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Terms & Disclaimer -->
+      <div style="border: 1px solid #9CA3AF; background: #F9FAFB; padding: 8px 10px; font-size: 9.5px; color: #4B5563; line-height: 1.4; margin-bottom: 16px;">
+        <strong>Terms & Borrower Liability:</strong> The borrower accepts total custodial responsibility for items listed above. Equipment must be returned in identical operational condition on or before the stated return datetime. Any physical defects, missing cables, or damage will result in maintenance ticket logging and student penalty computation under UPTM asset bylaws.
+      </div>
+
+      <!-- Dual Signatures -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px;">
+        <div style="text-align: center; border-top: 1.5px solid #111827; padding-top: 6px;">
+          <div style="font-size: 11px; font-weight: bold;">Applicant / Borrower Signature</div>
+          <div style="font-size: 10px; color: #6B7280;">Nursyafiqah Zulaikha (Date: 15/11/2026)</div>
+        </div>
+        <div style="text-align: center; border-top: 1.5px solid #111827; padding-top: 6px;">
+          <div style="font-size: 11px; font-weight: bold;">Authorized Equipment Officer Signature</div>
+          <div style="font-size: 10px; color: #6B7280;">FCOM Lab Technician / Admin (Date: 15/11/2026)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

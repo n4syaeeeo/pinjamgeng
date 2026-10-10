@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coffee: {
+            50: '#fdfbf7',
+            100: '#f7f2ea',
+            200: '#ece3d5',
+            300: '#ded0bf',
+            400: '#c2a88f',
+            500: '#a68263',
+            600: '#8c6544',
+            700: '#6f4a2d',
+            800: '#52341d',
+            900: '#382112',
+            950: '#231308',
+          },
+          caramel: {
+            light: '#fff5ed',
+            DEFAULT: '#d97736',
+            hover: '#c46222',
+            dark: '#9a4714'
+          },
+          amber: {
+            gold: '#e5a953'
+          }
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'Inter', 'Segoe UI', 'sans-serif'],
+          display: ['Outfit', 'Segoe UI', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfbf7; margin: 0; padding: 0; color: #231308; }
+  .font-display { font-family: 'Outfit', sans-serif; }
+</style>
+</head>
+<body class="bg-[#fdfbf7] min-h-[900px] text-coffee-950">
+
+<!-- Fake Admin Background Page -->
+<div class="relative w-[1280px] h-[850px] bg-[#fdfbf7] overflow-hidden">
+  <!-- Top bar -->
+  <div class="bg-coffee-950 text-coffee-300 text-xs py-2 px-8 flex justify-between items-center border-b border-coffee-900">
+    <div class="flex items-center space-x-3">
+      <span class="text-amber-gold font-bold"><i class="fa-solid fa-graduation-cap mr-2"></i> Universiti Poly-Tech Malaysia (UPTM)</span>
+      <span class="text-coffee-600">•</span>
+      <span>Faculty of Computing & Multimedia (FCOM)</span>
+    </div>
+    <div class="flex items-center space-x-4 text-coffee-400">
+      <span><i class="fa-solid fa-shield-halved text-amber-gold mr-1"></i> Admin Portal</span>
+      <span>System Date: 18 Oct 2026</span>
+    </div>
+  </div>
+
+  <!-- Header Nav -->
+  <div class="bg-white border-b border-coffee-200 px-8 py-3.5 flex justify-between items-center shadow-sm">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-caramel to-coffee-800 flex items-center justify-center text-white shadow-md">
+        <i class="fa-solid fa-boxes-stacked text-lg text-amber-gold"></i>
+      </div>
+      <div>
+        <h1 class="font-display font-extrabold text-lg text-coffee-950 leading-tight">PinjamGeng <span class="text-caramel font-normal text-xs px-2 py-0.5 rounded-full bg-caramel/10 border border-caramel/20">ADMIN</span></h1>
+        <p class="text-[11px] text-coffee-600">Smart Campus Equipment Inventory Suite</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-6 text-xs font-semibold text-coffee-700">
+      <span class="hover:text-caramel cursor-pointer">Dashboard</span>
+      <span class="hover:text-caramel cursor-pointer">Reservations</span>
+      <span class="text-caramel border-b-2 border-caramel pb-1 font-bold">Equipment Inventory</span>
+      <span class="hover:text-caramel cursor-pointer">Return Desk</span>
+      <span class="hover:text-caramel cursor-pointer">Reports</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <div class="text-right">
+        <div class="text-xs font-bold text-coffee-950">Ts. Dr. Ahmad Razali</div>
+        <div class="text-[10px] text-coffee-500">Chief Lab Technologist</div>
+      </div>
+      <div class="w-9 h-9 rounded-full bg-coffee-200 text-coffee-800 font-bold flex items-center justify-center border border-coffee-300">AR</div>
+    </div>
+  </div>
+
+  <!-- Background Content (blurred under backdrop) -->
+  <div class="p-8 filter blur-[2px] opacity-40 select-none pointer-events-none">
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h2 class="font-display text-2xl font-bold text-coffee-950">Master Equipment Inventory</h2>
+        <p class="text-xs text-coffee-600">Manage 94 institutional assets across audio, visual, and computing labs</p>
+      </div>
+      <button class="bg-caramel text-white text-xs font-bold px-4 py-2.5 rounded-xl"><i class="fa-solid fa-plus mr-1.5"></i> Add New Equipment</button>
+    </div>
+    <div class="bg-white rounded-2xl border border-coffee-200 p-4 shadow">
+      <table class="w-full text-xs text-left">
+        <thead class="bg-coffee-100/60 border-b border-coffee-200 text-coffee-700 uppercase font-bold">
+          <tr>
+            <th class="p-3">Asset Tag</th>
+            <th class="p-3">Equipment Name</th>
+            <th class="p-3">Category</th>
+            <th class="p-3">Storage Location</th>
+            <th class="p-3">Total Qty</th>
+            <th class="p-3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-coffee-100">
+            <td class="p-3 font-mono font-bold">UPTM-PRJ-001</td>
+            <td class="p-3">Epson EB-2250U 5000-Lumen Projector</td>
+            <td class="p-3">Visual & Projection</td>
+            <td class="p-3">AV Lab Shelf 2</td>
+            <td class="p-3">4 / 4 Available</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">Good Condition</span></td>
+          </tr>
+          <tr class="border-b border-coffee-100">
+            <td class="p-3 font-mono font-bold">UPTM-MIC-001</td>
+            <td class="p-3">Shure BLX288 Dual Wireless Mic System</td>
+            <td class="p-3">Audio & Sound</td>
+            <td class="p-3">Cabinet A - Ground Floor</td>
+            <td class="p-3">3 / 4 Available</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">Good Condition</span></td>
+          </tr>
+          <tr class="border-b border-coffee-100">
+            <td class="p-3 font-mono font-bold">UPTM-PA-004</td>
+            <td class="p-3">JBL EON ONE MK2 Portable Line Array</td>
+            <td class="p-3">Audio & Sound</td>
+            <td class="p-3">Sound Store Unit 1</td>
+            <td class="p-3">2 / 2 Available</td>
+            <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">Good Condition</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- POPUP MODAL OVERLAY -->
+  <div class="absolute inset-0 bg-coffee-950/70 backdrop-blur-[3px] flex items-center justify-center p-6 z-50">
+    <div class="bg-white rounded-3xl border border-coffee-200 shadow-2xl w-[720px] max-h-[800px] overflow-hidden animate-fade-in">
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-coffee-900 to-coffee-950 px-7 py-5 flex justify-between items-center text-white border-b border-coffee-800">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-caramel/20 border border-caramel/40 flex items-center justify-center text-amber-gold">
+            <i class="fa-solid fa-box-open text-base"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base tracking-wide text-white">Register New Equipment Asset</h3>
+            <p class="text-[11px] text-coffee-300">Add physical inventory item to UPTM PinjamGeng catalog database</p>
+          </div>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-coffee-300 hover:text-white flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body Form -->
+      <div class="p-7 space-y-4 text-xs text-coffee-900 overflow-y-auto max-h-[640px]">
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex items-start space-x-3">
+          <i class="fa-solid fa-circle-info text-caramel mt-0.5"></i>
+          <p class="text-[11px] text-coffee-800 leading-relaxed">
+            Ensure the Asset Tag matches the physical barcode label stamped on the hardware casing. New assets will be immediately available in the live booking catalog upon saving.
+          </p>
+        </div>
+
+        <!-- Row 1: Asset Tag & Category -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Asset Tag Code *</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-coffee-400 font-mono text-xs"><i class="fa-solid fa-barcode"></i></span>
+              <input type="text" value="UPTM-PRJ-015" class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-coffee-300 bg-white font-mono font-bold text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none" />
+            </div>
+            <span class="text-[10px] text-coffee-500 mt-1 block">Format: UPTM-[CAT]-[NUM]</span>
+          </div>
+
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Category *</label>
+            <div class="relative">
+              <select class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white font-medium text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none">
+                <option selected>Visual & Projection Systems</option>
+                <option>Audio & Sound Reinforcement</option>
+                <option>Staging & Ambient Lighting</option>
+                <option>Computing Hardware & Hubs</option>
+                <option>Cables, Adapters & Peripherals</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Equipment Name -->
+        <div>
+          <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Equipment / Item Name *</label>
+          <input type="text" value="Epson EB-2250U Full HD Presentation Projector (5000 Lumens)" class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white font-semibold text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none" />
+        </div>
+
+        <!-- Row 3: Brand & Model, Storage Location -->
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Brand & Specific Model</label>
+            <input type="text" value="Epson EB-2250U 3LCD 1080p" class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Physical Storage Location *</label>
+            <input type="text" value="IT Store Shelf 2A - Multimedia Locker" class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- Row 4: Total Units, Condition, Status -->
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Total Inventory Units *</label>
+            <input type="number" value="5" class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white font-bold text-coffee-950 focus:ring-2 focus:ring-caramel focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Physical Condition *</label>
+            <select class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white text-coffee-950 font-medium focus:ring-2 focus:ring-caramel focus:outline-none">
+              <option selected>Good Condition (100% Functional)</option>
+              <option>Fair (Minor Cosmetic Scratches)</option>
+              <option>Under Maintenance / Quarantine</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Package Eligibility</label>
+            <div class="flex items-center h-[38px] px-2">
+              <input type="checkbox" checked class="w-4 h-4 text-caramel rounded border-coffee-300 focus:ring-caramel mr-2" />
+              <span class="text-[11px] text-coffee-800 font-semibold">Available for Smart Packages</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 5: Notes & Specification Details -->
+        <div>
+          <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">Technical Specifications & Custodian Notes</label>
+          <textarea rows="2" class="w-full px-3 py-2 rounded-xl border border-coffee-300 bg-white text-coffee-900 focus:ring-2 focus:ring-caramel focus:outline-none">Equipped with 2x HDMI 2.0 ports, VGA input, remote controller, and 10m power cord. Compatible with Seminar and Workshop smart packages.</textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-coffee-50 px-7 py-4 border-t border-coffee-200 flex justify-between items-center">
+        <span class="text-[11px] text-coffee-500"><i class="fa-solid fa-lock text-coffee-400 mr-1"></i> Admin Audit Log Entry: Active</span>
+        <div class="flex items-center space-x-3">
+          <button class="px-4 py-2 rounded-xl text-xs font-bold text-coffee-700 bg-white hover:bg-coffee-100 border border-coffee-200 transition-colors">Cancel</button>
+          <button class="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-caramel to-coffee-800 hover:from-caramel-hover hover:to-coffee-900 shadow-md transition-all flex items-center">
+            <i class="fa-solid fa-floppy-disk mr-1.5 text-amber-gold"></i> Save to PinjamGeng Inventory
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

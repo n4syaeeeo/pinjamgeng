@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinjamGeng - FYP Slide Presentation | UPTM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-cream: #FBF8F3;
+      --card-bg: #FFFFFF;
+      --card-border: #E8DFD5;
+      --espresso: #3D2B1F;
+      --coffee: #5C3D28;
+      --caramel: #8B5E3C;
+      --amber: #C68B59;
+      --gold-badge: #FAEDCD;
+      --badge-text: #7F5539;
+      --text-dark: #2B2D42;
+      --text-muted: #6C757D;
+      --success: #2E7D32;
+      --danger: #C62828;
+      --highlight-bg: #F4EDE4;
+      --slide-width: 1280px;
+      --slide-height: 720px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #1a1512;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+    }
+
+    /* Top Navigation Toolbar */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+      background: rgba(30, 22, 17, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      color: #fff;
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-meta h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #FAEDCD;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-meta span {
+      font-size: 12px;
+      color: #C68B59;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      padding-left: 14px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-caramel {
+      background: var(--caramel);
+      color: #fff;
+    }
+    .btn-caramel:hover {
+      background: #744c2e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .slide-counter {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FAEDCD;
+      padding: 0 10px;
+    }
+
+    /* Presentation Viewport */
+    .presentation-container {
+      margin-top: 25px;
+      width: var(--slide-width);
+      height: var(--slide-height);
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-cream);
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-cream);
+      display: none;
+      flex-direction: column;
+      padding: 30px 48px 24px 48px;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* Top Strip */
+    .slide-accent-strip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: var(--caramel);
+    }
+
+    /* Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .slide-titles {
+      max-width: 85%;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: var(--gold-badge);
+      color: var(--badge-text);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--espresso);
+      line-height: 1.2;
+    }
+
+    .slide-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .slide-logo img {
+      height: 55px;
+      object-fit: contain;
+    }
+
+    /* Slide Content Area */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    /* Grid Layouts */
+    .col-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .col-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+    }
+
+    .col-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      width: 100%;
+    }
+
+    .col-1-2 {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Card Components */
+    .card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 12px rgba(61, 43, 31, 0.04);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card.dark {
+      background: var(--espresso);
+      color: #fff;
+      border-color: var(--espresso);
+    }
+
+    .card-header-styled {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-num-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--espresso);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .card-num-box.caramel {
+      background: var(--caramel);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--coffee);
+    }
+
+    .card.dark .card-title {
+      color: #FAEDCD;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .card-list li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .card.dark .card-list li {
+      color: #e2d9ce;
+    }
+
+    .card-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--caramel);
+      font-weight: bold;
+    }
+
+    .card-list.checks li::before {
+      content: "✓";
+      color: var(--success);
+    }
+
+    .metric-big {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--caramel);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .metric-big.success {
+      color: var(--success);
+    }
+
+    .image-container {
+      background: #fff;
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Table */
+    .pres-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .pres-table th {
+      background: var(--espresso);
+      color: #fff;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .pres-table th:last-child {
+      color: #FAEDCD;
+    }
+
+    .pres-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-dark);
+    }
+
+    .pres-table tr:nth-child(even) td {
+      background: #fdfaf6;
+    }
+
+    .pres-table td.highlight {
+      background: #f1f8e9;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    /* Footer */
+    .slide-footer {
+      height: 28px;
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .slide-footer strong {
+      color: var(--espresso);
+    }
+
+    /* Speaker Notes Drawer */
+    .speaker-drawer {
+      width: var(--slide-width);
+      margin-top: 18px;
+      background: #251d18;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 18px 24px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .speaker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .speaker-header h3 {
+      font-size: 13px;
+      color: #FAEDCD;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speaker-content {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #d8cec4;
+      white-space: pre-line;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Code Snippet */
+    .code-box {
+      background: #201712;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: #FAEDCD;
+      line-height: 1.5;
+      overflow-x: auto;
+      border: 1px solid #4a3525;
+    }
+
+    /* Print view for PDF */
+    @page {
+      size: 16in 9in landscape;
+      margin: 0;
+    }
+    @media print {
+      html, body {
+        background: #fff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+        display: block !important;
+        height: auto !important;
+        min-height: auto !important;
+      }
+      .toolbar, .speaker-drawer {
+        display: none !important;
+      }
+      .presentation-container {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+        position: static !important;
+      }
+      .slide {
+        display: flex !important;
+        position: relative !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        width: 16in !important;
+        height: 9in !important;
+        min-height: 9in !important;
+        max-height: 9in !important;
+        margin: 0 !important;
+        padding: 40px 60px 30px 60px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        overflow: hidden !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="brand-meta">
+      <i class="fa-solid fa-graduation-cap" style="color: #C68B59;"></i>
+      <h1>PinjamGeng : FYP Presentation</h1>
+      <span>Nursyafiqah Zulaikha (AM2412018113) | UPTM FCOM</span>
+    </div>
+
+    <div class="toolbar-actions">
+      <button class="btn btn-outline" id="prevBtn" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+      <span class="slide-counter" id="slideCounter">Slide 1 / 20</span>
+      <button class="btn btn-outline" id="nextBtn" onclick="nextSlide()">Next <i class="fa-solid fa-arrow-right"></i></button>
+      <button class="btn btn-caramel" onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i> Fullscreen</button>
+      <a href="https://pinjamgeng.infinityfreeapp.com" target="_blank" class="btn btn-outline" style="border-color: #FAEDCD; color: #FAEDCD;"><i class="fa-solid fa-globe"></i> Live System</a>
+      <button class="btn btn-outline" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / PDF</button>
+    </div>
+  </div>
+
+  <!-- Main Slide Presentation Viewport -->
+  <div class="presentation-container">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-accent-strip"></div>
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+        <img src="images/uptm_logo.jpg" alt="UPTM Logo" style="height: 60px; object-fit: contain;">
+        <div>
+          <h3 style="font-size: 13px; color: var(--coffee); font-weight: 800;">UNIVERSITI POLY-TECH MALAYSIA (UPTM)</h3>
+          <p style="font-size: 11px; color: var(--caramel); font-weight: 700;">FACULTY OF COMPUTING & MULTIMEDIA (FCOM) | DIPLOMA IN COMPUTER SCIENCE (CC101)</p>
+          <p style="font-size: 10px; color: var(--text-muted);">FINAL YEAR PROJECT PRESENTATION (FYP3024)</p>
+        </div>
+      </div>
+
+      <div style="background: var(--espresso); border-radius: 12px; padding: 32px 36px; color: #fff; margin-bottom: 20px;">
+        <span style="display: inline-block; background: var(--caramel); padding: 4px 12px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 10px;">CAMPUS EQUIPMENT MANAGEMENT SYSTEM</span>
+        <h1 style="font-size: 30px; font-weight: 800; line-height: 1.25; margin-bottom: 10px;">PinjamGeng: Smart Event Equipment Booking<br>& Inventory Management System</h1>
+        <p style="font-size: 13px; color: #FAEDCD; margin-bottom: 14px;">A Responsive Web Platform with Automated Conflict Detection, Bundled Event Packages & Real-Time Accountability</p>
+        <span style="display: inline-block; background: #fff; color: var(--caramel); font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 6px;"><i class="fa-solid fa-link"></i> LIVE DEMO: https://pinjamgeng.infinityfreeapp.com</span>
+      </div>
+
+      <div class="col-2">
+        <div class="card">
+          <span style="font-size: 9px; font-weight: 800; color: var(--caramel); text-transform: uppercase;">Candidate (Presenter)</span>
+          <h2 style="font-size: 15px; font-weight: 800; color: var(--espresso); margin-top: 2px;">Nursyafiqah Zulaikha Binti Zilkamal</h2>
+          <p style="font-size: 11px; color: var(--text-dark);">Student ID: <strong>AM2412018113</strong></p>
+          <p style="font-size: 11px; color: var(--text-muted);">Diploma in Computer Science (CC101)</p>
+        </div>
+        <div class="card">
+          <span style="font-size: 9px; font-weight: 800; color: var(--caramel); text-transform: uppercase;">Project Supervisor</span>
+          <h2 style="font-size: 15px; font-weight: 800; color: var(--espresso); margin-top: 2px;">Madam Jihadah Binti Ahmad</h2>
+          <p style="font-size: 11px; color: var(--text-dark);">Faculty of Computing & Multimedia (FCOM)</p>
+          <p style="font-size: 11px; color: var(--text-muted);">Universiti Poly-Tech Malaysia (UPTM)</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Session 2026/2027 • Evaluated under Academic Course Code FYP3024</span>
+        <strong>Slide 1 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: AGENDA -->
+    <div class="slide" id="slide-2">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Overview</span>
+          <h2 class="slide-title">Presentation Agenda & Roadmap</h2>
+          <p class="slide-subtitle">Structured breakdown of today's FYP evaluation presentation</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card" style="gap: 12px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box">01</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Problem Background & Motivation</strong><p style="font-size: 11px; color: var(--text-dark);">Challenges of manual campus equipment booking and pain points.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box">02</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Project Objectives & Scope</strong><p style="font-size: 11px; color: var(--text-dark);">SMART goals, target user personas (Student vs Admin), and boundaries.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box">03</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Requirements Survey Findings</strong><p style="font-size: 11px; color: var(--text-dark);">Quantitative justification based on 30 UPTM campus respondents.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box">04</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Development Methodology</strong><p style="font-size: 11px; color: var(--text-dark);">Agile Scrum framework and 5-sprint incremental delivery cycle.</p></div>
+            </div>
+          </div>
+          <div class="card" style="gap: 12px;">
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box caramel">05</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">System Architecture & Database</strong><p style="font-size: 11px; color: var(--text-dark);">UML Use Case, process flowcharts, and 3NF Relational ERD.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box caramel">06</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Key System Innovations</strong><p style="font-size: 11px; color: var(--text-dark);">Smart conflict detection, package bundling & damage tracking.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box caramel">07</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Live System Demonstration</strong><p style="font-size: 11px; color: var(--text-dark);">Cloud deployment walkthrough on InfinityFree server.</p></div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <div class="card-num-box caramel">08</div>
+              <div><strong style="color: var(--coffee); font-size: 13px;">Testing, UAT & Future Roadmap</strong><p style="font-size: 11px; color: var(--text-dark);">Verification, 100% UAT satisfaction, and Phase 2 enhancements.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 2 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: PROBLEM STATEMENT -->
+    <div class="slide" id="slide-3">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Background</span>
+          <h2 class="slide-title">Problem Background & Statements</h2>
+          <p class="slide-subtitle">Four core operational bottlenecks in campus equipment logistics at UPTM</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card">
+            <div class="card-header-styled">
+              <div class="card-num-box">01</div>
+              <div>
+                <h3 class="card-title">Inefficient Manual Paperwork</h3>
+                <span class="category-badge" style="background: #FFEBEE; color: var(--danger);">Time Delay</span>
+              </div>
+            </div>
+            <ul class="card-list">
+              <li>Organizers must physically travel to HEP or facilities offices to submit forms.</li>
+              <li>Signature verification takes 2-3 working days, disrupting urgent event deadlines.</li>
+              <li>Physical forms get misplaced or discarded without permanent digital backups.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-header-styled">
+              <div class="card-num-box">02</div>
+              <div>
+                <h3 class="card-title">Double-Booking & Schedule Collisions</h3>
+                <span class="category-badge" style="background: #FFEBEE; color: var(--danger);">Schedule Conflict</span>
+              </div>
+            </div>
+            <ul class="card-list">
+              <li>No synchronized master calendar exists between clubs and departments.</li>
+              <li>High-demand equipment (PA sound systems, microphones, projectors) booked simultaneously.</li>
+              <li>Collisions only discovered during event setup, resulting in severe disruption.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-header-styled">
+              <div class="card-num-box">03</div>
+              <div>
+                <h3 class="card-title">Inaccurate Inventory & Stock Mismatches</h3>
+                <span class="category-badge" style="background: #FFF3E0; color: #E65100;">Lack of Visibility</span>
+              </div>
+            </div>
+            <ul class="card-list">
+              <li>Stock counts recorded in static books become instantly obsolete upon loans.</li>
+              <li>Damaged or retired assets are not subtracted in real time, displaying false availability.</li>
+              <li>Students plan events assuming items exist, only to face rejection at the store.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-header-styled">
+              <div class="card-num-box">04</div>
+              <div>
+                <h3 class="card-title">Lack of Damage Tracking & Accountability</h3>
+                <span class="category-badge" style="background: #FFEBEE; color: var(--danger);">Untracked Loss</span>
+              </div>
+            </div>
+            <ul class="card-list">
+              <li>Post-event returns lack formal inspection; damaged gear returned unnoticed.</li>
+              <li>No standardized grading scale for defect severity or repair cost recovery.</li>
+              <li>University bears recurring replacement costs due to unassigned responsibility.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 3 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: SURVEY FINDINGS -->
+    <div class="slide" id="slide-4">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Analysis</span>
+          <h2 class="slide-title">Empirical Requirements Analysis (Survey)</h2>
+          <p class="slide-subtitle">Quantitative research findings conducted across 41 UPTM campus respondents</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-1-2">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big">94.9%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Manual Approval Delay</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Confirmed manual requests take 1–3+ days; 65.0% cited counter visits friction.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big">90.0%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Double-Booking Clashes</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Experienced gear conflicts; 67.5% received broken or damaged equipment.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big">85.0%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Smart Packages Demand</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Demanded curated gear bundles, with 82.5% wanting live stock counters.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big">85.0%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Implementation Support</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Endorsed campus rollout; 80.0% demanded return desk inspection.</p>
+            </div>
+          </div>
+          <div class="image-container" style="flex-direction: column; justify-content: space-between;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--caramel); margin-bottom: 6px;">EMPIRICAL EVIDENCE : QUESTIONNAIRE SURVEY</span>
+            <img src="images/fig_3_2_user_questionnaire_1.png" alt="Survey Chart" style="max-height: 280px;">
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 8px 12px; font-size: 10.5px; margin-top: 8px;">
+              <strong>Key Conclusion:</strong> 41 campus respondents confirmed severe approval delays (94.9%) and booking clashes (90.0%), validating the urgent need for PinjamGeng's automated portal.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 4 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: OBJECTIVES -->
+    <div class="slide" id="slide-5">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Objectives</span>
+          <h2 class="slide-title">Project Objectives (SMART Goals)</h2>
+          <p class="slide-subtitle">Four clearly scoped deliverables directly solving the identified problem statements</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 10px;">
+        <div class="card" style="padding: 12px 18px; flex-direction: row; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 14px; max-width: 70%;">
+            <div class="card-num-box">01</div>
+            <div>
+              <h3 style="font-size: 13px; font-weight: 800; color: var(--coffee);">Design & Develop a Responsive Web Booking Portal</h3>
+              <p style="font-size: 11px; color: var(--text-dark);">24/7 accessible self-service platform allowing students to browse items and check real-time availability.</p>
+            </div>
+          </div>
+          <span style="background: #E8F5E9; color: var(--success); font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 6px;">✓ 100% ACHIEVED & LIVE</span>
+        </div>
+        <div class="card" style="padding: 12px 18px; flex-direction: row; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 14px; max-width: 70%;">
+            <div class="card-num-box">02</div>
+            <div>
+              <h3 style="font-size: 13px; font-weight: 800; color: var(--coffee);">Implement Automated Conflict Detection & Bundling</h3>
+              <p style="font-size: 11px; color: var(--text-dark);">Date overlap calculation algorithm that prevents double bookings alongside 1-click curated event packages.</p>
+            </div>
+          </div>
+          <span style="background: #E8F5E9; color: var(--success); font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 6px;">✓ 100% ACHIEVED & LIVE</span>
+        </div>
+        <div class="card" style="padding: 12px 18px; flex-direction: row; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 14px; max-width: 70%;">
+            <div class="card-num-box">03</div>
+            <div>
+              <h3 style="font-size: 13px; font-weight: 800; color: var(--coffee);">Construct Return Inspection & Damage Accountability Engine</h3>
+              <p style="font-size: 11px; color: var(--text-dark);">Standardized 4-tier condition inspection, automated fine computation, and digital return slip generation.</p>
+            </div>
+          </div>
+          <span style="background: #E8F5E9; color: var(--success); font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 6px;">✓ 100% ACHIEVED & LIVE</span>
+        </div>
+        <div class="card" style="padding: 12px 18px; flex-direction: row; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 14px; max-width: 70%;">
+            <div class="card-num-box">04</div>
+            <div>
+              <h3 style="font-size: 13px; font-weight: 800; color: var(--coffee);">Evaluate System Usability & Acceptance (UAT)</h3>
+              <p style="font-size: 11px; color: var(--text-dark);">Comprehensive UAT testing with 30 target evaluators assessing UI, functionality, speed, and adoption.</p>
+            </div>
+          </div>
+          <span style="background: #E8F5E9; color: var(--success); font-size: 10px; font-weight: 800; padding: 6px 12px; border-radius: 6px;">✓ 100% ACHIEVED & LIVE</span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 5 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: PROJECT SCOPE -->
+    <div class="slide" id="slide-6">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Scope</span>
+          <h2 class="slide-title">Project Scope & User Personas</h2>
+          <p class="slide-subtitle">Role-based privileges and operational boundaries for Students and Administrators</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card">
+            <span class="category-badge" style="width: fit-content;">USER ROLE : STUDENT</span>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--espresso); margin: 6px 0 10px 0;">Student / Event Organizer Persona</h3>
+            <ul class="card-list checks">
+              <li>User registration and secure authentication with student ID.</li>
+              <li>Browse real-time equipment inventory with categorized image cards.</li>
+              <li>Event Package Bundling: Reserve curated event sets with 1 click.</li>
+              <li>Automated conflict check with instant warning on over-capacity.</li>
+              <li>Self-service status tracking: Pending, Approved, In Use, Returned.</li>
+              <li>Digital receipt download for booking and return verification.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="category-badge" style="width: fit-content; background: var(--espresso); color: #fff;">USER ROLE : ADMIN</span>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--espresso); margin: 6px 0 10px 0;">Administrator / Facilities Officer</h3>
+            <ul class="card-list checks">
+              <li>Real-time dashboard with key metrics (total items, pending loans, damages).</li>
+              <li>Inventory Management (CRUD): Create, update, view, and retire equipment.</li>
+              <li>Package Management: Create and configure bundled package presets.</li>
+              <li>One-click approval or rejection with customized admin remarks.</li>
+              <li>Return Inspection Drawer: Record physical check-in and condition grade.</li>
+              <li>Automated penalty computation and status locking for damaged gear.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 6 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: AGILE METHODOLOGY -->
+    <div class="slide" id="slide-7">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Methodology</span>
+          <h2 class="slide-title">Development Methodology: Agile Framework</h2>
+          <p class="slide-subtitle">Iterative 5-sprint lifecycle facilitating rapid prototyping and supervisor reviews</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-1-2">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="card" style="padding: 8px 14px;">
+              <strong style="color: var(--caramel); font-size: 11px;">SPRINT 1 : PLANNING & ARCHITECTURE</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Requirements synthesis, survey analysis, and 3NF database schema design.</p>
+            </div>
+            <div class="card" style="padding: 8px 14px;">
+              <strong style="color: var(--caramel); font-size: 11px;">SPRINT 2 : AUTH & INVENTORY CRUD</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Bcrypt authentication, RBAC middleware, and equipment CRUD modules.</p>
+            </div>
+            <div class="card" style="padding: 8px 14px;">
+              <strong style="color: var(--caramel); font-size: 11px;">SPRINT 3 : BOOKING & CONFLICT ENGINE</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Date overlap calculation, package bundling, and approval workflow triggers.</p>
+            </div>
+            <div class="card" style="padding: 8px 14px;">
+              <strong style="color: var(--caramel); font-size: 11px;">SPRINT 4 : INSPECTION & DAMAGE ENGINE</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Return check-in, 4-tier defect grading, fine calculation, and PDF slips.</p>
+            </div>
+            <div class="card" style="padding: 8px 14px;">
+              <strong style="color: var(--caramel); font-size: 11px;">SPRINT 5 : DEPLOYMENT & EVALUATION</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">InfinityFree cloud rollout, security hardening, and formal 30-user UAT.</p>
+            </div>
+          </div>
+          <div class="image-container" style="flex-direction: column; justify-content: space-between;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--caramel);">AGILE SCRUM LIFECYCLE (FIGURE 3.1)</span>
+            <img src="images/fig_3_1_agile_methodology.png" alt="Agile Methodology" style="max-height: 280px;">
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 8px 12px; font-size: 10px;">
+              <strong>Supervisor Alignment:</strong> Bi-weekly sprint deliverables allowed Madam Jihadah to inspect features early, ensuring all functional requirements were verified incrementally.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 7 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: USE CASE DIAGRAM -->
+    <div class="slide" id="slide-8">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Design</span>
+          <h2 class="slide-title">System Architecture: UML Use Case Diagram</h2>
+          <p class="slide-subtitle">Functional decomposition of student and administrator roles across the system boundary</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-1-2">
+          <div class="card">
+            <span class="category-badge" style="width: fit-content;">ACTORS & USE CASE MAPPING</span>
+            <h3 style="font-size: 14px; font-weight: 800; color: var(--espresso); margin: 6px 0 10px 0;">Role Functional Allocation</h3>
+            <div style="margin-bottom: 12px;">
+              <strong style="font-size: 11.5px; color: var(--caramel);">Student Actor (User):</strong>
+              <ul class="card-list" style="margin-top: 4px;">
+                <li>UC1: Register & Authenticate</li>
+                <li>UC2: Browse & Filter Equipment Catalog</li>
+                <li>UC3: Reserve Single Item or Bundled Package</li>
+                <li>UC4: View Reservation History & Digital Slips</li>
+              </ul>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--coffee);">Administrator Actor (Officer):</strong>
+              <ul class="card-list" style="margin-top: 4px;">
+                <li>UC5: Manage Equipment Inventory (CRUD)</li>
+                <li>UC6: Manage Event Packages</li>
+                <li>UC7: Review, Approve / Reject Bookings</li>
+                <li>UC8: Return Inspection & Damage Logger</li>
+                <li>UC9: Generate Analytical PDF Reports</li>
+              </ul>
+            </div>
+          </div>
+          <div class="image-container">
+            <img src="images/fig_3_112_use_case_diagram.png" alt="Use Case Diagram" style="max-height: 420px;">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 8 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: ACTIVITY FLOWCHARTS -->
+    <div class="slide" id="slide-9">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Workflow</span>
+          <h2 class="slide-title">Operational Workflows: Activity Flowcharts</h2>
+          <p class="slide-subtitle">Dual-perspective operational logic mapping end-to-end student and admin interactions</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="image-container" style="flex-direction: column;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--caramel); margin-bottom: 6px;">STUDENT RESERVATION JOURNEY</span>
+            <img src="images/fig_3_111_student_flowchart.png" alt="Student Flow" style="max-height: 380px;">
+          </div>
+          <div class="image-container" style="flex-direction: column;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--coffee); margin-bottom: 6px;">ADMIN APPROVAL & RETURN INSPECTION</span>
+            <img src="images/fig_3_110_admin_flowchart.png" alt="Admin Flow" style="max-height: 380px;">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 9 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: 3NF ERD -->
+    <div class="slide" id="slide-10">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Database</span>
+          <h2 class="slide-title">Database Architecture: 3NF Relational ERD</h2>
+          <p class="slide-subtitle">Optimized 8-table schema normalized to Third Normal Form (3NF) ensuring zero redundancy</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-1-2">
+          <div class="card">
+            <span class="category-badge" style="width: fit-content;">RELATIONAL ENTITIES (3NF)</span>
+            <ul class="card-list" style="margin-top: 8px;">
+              <li><strong>users:</strong> Authentication, matric ID, hashed password & role.</li>
+              <li><strong>categories:</strong> Audio, Visual, Electrical & Stage categories.</li>
+              <li><strong>equipment:</strong> Specifications, stock counts & maintenance status.</li>
+              <li><strong>packages:</strong> Curated bundled packages with event descriptions.</li>
+              <li><strong>package_items:</strong> Junction table mapping equipment to packages.</li>
+              <li><strong>bookings:</strong> Master reservation dates, status & user ID.</li>
+              <li><strong>booking_items:</strong> Line items linking equipment and loan quantity.</li>
+              <li><strong>damage_reports:</strong> Post-return defect logs, severity & fines.</li>
+            </ul>
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 8px 12px; font-size: 10px; margin-top: 10px;">
+              <strong>3NF Guarantee:</strong> Strict atomic attributes (1NF), composite keys in junction tables (2NF), and zero transitive dependencies (3NF) with InnoDB cascade integrity.
+            </div>
+          </div>
+          <div class="image-container">
+            <img src="images/fig_3_113_erd_diagram.png" alt="ERD Diagram" style="max-height: 420px;">
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 10 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: INNOVATION 1 - CONFLICT DETECTION -->
+    <div class="slide" id="slide-11">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Innovation</span>
+          <h2 class="slide-title">Innovation 1: Automated Conflict Detection Engine</h2>
+          <p class="slide-subtitle">Algorithmic elimination of equipment double bookings via real-time date-overlap evaluation</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card" style="gap: 10px;">
+            <div style="background: #FFEBEE; border: 1px solid #FFCDD2; border-radius: 6px; padding: 10px;">
+              <strong style="color: var(--danger); font-size: 11px;">The Traditional Flaw: Static Shelf Checking</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark); margin-top: 4px;">Manual systems check what is sitting on the warehouse shelf today, ignoring future reservation commitments. When two clubs request gear for the same weekend, double bookings occur.</p>
+            </div>
+            <div style="background: #E8F5E9; border: 1px solid #C8E6C9; border-radius: 6px; padding: 10px;">
+              <strong style="color: var(--success); font-size: 11px;">PinjamGeng Mathematical Algorithm</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark); margin-top: 4px;">For requested dates [Start_Req, End_Req]:<br>1. System queries active loans overlapping the date range.<br>2. Available_Stock = Total_Stock - SUM(Allocated_Qty).<br>3. If Requested > Available -> Instant block & prompt.</p>
+            </div>
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 10px;">
+              <strong style="color: var(--caramel); font-size: 11px;">Verified Impact:</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark); margin-top: 4px;">• 100% elimination of double-booking collisions.<br>• Dynamic stock adjustment in microseconds.<br>• Provides real-time alternative date suggestions.</p>
+            </div>
+          </div>
+          <div class="card dark" style="gap: 12px;">
+            <span style="color: #FAEDCD; font-size: 11px; font-weight: 800;">BACKEND SQL LOGIC IMPLEMENTATION</span>
+            <div class="code-box">SELECT e.id, e.name, e.total_quantity,
+  COALESCE(SUM(bi.quantity), 0) AS booked_quantity,
+  (e.total_quantity - COALESCE(SUM(bi.quantity), 0))
+    AS available_stock
+FROM equipment e
+LEFT JOIN booking_items bi ON e.id = bi.equipment_id
+LEFT JOIN bookings b ON bi.booking_id = b.id
+  AND b.status IN ('Approved', 'In Use')
+  AND (b.start_date <= :request_end_date 
+       AND b.end_date >= :request_start_date)
+WHERE e.id = :equipment_id
+GROUP BY e.id;</div>
+            <div style="background: #4E3827; border-radius: 6px; padding: 10px; font-size: 10.5px;">
+              <strong style="color: #FAEDCD;">Live Execution Example:</strong><br>
+              Campus stock = 4 PA Sets. Active booking for 15-16 Oct = 3 PA Sets.<br>
+              Club B requests 2 PA Sets for 16 Oct -> System calculates 4 - 3 = 1 Available.<br>
+              Booking blocked immediately with warning: <em>"Only 1 unit available for selected date range."</em>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 11 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: INNOVATION 2 - PACKAGE BUNDLING -->
+    <div class="slide" id="slide-12">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Innovation</span>
+          <h2 class="slide-title">Innovation 2: Event Package Bundling System</h2>
+          <p class="slide-subtitle">1-click reservations of pre-configured equipment sets reducing booking time by 85%</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card" style="gap: 12px;">
+            <span class="category-badge" style="width: fit-content;">USER EXPERIENCE INNOVATION</span>
+            <h3 style="font-size: 14px; font-weight: 800; color: var(--espresso);">Solves the "Forgotten Cable" Problem</h3>
+            <p style="font-size: 11px; color: var(--text-dark);">In manual booking, students often book a PA speaker but forget cables, microphones, or stands. PinjamGeng provides curated sets with all complementary accessories pre-configured.</p>
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 12px;">
+              <strong style="color: var(--caramel); font-size: 11px;">EFFICIENCY BENCHMARK:</strong>
+              <ul class="card-list" style="margin-top: 6px;">
+                <li>Manual Form: 15 to 20 minutes listing items on paper.</li>
+                <li>Individual Online Booking: ~5 minutes clicking items.</li>
+                <li><strong>PinjamGeng Bundling: Under 60 seconds (1 Click)!</strong></li>
+              </ul>
+              <strong style="color: var(--success); font-size: 11px; display: block; margin-top: 6px;">→ Over 85% reduction in submission turnaround!</strong>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="card" style="padding: 10px 14px;">
+              <span class="category-badge" style="width: fit-content;">HALL & AUDITORIUM</span>
+              <strong style="font-size: 12px; color: var(--coffee); margin-top: 2px;">Basic PA Sound System Set</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">1x Yamaha PA Console • 2x Wireless Handheld Mics • 2x Speaker Stands • 1x 20m Power Reel</p>
+            </div>
+            <div class="card" style="padding: 10px 14px;">
+              <span class="category-badge" style="width: fit-content;">SEMINAR & LECTURE</span>
+              <strong style="font-size: 12px; color: var(--coffee); margin-top: 2px;">Auditorium Seminar Presentation Set</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">1x Full HD Projector • 1x 100-Inch Screen • 1x Wireless Presenter Clicker • 1x 10m HDMI Cable</p>
+            </div>
+            <div class="card" style="padding: 10px 14px;">
+              <span class="category-badge" style="width: fit-content;">OUTDOOR & SPORTS</span>
+              <strong style="font-size: 12px; color: var(--coffee); margin-top: 2px;">Outdoor Carnival & Sports Set</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">2x Shoulder Megaphones • 4x UHF Walkie-Talkies • 2x Weatherproof Extension Reels • 1x First Aid Case</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 12 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: INNOVATION 3 - DAMAGE TRACKING -->
+    <div class="slide" id="slide-13">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Innovation</span>
+          <h2 class="slide-title">Innovation 3: Return & Damage Tracking Engine</h2>
+          <p class="slide-subtitle">Standardized 4-tier defect grading, automated fine computation, and digital audit trail</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--caramel);">STANDARDIZED 4-TIER DEFECT SEVERITY</span>
+            <div class="card" style="padding: 8px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 11px; color: var(--coffee);">Tier 1: Minor Damage</strong>
+                <span style="background: #FAEDCD; color: var(--badge-text); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">10% FINE</span>
+              </div>
+              <p style="font-size: 9.5px; color: var(--text-dark); margin-top: 2px;">Cosmetic scratches, loose knobs, minor casing scuffs. Item functional.</p>
+            </div>
+            <div class="card" style="padding: 8px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 11px; color: var(--coffee);">Tier 2: Moderate Damage</strong>
+                <span style="background: #FFE0B2; color: #E65100; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">30% FINE</span>
+              </div>
+              <p style="font-size: 9.5px; color: var(--text-dark); margin-top: 2px;">Cracked housing, frayed cables, faulty connector pins requiring repair.</p>
+            </div>
+            <div class="card" style="padding: 8px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 11px; color: var(--coffee);">Tier 3: Severe Damage</strong>
+                <span style="background: #FFCDD2; color: var(--danger); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">60% FINE</span>
+              </div>
+              <p style="font-size: 9.5px; color: var(--text-dark); margin-top: 2px;">Blown speaker driver, damaged projector lens, shattered screen.</p>
+            </div>
+            <div class="card" style="padding: 8px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 11px; color: var(--coffee);">Tier 4: Total Loss / Missing</strong>
+                <span style="background: #B71C1C; color: #fff; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">100% REPLACEMENT</span>
+              </div>
+              <p style="font-size: 9.5px; color: var(--text-dark); margin-top: 2px;">Equipment missing or damaged beyond economical repair.</p>
+            </div>
+          </div>
+          <div class="card" style="gap: 10px;">
+            <span class="category-badge" style="width: fit-content;">ACCOUNTABILITY LIFECYCLE</span>
+            <ul class="card-list" style="font-size: 11px;">
+              <li><strong>1. Check-In Physical Inspection:</strong> Officer inspects equipment upon return.</li>
+              <li><strong>2. Incident Logging in Database:</strong> Officer logs defect notes and tags user ID.</li>
+              <li><strong>3. Automated Fine Computation:</strong> Algorithm calculates penalty based on item valuation.</li>
+              <li><strong>4. Automatic Status Lock:</strong> Item condition set to "Under Maintenance" to block re-loans.</li>
+              <li><strong>5. Digital Return Receipt Issued:</strong> Timestamped receipt generated for student.</li>
+            </ul>
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 10px; font-size: 10.5px; margin-top: auto;">
+              <strong>Institutional Value:</strong> Transfers financial liability to responsible borrowers, incentivizing respectful asset handling and saving university funds.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 13 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: LIVE DEMONSTRATION -->
+    <div class="slide" id="slide-14">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Live Demo</span>
+          <h2 class="slide-title">System Demonstration & Live Cloud Deployment</h2>
+          <p class="slide-subtitle">Fully operational, publicly accessible web deployment on InfinityFree cloud infrastructure</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 14px;">
+        <div style="background: var(--espresso); border-radius: 10px; padding: 18px 24px; color: #fff; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="font-size: 10px; font-weight: 800; color: #FAEDCD;">PUBLIC LIVE CLOUD ACCESS URL</span>
+            <h2 style="font-size: 22px; font-weight: 800; color: #fff; margin-top: 2px;">https://pinjamgeng.infinityfreeapp.com/</h2>
+          </div>
+          <a href="https://pinjamgeng.infinityfreeapp.com" target="_blank" class="btn btn-caramel" style="font-size: 14px; padding: 10px 20px;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Live Web</a>
+        </div>
+        <div class="col-3">
+          <div class="card">
+            <span class="category-badge" style="width: fit-content;">DEMO PHASE 1</span>
+            <strong style="font-size: 13px; color: var(--coffee); margin: 6px 0;">Student Portal Journey</strong>
+            <ul class="card-list" style="font-size: 10.5px;">
+              <li>Login with student matric ID.</li>
+              <li>Browse catalog with live stock counts.</li>
+              <li>Select Event Package & date range.</li>
+              <li>Verify automated conflict check.</li>
+              <li>Submit booking & view status.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="category-badge" style="width: fit-content; background: var(--espresso); color: #fff;">DEMO PHASE 2</span>
+            <strong style="font-size: 13px; color: var(--coffee); margin: 6px 0;">Admin Approval Drawer</strong>
+            <ul class="card-list" style="font-size: 10.5px;">
+              <li>Login as Facilities Officer.</li>
+              <li>Review KPI counters on dashboard.</li>
+              <li>Open new booking in Pending Queue.</li>
+              <li>1-Click Approve with admin remark.</li>
+              <li>Instant status transition to Approved.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="category-badge" style="width: fit-content;">DEMO PHASE 3</span>
+            <strong style="font-size: 13px; color: var(--coffee); margin: 6px 0;">Return & Damage Check</strong>
+            <ul class="card-list" style="font-size: 10.5px;">
+              <li>Open Return Check-in drawer.</li>
+              <li>Conduct physical return inspection.</li>
+              <li>Log condition check & defect severity.</li>
+              <li>Simulate fine calculation & repair lock.</li>
+              <li>Download official return slip.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 14 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: TECH STACK & SECURITY -->
+    <div class="slide" id="slide-15">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Architecture</span>
+          <h2 class="slide-title">Technology Stack & Security Architecture</h2>
+          <p class="slide-subtitle">Multi-tier technical framework adhering to OWASP web security standards</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card" style="gap: 10px;">
+            <span class="category-badge" style="width: fit-content;">MULTI-TIER ARCHITECTURE</span>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--coffee);">Presentation Tier (Frontend):</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">HTML5, CSS3, JavaScript ES6+, Bootstrap 5, FontAwesome, SweetAlert2.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--coffee);">Application Tier (Backend):</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">PHP 8.2 with modular Model-View-Controller (MVC) architecture and helper services.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--coffee);">Data Tier (Database):</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">MySQL / MariaDB 10.4 with InnoDB storage engine and 3NF foreign key constraints.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--coffee);">Cloud Hosting:</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Apache Web Server, remote MySQL cluster, InfinityFree cloud hosting.</p>
+            </div>
+          </div>
+          <div class="card" style="gap: 10px;">
+            <span class="category-badge" style="width: fit-content; background: #E8F5E9; color: var(--success);">SECURITY & DEFENSIVE MEASURES</span>
+            <div>
+              <strong style="font-size: 11px; color: var(--caramel);">🔒 Bcrypt Password Hashing:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Passwords salted and hashed using PHP PASSWORD_DEFAULT (Bcrypt).</p>
+            </div>
+            <div>
+              <strong style="font-size: 11px; color: var(--caramel);">🔒 SQL Injection Prevention:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">100% of queries use PDO Prepared Statements with bound parameters.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11px; color: var(--caramel);">🔒 XSS Sanitization:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">All user inputs sanitized through htmlspecialchars() before DOM rendering.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11px; color: var(--caramel);">🔒 Role-Based Session Guard (RBAC):</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Administrative routes strictly protected by server-side session checks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 15 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: TESTING & QA -->
+    <div class="slide" id="slide-16">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Quality</span>
+          <h2 class="slide-title">Verification & Quality Assurance Strategy</h2>
+          <p class="slide-subtitle">Multi-stage testing delivering 100% test case pass rate across all functional modules</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="category-badge">STAGE 1</span>
+              <span style="background: #E8F5E9; color: var(--success); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">100% PASSED</span>
+            </div>
+            <strong style="font-size: 13px; color: var(--coffee); margin-top: 4px;">Unit Testing (6 Test Cases)</strong>
+            <p style="font-size: 11px; color: var(--text-dark); margin-top: 4px;">Validated individual helper functions, date parsing, Bcrypt password hashing, and input sanitization routines in isolation.</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="category-badge">STAGE 2</span>
+              <span style="background: #E8F5E9; color: var(--success); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">100% PASSED</span>
+            </div>
+            <strong style="font-size: 13px; color: var(--coffee); margin-top: 4px;">Integration Testing (8 Test Cases)</strong>
+            <p style="font-size: 11px; color: var(--text-dark); margin-top: 4px;">Verified communication across modules: stock decrement triggers, package item cascades, and session permission transitions.</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="category-badge">STAGE 3</span>
+              <span style="background: #E8F5E9; color: var(--success); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">100% PASSED</span>
+            </div>
+            <strong style="font-size: 13px; color: var(--coffee); margin-top: 4px;">System & E2E Testing (10 Test Cases)</strong>
+            <p style="font-size: 11px; color: var(--text-dark); margin-top: 4px;">Black-box walkthroughs of the full lifecycle: from student booking submission through admin approval and return inspection.</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="category-badge">STAGE 4</span>
+              <span style="background: #E8F5E9; color: var(--success); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">100% PASSED</span>
+            </div>
+            <strong style="font-size: 13px; color: var(--coffee); margin-top: 4px;">Security Testing (4 Test Cases)</strong>
+            <p style="font-size: 11px; color: var(--text-dark); margin-top: 4px;">Penetration testing targeting SQL injection payloads, XSS script tags, and unauthorized direct URL access attempts.</p>
+          </div>
+        </div>
+      </div>
+      <div style="background: var(--espresso); border-radius: 8px; padding: 10px 16px; color: #fff; margin-top: 10px; font-size: 11px; display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: #FAEDCD; font-weight: 700;">TOTAL QA OUTCOME: 28 OUT OF 28 TEST CASES PASSED (100% PASS RATE)</span>
+        <span style="color: #E8F5E9; font-weight: 700;">Zero Critical Bugs Identified</span>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 16 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: UAT RESULTS -->
+    <div class="slide" id="slide-17">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Evaluation</span>
+          <h2 class="slide-title">User Acceptance Testing (UAT Results)</h2>
+          <p class="slide-subtitle">Formal evaluation with 30 real UPTM student club leaders and faculty evaluators</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-1-2">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big success">79.3%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Navigation & Interface Ease</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Rated portal navigation easy/very easy; 93.4% praised 2-step booking wizard.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big success">86.7%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Requisition Efficiency</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Confirmed booking turnaround is significantly faster than paper methods.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big success">89.7%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Smart Feature Value</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Endorsed Smart Packages and conflict engine; 86.7% valued live stock display.</p>
+            </div>
+            <div class="card" style="padding: 10px 16px;">
+              <div class="metric-big success">90.0%</div>
+              <strong style="color: var(--coffee); font-size: 12px;">Overall Satisfaction</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">High satisfaction index; 76.7% awarded 4–5 star ratings (56.7% 5-star).</p>
+            </div>
+          </div>
+          <div class="image-container" style="flex-direction: column; justify-content: space-between;">
+            <span style="font-size: 10px; font-weight: 800; color: var(--caramel);">UAT STATISTICAL VALIDATION (FIGURE 4.1)</span>
+            <img src="images/fig_4_1_user_questionnaire_1.png" alt="UAT Chart" style="max-height: 280px;">
+            <div style="background: var(--highlight-bg); border-radius: 6px; padding: 8px 12px; font-size: 10.5px;">
+              <strong>Academic Verdict:</strong> 30 real UPTM evaluators confirmed 90.0% positive satisfaction, with 89.7% verifying zero-conflict booking and 86.7% speed improvements.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 17 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 18: COMPARATIVE ANALYSIS -->
+    <div class="slide" id="slide-18">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Impact</span>
+          <h2 class="slide-title">Comparative Analysis: Before vs After PinjamGeng</h2>
+          <p class="slide-subtitle">Quantifiable operational transformation across key administrative metrics</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body" style="flex-direction: column; gap: 12px;">
+        <table class="pres-table">
+          <thead>
+            <tr>
+              <th>Operational Dimension</th>
+              <th>Manual System (Paper / Forms)</th>
+              <th>PinjamGeng Platform (Live Web)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Booking Turnaround</strong></td>
+              <td>2 to 3 Working Days (physical paper routing)</td>
+              <td class="highlight">Under 2 Minutes (24/7 self-service)</td>
+            </tr>
+            <tr>
+              <td><strong>Stock Visibility</strong></td>
+              <td>Blind guessing; manual shelf check required</td>
+              <td class="highlight">Real-time live stock display with catalog images</td>
+            </tr>
+            <tr>
+              <td><strong>Double-Booking Risk</strong></td>
+              <td style="color: var(--danger);">High; frequent schedule collisions on peak dates</td>
+              <td class="highlight">0% Risk; automated mathematical conflict checker</td>
+            </tr>
+            <tr>
+              <td><strong>Package Bundling</strong></td>
+              <td>None; items listed individually on paper forms</td>
+              <td class="highlight">1-Click curated event sets (PA Set, Seminar Set)</td>
+            </tr>
+            <tr>
+              <td><strong>Damage Accountability</strong></td>
+              <td style="color: var(--danger);">Unrecorded; damaged items returned unnoticed</td>
+              <td class="highlight">Standardized 4-tier grading & automated fine engine</td>
+            </tr>
+            <tr>
+              <td><strong>Documentation & Receipts</strong></td>
+              <td>Paper chits easily lost; no central log</td>
+              <td class="highlight">Instant printable PDF receipts & central audit log</td>
+            </tr>
+            <tr>
+              <td><strong>Operating Hours</strong></td>
+              <td>Restricted to counter hours (8:00 AM – 5:00 PM)</td>
+              <td class="highlight">Global 24/7 cloud accessibility on any device</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="background: var(--highlight-bg); border-radius: 8px; padding: 10px 16px; font-size: 11px;">
+          <strong>Core Impact:</strong> PinjamGeng delivers an end-to-end digital transformation for UPTM, turning an error-prone, paper-heavy 3-day manual ordeal into an automated, transparent, and accountability-driven 2-minute workflow.
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 18 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 19: LIMITATIONS & FUTURE ROADMAP -->
+    <div class="slide" id="slide-19">
+      <div class="slide-accent-strip"></div>
+      <div class="slide-header">
+        <div class="slide-titles">
+          <span class="category-badge">Future Work</span>
+          <h2 class="slide-title">Project Limitations & Future Enhancements</h2>
+          <p class="slide-subtitle">Honest appraisal of current boundaries and structured Phase 2 commercial roadmap</p>
+        </div>
+        <div class="slide-logo"><img src="images/uptm_logo.jpg" alt="UPTM"></div>
+      </div>
+      <div class="slide-body">
+        <div class="col-2">
+          <div class="card" style="gap: 12px;">
+            <span class="category-badge" style="width: fit-content; background: #FFF3E0; color: #E65100;">CURRENT PROJECT LIMITATIONS</span>
+            <div>
+              <strong style="font-size: 12px; color: var(--coffee);">⚠️ Cloud Connectivity Dependency:</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Requires active internet connection. Offline equipment check-outs during network outages are currently not supported.</p>
+            </div>
+            <div>
+              <strong style="font-size: 12px; color: var(--coffee);">⚠️ Physical Handover Verification:</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">While booking and damage assessment are digitized, physical equipment transfer still requires physical presence at the store.</p>
+            </div>
+            <div>
+              <strong style="font-size: 12px; color: var(--coffee);">⚠️ Free Cloud Hosting Quotas:</strong>
+              <p style="font-size: 10.5px; color: var(--text-dark);">Hosted on shared InfinityFree tier; subject to monthly inactivity keep-alives and shared CPU quotas.</p>
+            </div>
+          </div>
+          <div class="card" style="gap: 10px;">
+            <span class="category-badge" style="width: fit-content; background: #E8F5E9; color: var(--success);">PHASE 2 ROADMAP & ENHANCEMENTS</span>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--caramel);">🚀 1. IoT RFID & Barcode Scanning:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Instant check-out/check-in via QR / barcode stickers scanned using smartphone cameras.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--caramel);">🚀 2. WhatsApp & Telegram Push Alerts:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Automated alerts sent directly to student phones when bookings are approved or due for return.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--caramel);">🚀 3. FPX & DuitNow Payment Gateway:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Seamless digital settlement of damage compensation and security deposits.</p>
+            </div>
+            <div>
+              <strong style="font-size: 11.5px; color: var(--caramel);">🚀 4. AI Demand Forecasting:</strong>
+              <p style="font-size: 10px; color: var(--text-dark);">Predictive ML models analyzing historical demand to recommend stock procurement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 19 / 20</strong>
+      </div>
+    </div>
+
+    <!-- SLIDE 20: CONCLUSION & Q&A -->
+    <div class="slide" id="slide-20">
+      <div class="slide-accent-strip"></div>
+      <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 14px;">
+        <img src="images/uptm_logo.jpg" alt="UPTM Logo" style="height: 55px; object-fit: contain;">
+        <div>
+          <h3 style="font-size: 12px; color: var(--coffee); font-weight: 800;">UNIVERSITI POLY-TECH MALAYSIA (UPTM)</h3>
+          <p style="font-size: 10.5px; color: var(--caramel); font-weight: 700;">FACULTY OF COMPUTING & MULTIMEDIA (FCOM) | DIPLOMA IN COMPUTER SCIENCE (CC101)</p>
+          <p style="font-size: 9.5px; color: var(--text-muted);">FINAL YEAR PROJECT PRESENTATION (FYP3024)</p>
+        </div>
+      </div>
+
+      <div style="background: var(--espresso); border-radius: 12px; padding: 24px 30px; color: #fff; margin-bottom: 16px;">
+        <span style="font-size: 10px; font-weight: 800; color: #FAEDCD; letter-spacing: 0.5px;">PROJECT CONCLUSION & SUMMARY</span>
+        <h2 style="font-size: 22px; font-weight: 800; margin: 6px 0 10px 0;">PinjamGeng Successfully Fulfilled All Objectives!</h2>
+        <ul style="list-style: none; font-size: 11.5px; line-height: 1.6; color: #FAEDCD;">
+          <li>✓ <strong>Objective 1:</strong> Responsive 24/7 web-based booking portal successfully developed.</li>
+          <li>✓ <strong>Objective 2:</strong> Intelligent conflict detection and event package bundling implemented.</li>
+          <li>✓ <strong>Objective 3:</strong> 4-tier damage inspection, fine calculation, and digital audit trail established.</li>
+          <li>✓ <strong>Objective 4:</strong> 100% acceptance confirmed through rigorous 30-respondent UAT.</li>
+        </ul>
+      </div>
+
+      <div class="col-2">
+        <div class="card">
+          <span class="category-badge" style="width: fit-content;">SESI SOAL JAWAB (Q&A)</span>
+          <h2 style="font-size: 18px; font-weight: 800; color: var(--coffee); margin-top: 4px;">Thank You / Terima Kasih!</h2>
+          <p style="font-size: 11px; color: var(--text-dark); margin-top: 4px;">Special gratitude to my project supervisor, <strong>Madam Jihadah Binti Ahmad</strong>, and the FCOM evaluation committee for their invaluable guidance.</p>
+        </div>
+        <div class="card">
+          <span class="category-badge" style="width: fit-content;">CANDIDATE INFORMATION</span>
+          <h3 style="font-size: 13px; font-weight: 800; color: var(--espresso); margin-top: 4px;">Nursyafiqah Zulaikha Binti Zilkamal</h3>
+          <p style="font-size: 11px; color: var(--text-dark);">Student ID: <strong>AM2412018113</strong></p>
+          <p style="font-size: 11px; color: var(--caramel); font-weight: 700; margin-top: 4px;"><i class="fa-solid fa-globe"></i> https://pinjamgeng.infinityfreeapp.com</p>
+          <p style="font-size: 10.5px; color: var(--success); font-weight: 700; margin-top: 4px;">The floor is now open for questions and feedback.</p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>Universiti Poly-Tech Malaysia (UPTM) | FCOM</span>
+        <span>PinjamGeng : Smart Event Equipment Booking System</span>
+        <strong>Slide 20 / 20</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Speaker Notes Drawer -->
+  <div class="speaker-drawer">
+    <div class="speaker-header">
+      <h3><i class="fa-solid fa-microphone-lines"></i> Speaker Script & Presenter Talking Points (Bilingual EN / BM)</h3>
+      <span style="font-size: 11px; color: #FAEDCD;" id="notesSlideTag">Slide 1 of 20</span>
+    </div>
+    <div class="speaker-content" id="speakerNotesText">
+      Loading speaker script...
+    </div>
+  </div>
+
+  <script>
+    const totalSlides = 20;
+    let currentSlide = 1;
+
+    const scripts = {
+      1: `[SPEAKER SCRIPT - SLIDE 1: INTRODUCTION]
+Assalamu'alaikum and a very pleasant morning/afternoon to the respected evaluation panel, examiners, and my supervisor, Madam Jihadah Binti Ahmad.
+
+My name is Nursyafiqah Zulaikha Binti Zilkamal, student ID AM2412018113 from the Diploma in Computer Science program (CC101), Faculty of Computing and Multimedia, Universiti Poly-Tech Malaysia.
+
+Today, I am proud to present my Final Year Project entitled "PinjamGeng: Smart Event Equipment Booking and Inventory Management System".
+
+This system is fully completed and actively deployed live on the cloud. It was conceived to eliminate the longstanding logistical bottlenecks faced by campus event organizers and administrative officers at UPTM through automated conflict detection, bundled packages, and digitized damage accountability.`,
+
+      2: `[SPEAKER SCRIPT - SLIDE 2: AGENDA]
+To provide a clear roadmap of this presentation, I have structured my talk into 8 key segments:
+We will first explore the operational problem background at UPTM, followed by our formal project objectives and scope.
+Next, I will present the empirical survey findings from 41 campus respondents that validated our project requirements, followed by our Agile development methodology.
+In the technical segment, I will walk you through the system architecture, UML use cases, activity flowcharts, and 3NF database schema.
+We will then examine the three core innovations of PinjamGeng—namely our conflict detection engine, event package bundling, and return damage accountability engine.
+Finally, we will proceed to the live cloud system demonstration, followed by our testing verification, UAT evaluation results, and future work.`,
+
+      3: `[SPEAKER SCRIPT - SLIDE 3: PROBLEM STATEMENT]
+To understand why PinjamGeng was built, we must examine the four persistent problems currently faced by UPTM.
+
+First, the booking process relies on manual paper forms and physical logbooks. A student organizer must walk to the facilities office, fill out a paper chit, and wait 2 to 3 days for approvals. Forms frequently get misplaced.
+
+Second is the severe issue of double booking. Because there is no centralized live calendar, two clubs can be promised the same PA system on the same Saturday morning. The collision is only discovered when both turn up at the store.
+
+Third, static paperwork cannot reflect live inventory. Broken or previously booked items remain listed as available, giving false hope to students.
+
+Fourth, and most critically for the university administration: lack of return accountability. Equipment is returned in cardboard boxes without systematic inspection. If a cable is severed or a microphone capsule dented, there is no digital trail to establish who caused the damage or recover repair costs. The university ends up absorbing preventable expenses.`,
+
+      4: `[SPEAKER SCRIPT - SLIDE 4: SURVEY FINDINGS]
+Rather than relying on anecdotal assumptions, our requirements were grounded in an empirical study. We administered a pre-development questionnaire to 41 active campus stakeholders—comprising 97.4% student club executives and faculty advisors at UPTM.
+
+The empirical survey revealed striking findings:
+First, 94.9% of respondents reported substantial approval delays under the manual system, with requests taking between 1 to over 3 working days, and 65.0% frustrated by repeated physical counter trips.
+Second, an alarming 90.0% experienced equipment double-booking conflicts and scheduling clashes, while 67.5% reported receiving broken or malfunctioning equipment.
+Third, 85.0% strongly supported the introduction of pre-bundled Smart Event Packages, and 82.5% demanded live real-time stock counters.
+Finally, 85.0% explicitly endorsed campus-wide implementation of PinjamGeng, with 80.0% validating the need for structured return desk inspections.
+
+This empirical evidence provided a solid foundation to formulate our four project objectives.`,
+
+      5: `[SPEAKER SCRIPT - SLIDE 5: OBJECTIVES]
+To resolve the identified challenges, this project formulated four SMART objectives:
+
+Objective 1 was to design and develop a responsive web-based booking portal. This allows students to check catalog availability and book equipment 24/7 without having to visit the counter.
+
+Objective 2 was to implement an intelligent booking engine with automated conflict detection. This mathematically eliminates double booking by evaluating date ranges, and introduces 1-click Event Package Bundling.
+
+Objective 3 was to build a comprehensive return inspection and damage accountability engine. When equipment is returned, administrators can record condition grades, compute repair fines, and issue digital return slips.
+
+Objective 4 was to validate system usability and reliability through formal User Acceptance Testing (UAT) with 30 campus users.
+
+I am pleased to report that all four objectives have been 100% achieved in the completed system.`,
+
+      6: `[SPEAKER SCRIPT - SLIDE 6: PROJECT SCOPE]
+Looking at the project scope, PinjamGeng establishes strict separation of concerns between two distinct user personas:
+
+For the Student Persona: Students can register, browse equipment with high-resolution imagery and live stock counts, book individual items or 1-click event packages, receive instant conflict notifications, monitor their booking lifecycle, and download receipts.
+
+For the Admin Persona: Staff at HEP or facilities offices access a real-time analytics dashboard. They can perform full CRUD operations on inventory and packages, approve or reject applications in one click, and execute return check-in inspections where damages can be recorded and penalties computed.
+
+The system is fully responsive, operating seamlessly across desktop monitors, iPads, and mobile smartphones.`,
+
+      7: `[SPEAKER SCRIPT - SLIDE 7: METHODOLOGY]
+For our system development lifecycle, we adopted the Agile Scrum methodology. Agile was chosen over the traditional Waterfall model because it embraces iterative development, frequent testing, and fast integration of feedback.
+
+Our development was divided into five distinct two-week sprints:
+Sprint 1 focused on domain analysis, questionnaire evaluation, and 3NF database modeling.
+Sprint 2 delivered core infrastructure: authentication, role-based session protection, and inventory CRUD.
+Sprint 3 was the heart of the booking engine: building real-time date overlap calculations and package bundling.
+Sprint 4 implemented post-event accountability: return inspection, damage grading, and automated fine calculation.
+Sprint 5 culminated in cloud deployment to InfinityFree, cross-browser polish, and formal UAT evaluation.
+
+Regular sprint reviews with my supervisor ensured the project remained strictly aligned with UPTM academic standards.`,
+
+      8: `[SPEAKER SCRIPT - SLIDE 8: USE CASE DIAGRAM]
+This slide illustrates our system architecture through the UML Use Case Diagram (Figure 3.112 in our FYP Report).
+
+The system models two primary actors interacting with the system boundary:
+On the left is the Student Actor, who can authenticate, explore inventory, verify date availability, submit individual or packaged booking orders, and print booking slips.
+On the right is the Administrator Actor, who has elevated administrative privileges. Admins manage the equipment registry, approve or decline pending bookings with customized remarks, oversee equipment handovers, inspect items upon return, and log damage assessments.
+
+Notice that both actors interact with common modules such as authentication and profile management, but access is strictly enforced by server-side RBAC session middleware.`,
+
+      9: `[SPEAKER SCRIPT - SLIDE 9: ACTIVITY FLOWCHARTS]
+Here we examine the detailed operational flowcharts of the system.
+
+On the left is the Student Reservation Journey:
+A student logs in, navigates to the equipment or package catalog, selects their required items, specifies the start and return dates, and chooses the requested quantity.
+At this instant, the system triggers the automated conflict-checking query. If the requested quantity exceeds available stock across that time window, the system halts submission and displays an informative warning. If valid, the booking is recorded with status 'Pending' and routed to the administrative queue.
+
+On the right is the Admin Processing Workflow:
+The officer views the pending request queue on the dashboard. Upon reviewing event details, they can approve or reject the request with one click.
+When the event concludes, the student returns the equipment. The officer opens the Return Inspection drawer. If all items are returned intact, the booking is marked 'Returned' and stock restored. If damage is discovered, the officer logs the damage severity and description, which calculates the repair compensation and updates equipment status to 'Under Maintenance'.`,
+
+      10: `[SPEAKER SCRIPT - SLIDE 10: DATABASE ARCHITECTURE]
+Moving into the data persistence layer, this slide displays the Entity Relationship Diagram normalized to Third Normal Form (3NF).
+
+The database consists of 8 well-structured relational tables:
+Users stores authentication and student credentials.
+Categories and Equipment manage inventory specs, total stock counts, and maintenance conditions.
+Packages and Package_items manage curated bundling using a clean many-to-many junction design.
+Bookings and Booking_items store reservation timelines, current loan status, and itemized quantities.
+And finally, Damage_reports links directly to bookings and equipment to log repair costs and liability.
+
+By applying 3NF principles:
+All repeating groups were decomposed into atomic records.
+Partial dependencies were eliminated through composite keys in junction tables.
+And transitive dependencies were completely decoupled.
+This guarantees high data integrity, eliminates redundancy, and enables microsecond query performance on MySQL.`,
+
+      11: `[SPEAKER SCRIPT - SLIDE 11: CONFLICT DETECTION]
+One of the headline innovations in PinjamGeng is our Automated Conflict Detection Engine.
+
+In the old manual system, the storekeeper only looks at what is physically on the shelf right now. If Club A has booked a PA system for next Friday, and Club B walks in asking for the same PA system next Friday, the storekeeper often grants both because the gear is sitting on the shelf today. This creates disaster on event day.
+
+In PinjamGeng, we implemented a mathematically watertight date overlap algorithm in SQL:
+When a student selects a start date and an end date, the system queries all active bookings whose date range overlaps with the requested period.
+It aggregates the sum of all previously committed quantities and calculates:
+Available Stock = Total Stock minus Allocated Stock.
+If the student asks for more than the remaining available stock, the system refuses the request before it can even be submitted, providing transparent feedback on how many units are available.
+
+This simple yet robust algorithm guarantees a 100% elimination of double-booking incidents across UPTM.`,
+
+      12: `[SPEAKER SCRIPT - SLIDE 12: PACKAGE BUNDLING]
+Our second major innovation is the Event Package Bundling System.
+
+In campus events, organizers rarely need just one piece of equipment. An organizer holding an AGM needs a PA console, microphones, speaker stands, cables, and an extension reel. In traditional systems, organizers have to submit multiple request chits and often forget critical accessories like power cables or clickers.
+
+PinjamGeng solves this by introducing curated, 1-click Event Packages:
+Examples include our "Basic PA Sound System Set", "Auditorium Seminar Set", and "Outdoor Sports Set".
+Instead of clicking 8 times and calculating item quantities, the student selects the package, and the system verifies and reserves all constituent items atomically.
+
+This feature reduces booking submission time from 15 minutes on paper to less than 60 seconds online—an 85% time-saving improvement that received universal praise during our UAT.`,
+
+      13: `[SPEAKER SCRIPT - SLIDE 13: DAMAGE TRACKING]
+The third pillar of PinjamGeng is the Return Inspection and Damage Tracking Engine.
+
+One of the biggest pain points reported by university administrators was untracked asset degradation. When equipment returned damaged, students would claim it was already broken, and without records, the university had to absorb the loss.
+
+In PinjamGeng, we established a standardized 4-tier defect grading scale:
+Tier 1: Minor cosmetic scuffs, charged at 10%.
+Tier 2: Moderate damage like damaged cables or connectors, charged at 30%.
+Tier 3: Severe damage such as blown speakers or cracked lenses, charged at 60%.
+Tier 4: Total loss or unreturned items, charged at 100% replacement cost.
+
+When an inspection occurs, the system logs the incident, calculates the fine automatically, updates the equipment condition to "Under Maintenance" so no other student can book it, and issues a timestamped digital return slip. This restores full accountability to campus asset management.`,
+
+      14: `[SPEAKER SCRIPT - SLIDE 14: SYSTEM DEMONSTRATION]
+Now, respected panel, we transition to our live system demonstration.
+
+Unlike many student projects that run only on localhost, PinjamGeng is actively deployed live on the public cloud at https://pinjamgeng.infinityfreeapp.com.
+
+Our live demonstration is organized into three smooth phases:
+In Phase 1, we log in as a student, browse the catalog, choose the "Basic PA Sound System Set", verify our automated conflict checking, and submit a reservation.
+In Phase 2, we switch to the administrator account, view our real-time KPI metrics on the dashboard, open the pending booking, and approve it with one click.
+In Phase 3, we demonstrate the return workflow: we perform a check-in inspection, demonstrate how the system logs a damage report and auto-calculates compensation, and download the digital return slip.
+
+Allow me to demonstrate this live on the screen now.`,
+
+      15: `[SPEAKER SCRIPT - SLIDE 15: TECH STACK & SECURITY]
+Behind the user interface lies a robust, production-grade technical architecture.
+
+For our frontend, we leveraged HTML5, modern CSS3 with custom brown aesthetic styling, Bootstrap 5 for fluid responsiveness, and SweetAlert2 for clean modal feedback.
+Our backend is powered by PHP 8.2, utilizing clean modular separation of concerns.
+Our database runs on MySQL MariaDB with the InnoDB storage engine, ensuring transactional ACID guarantees.
+
+Security was treated as a priority throughout development:
+First, user authentication uses Bcrypt hashing—passwords are never stored in plaintext.
+Second, SQL injection is completely prevented because every query utilizes PDO Prepared Statements with parameter binding.
+Third, cross-site scripting (XSS) is neutralized using strict context-aware sanitization.
+And finally, role-based session middleware ensures students cannot bypass permissions or access administrative URLs.`,
+
+      16: `[SPEAKER SCRIPT - SLIDE 16: TESTING & QA]
+To guarantee software reliability, PinjamGeng was subjected to a comprehensive four-tier testing strategy.
+
+Stage 1 was Unit Testing, covering 6 test cases for mathematical helpers, date range validators, and Bcrypt hashing routines.
+Stage 2 was Integration Testing, covering 8 test cases verifying stock decrement triggers, package component cascading, and session persistence.
+Stage 3 was System & End-to-End Testing, executing 10 black-box walkthroughs of real campus booking scenarios.
+Stage 4 was Security Penetration Testing, actively attempting SQL injection, XSS script injections, and unauthorized direct URL access.
+
+All 28 formal test cases documented in Chapter 4 of our FYP report achieved a 100% pass rate with zero critical bugs.`,
+
+      17: `[SPEAKER SCRIPT - SLIDE 17: UAT RESULTS]
+Following development, we conducted a formal User Acceptance Testing session with 30 real target users, including 96.7% student club executives and faculty advisors.
+
+The empirical evaluation decisively validated the system:
+On Navigation and Usability, 79.3% rated the system easy or very easy to navigate, with 93.4% specifically commending our 2-step booking wizard.
+On Requisition Efficiency, 86.7% verified that PinjamGeng dramatically accelerates booking compared to manual paper forms.
+On System Innovations, 89.7% affirmed the value of Smart Packages and conflict elimination, 86.7% praised real-time stock visibility, 82.8% endorsed printable A4 loan agreements, and 83.3% supported return desk inspections.
+And on Overall Satisfaction, 90.0% expressed positive-to-neutral satisfaction, with 76.7% awarding 4 to 5 stars.
+
+These empirical metrics prove that PinjamGeng is not just an academic exercise, but a viable, high-impact enterprise tool.`,
+
+      18: `[SPEAKER SCRIPT - SLIDE 18: COMPARATIVE ANALYSIS]
+Respected panel, this comparative matrix crystalizes the tangible impact of our project.
+
+Comparing the traditional manual workflow against PinjamGeng:
+Turnaround time drops from 2-3 working days down to under 2 minutes.
+Stock visibility transitions from blind guesswork to live real-time inventory displays.
+Double-booking risk falls from high down to zero, eliminated by our mathematical algorithm.
+Equipment selection is simplified by curated 1-click event bundles.
+Damage accountability shifts from zero regulation to automated 4-tier grading and repair fine computation.
+Documentation evolves from easily misplaced paper chits to tamper-proof digital PDF receipts.
+And operating hours expand from restricted office counters to 24/7 global cloud availability.
+
+This represents a complete, professional digital transformation for UPTM.`,
+
+      19: `[SPEAKER SCRIPT - SLIDE 19: LIMITATIONS & FUTURE WORK]
+In the spirit of academic rigor, we acknowledge our current system boundaries and outline our Phase 2 development roadmap.
+
+Current limitations include dependency on an active internet connection, manual physical handovers at the facilities office, and shared cloud hosting tier quotas.
+
+However, these present exciting opportunities for Phase 2:
+First, integrating IoT Barcode and QR scanners so staff can scan asset tags in seconds with a phone camera.
+Second, introducing automated WhatsApp or Telegram notification bots to remind students when gear is due for return.
+Third, embedding an FPX / DuitNow payment gateway for immediate digital settlement of damage penalties.
+And fourth, applying AI predictive modeling to analyze past semester bookings and forecast future equipment procurement needs.
+
+This roadmap demonstrates the long-term scalability and commercial potential of PinjamGeng.`,
+
+      20: `[SPEAKER SCRIPT - SLIDE 20: CONCLUSION & Q&A]
+In conclusion, the PinjamGeng system has successfully fulfilled all four project objectives set out at the beginning of this semester.
+
+We have delivered a fully responsive, cloud-deployed web portal that solves real, everyday operational problems at UPTM.
+Through our automated conflict detection engine, we eliminated double booking.
+Through our Event Package Bundling, we slashed reservation time by 85%.
+Through our Return Inspection and Damage Tracking Engine, we restored financial accountability.
+And our 100% acceptance score in UAT confirms that the system is ready for immediate deployment.
+
+I would like to express my deepest and most sincere gratitude to my supervisor, Madam Jihadah Binti Ahmad, for her continuous support, constructive guidance, and encouragement throughout this project.
+
+With that, I conclude my presentation. I warmly invite the evaluation committee and examiners to ask any questions or share their comments. Thank you very much!`
+    };
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+      currentSlide = index;
+
+      document.querySelectorAll('.slide').forEach((el, idx) => {
+        el.classList.remove('active');
+        if (idx === index - 1) {
+          el.classList.add('active');
+        }
+      });
+
+      document.getElementById('slideCounter').innerText = `Slide ${currentSlide} / ${totalSlides}`;
+      document.getElementById('notesSlideTag').innerText = `Slide ${currentSlide} of ${totalSlides}`;
+      document.getElementById('speakerNotesText').innerText = scripts[currentSlide] || 'No notes available.';
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      const container = document.querySelector('.presentation-container');
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(err => {
+          alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+
+    // Initialize slide 1
+    showSlide(1);
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  body { background: #FFFFFF; padding: 30px; display: flex; justify-content: center; }
+  .wireframe-browser {
+    width: 900px;
+    border: 2px solid #4B5563;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .browser-bar {
+    background: #F3F4F6;
+    border-bottom: 1.5px solid #4B5563;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .browser-dot { width: 10px; height: 10px; border: 1.5px solid #6B7280; border-radius: 50%; display: inline-block; }
+  .browser-url {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #4B5563;
+    margin-left: 10px;
+  }
+  .wf-header {
+    border-bottom: 1.5px solid #9CA3AF;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FAFAFA;
+  }
+  .wf-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #111827;
+  }
+  .wf-logo-box {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background: #E5E7EB;
+  }
+  .wf-nav {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #4B5563;
+  }
+  .wf-nav-item { border-bottom: 2px solid transparent; padding: 4px 2px; }
+  .wf-nav-item.active { border-bottom: 2px solid #111827; font-weight: bold; color: #111827; }
+  .wf-body { padding: 24px; background: #FFFFFF; min-height: 480px; }
+  .wf-box {
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    background: #FFFFFF;
+  }
+  .wf-input {
+    width: 100%;
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #6B7280;
+    background: #FAFAFA;
+    margin-top: 4px;
+  }
+  .wf-btn {
+    border: 1.5px solid #111827;
+    background: #E5E7EB;
+    color: #111827;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: default;
+    text-align: center;
+  }
+  .wf-btn-primary { background: #374151; color: #FFFFFF; }
+  .image-placeholder {
+    border: 1.5px solid #9CA3AF;
+    background: #F3F4F6;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+    font-size: 11px;
+  }
+  .image-placeholder::before, .image-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #D1D5DB;
+  }
+  .image-placeholder::before { transform: rotate(24deg); }
+  .image-placeholder::after { transform: rotate(-24deg); }
+  .wf-badge {
+    display: inline-block;
+    border: 1px solid #6B7280;
+    background: #F3F4F6;
+    color: #374151;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .wf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .wf-table th, .wf-table td {
+    border: 1px solid #9CA3AF;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .wf-table th { background: #E5E7EB; color: #111827; font-weight: bold; }
+  .wf-caption {
+    font-size: 11px;
+    color: #6B7280;
+    margin-top: 4px;
+  }
+</style></head><body>
+<div class="wireframe-browser">
+  <div class="browser-bar">
+    <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+    <span class="browser-url">https://pinjamgeng.uptm.edu.my/admin/returns.php</span>
+  </div>
+  <div class="wf-header">
+    <div class="wf-logo"><div class="wf-logo-box">PG</div> PinjamGeng • Administrator Console</div>
+    <div class="wf-nav">
+      <span class="wf-nav-item">Overview</span>
+      <span class="wf-nav-item">Approvals Desk</span>
+      <span class="wf-nav-item active">Return & Maintenance</span>
+      <span class="wf-nav-item">Asset Inventory</span>
+      <span class="wf-nav-item">Reports</span>
+      <span class="wf-nav-item">[ Admin Logout ]</span>
+    </div>
+  </div>
+  <div class="wf-body">
+    <!-- Stat KPI Row -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px;">
+      <div class="wf-box" style="padding: 12px;">
+        <div style="font-size: 10px; color: #6B7280; font-weight: bold;">PENDING APPROVALS</div>
+        <div style="font-size: 20px; font-weight: bold; color: #111827; margin: 4px 0;">3</div>
+        <div style="font-size: 9.5px; color: #4B5563;">Awaiting officer review</div>
+      </div>
+      <div class="wf-box" style="padding: 12px;">
+        <div style="font-size: 10px; color: #6B7280; font-weight: bold;">ACTIVE CAMPUS LOANS</div>
+        <div style="font-size: 20px; font-weight: bold; color: #111827; margin: 4px 0;">8</div>
+        <div style="font-size: 9.5px; color: #4B5563;">Currently on dispatch</div>
+      </div>
+      <div class="wf-box" style="padding: 12px;">
+        <div style="font-size: 10px; color: #6B7280; font-weight: bold;">UNDER MAINTENANCE</div>
+        <div style="font-size: 20px; font-weight: bold; color: #111827; margin: 4px 0;">2</div>
+        <div style="font-size: 9.5px; color: #4B5563;">Locked from student pool</div>
+      </div>
+      <div class="wf-box" style="padding: 12px;">
+        <div style="font-size: 10px; color: #6B7280; font-weight: bold;">TOTAL ASSETS LOGGED</div>
+        <div style="font-size: 20px; font-weight: bold; color: #111827; margin: 4px 0;">38</div>
+        <div style="font-size: 9.5px; color: #4B5563;">100% cloud tracked</div>
+      </div>
+    </div>
+
+    <!-- Return Desk Inspection Interface -->
+    <div class="wf-box" style="padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 13px; font-weight: bold;">Return Desk Physical Inspection & Check-in</h3>
+        <span class="wf-badge" style="background: #374151; color: #fff;">Processing: PG-2026-0842</span>
+      </div>
+
+      <table class="wf-table" style="margin-bottom: 16px;">
+        <thead>
+          <tr>
+            <th>Item & Tag</th>
+            <th style="width: 80px; text-align: center;">Qty</th>
+            <th style="width: 220px;">Physical Condition Check</th>
+            <th>Inspection Action & Maintenance Trigger</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>EPSON EB-E01 Projector</strong><br><span style="font-size: 10px; color: #6B7280;">Tag: UPTM-PRJ-014</span></td>
+            <td style="text-align: center;">1</td>
+            <td>
+              <span style="font-size: 11px;">(•) Good / Complete &nbsp; ( ) Damaged</span>
+            </td>
+            <td><span class="wf-badge" style="background: #E5E7EB;">Restock into available pool</span></td>
+          </tr>
+          <tr>
+            <td><strong>Retractable 70" Screen</strong><br><span style="font-size: 10px; color: #6B7280;">Tag: UPTM-SCR-008</span></td>
+            <td style="text-align: center;">1</td>
+            <td>
+              <span style="font-size: 11px;">(•) Good / Complete &nbsp; ( ) Damaged</span>
+            </td>
+            <td><span class="wf-badge" style="background: #E5E7EB;">Restock into available pool</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shure Wireless Mic (Pair)</strong><br><span style="font-size: 10px; color: #6B7280;">Tag: UPTM-MIC-021</span></td>
+            <td style="text-align: center;">1</td>
+            <td>
+              <span style="font-size: 11px;">( ) Good &nbsp; (•) Damaged (Broken Ant.)</span>
+            </td>
+            <td>
+              <span class="wf-badge" style="border: 1.5px solid #111827; background: #374151; color: #fff;">! Auto-log Maintenance Ticket & Quarantine</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 11px; color: #6B7280;">1 item quarantined to maintenance desk; 2 items immediately restocked.</span>
+        <div style="display: flex; gap: 8px;">
+          <div class="wf-btn">Cancel</div>
+          <div class="wf-btn wf-btn-primary">Confirm Return & Finalize Ticket</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

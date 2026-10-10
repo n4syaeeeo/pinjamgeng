@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          coffee: {
+            50: '#fdfbf7',
+            100: '#f7f2ea',
+            200: '#ece3d5',
+            300: '#ded0bf',
+            400: '#c2a88f',
+            500: '#a68263',
+            600: '#8c6544',
+            700: '#6f4a2d',
+            800: '#52341d',
+            900: '#382112',
+            950: '#231308',
+          },
+          caramel: {
+            light: '#fff5ed',
+            DEFAULT: '#d97736',
+            hover: '#c46222',
+            dark: '#9a4714'
+          },
+          amber: {
+            gold: '#e5a953'
+          }
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'Inter', 'Segoe UI', 'sans-serif'],
+          display: ['Outfit', 'Segoe UI', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfbf7; margin: 0; padding: 0; color: #231308; }
+  .font-display { font-family: 'Outfit', sans-serif; }
+</style>
+</head>
+<body class="bg-[#fdfbf7] min-h-[900px] text-coffee-950">
+
+<!-- Fake Admin Background Page -->
+<div class="relative w-[1280px] h-[850px] bg-[#fdfbf7] overflow-hidden">
+  <!-- Top bar -->
+  <div class="bg-coffee-950 text-coffee-300 text-xs py-2 px-8 flex justify-between items-center border-b border-coffee-900">
+    <div class="flex items-center space-x-3">
+      <span class="text-amber-gold font-bold"><i class="fa-solid fa-graduation-cap mr-2"></i> Universiti Poly-Tech Malaysia (UPTM)</span>
+      <span class="text-coffee-600">•</span>
+      <span>Faculty of Computing & Multimedia</span>
+    </div>
+    <div class="flex items-center space-x-4 text-coffee-400">
+      <span><i class="fa-solid fa-shield-halved text-amber-gold mr-1"></i> Admin Decision Console</span>
+      <span>System Date: 18 Oct 2026</span>
+    </div>
+  </div>
+
+  <!-- Header Nav -->
+  <div class="bg-white border-b border-coffee-200 px-8 py-3.5 flex justify-between items-center shadow-sm">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-caramel to-coffee-800 flex items-center justify-center text-white shadow-md">
+        <i class="fa-solid fa-clipboard-check text-lg text-amber-gold"></i>
+      </div>
+      <div>
+        <h1 class="font-display font-extrabold text-lg text-coffee-950 leading-tight">PinjamGeng <span class="text-caramel font-normal text-xs px-2 py-0.5 rounded-full bg-caramel/10 border border-caramel/20">APPROVAL DESK</span></h1>
+        <p class="text-[11px] text-coffee-600">Booking Application Review & Inventory Allocation</p>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4 text-xs">
+      <span class="font-mono bg-coffee-100 text-coffee-800 px-3 py-1 rounded-xl border border-coffee-200 font-bold">Requisition: #UPTM-BK-2026-001</span>
+    </div>
+  </div>
+
+  <!-- Background Content (blurred under backdrop) -->
+  <div class="p-8 filter blur-[2px] opacity-40 select-none pointer-events-none">
+    <div class="bg-white rounded-3xl border border-coffee-200 p-6 shadow mb-6">
+      <h2 class="font-display text-xl font-bold text-coffee-950">National AI & IoT Innovation Hackathon 2026</h2>
+      <p class="text-xs text-coffee-600 mt-1">Applicant: Nursyafiqah Zulaikha Binti Zilkamal (AM2412018113) • Dewan Gemilang Level 2</p>
+      <div class="mt-4 border-t border-coffee-100 pt-4 grid grid-cols-3 text-xs">
+        <div>Pickup: 18 Oct 2026, 08:30 AM</div>
+        <div>Return: 20 Oct 2026, 05:00 PM</div>
+        <div>Expected Attendees: 150 pax</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP CONFIRMATION MODAL OVERLAY -->
+  <div class="absolute inset-0 bg-coffee-950/70 backdrop-blur-[3px] flex items-center justify-center p-6 z-50">
+    <div class="bg-white rounded-3xl border border-coffee-200 shadow-2xl w-[680px] overflow-hidden animate-fade-in">
+      <!-- Modal Header -->
+      <div class="bg-gradient-to-r from-emerald-800 to-coffee-950 px-7 py-5 flex justify-between items-center text-white border-b border-emerald-700/50">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
+            <i class="fa-solid fa-gavel text-lg"></i>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base tracking-wide text-white">Confirm Booking Approval & Stock Allocation</h3>
+            <p class="text-[11px] text-emerald-200/90">Formal Lab Custodian Authorization Dialog</p>
+          </div>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-emerald-200 hover:text-white flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-7 space-y-4 text-xs text-coffee-900">
+        <!-- Requisition Summary Card -->
+        <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-emerald-800 tracking-wider">Target Requisition</span>
+              <h4 class="font-bold text-sm text-emerald-950">#UPTM-BK-2026-001</h4>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-200 text-emerald-900 font-bold text-[10px]">Pending -> Approved</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-emerald-900 border-t border-emerald-200/70 pt-2.5">
+            <div><strong>Borrower:</strong> Nursyafiqah Zulaikha (AM2412018113)</div>
+            <div><strong>Event:</strong> National AI Hackathon 2026</div>
+            <div><strong>Duration:</strong> 18 Oct 2026 - 20 Oct 2026</div>
+            <div><strong>Total Units:</strong> 22 Items (Audio, Visual, Staging)</div>
+          </div>
+        </div>
+
+        <!-- Inventory Deduction Warning -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-3.5 flex items-start space-x-3">
+          <i class="fa-solid fa-triangle-exclamation text-caramel text-base mt-0.5"></i>
+          <div>
+            <strong class="font-bold text-coffee-950 block text-xs">Automated Stock Deduction Notice</strong>
+            <p class="text-[11px] text-coffee-800 leading-relaxed mt-0.5">
+              Confirming this approval will immediately lock and deduct all 22 requested units from the active campus inventory pool for the specified dates, preventing concurrent double-booking.
+            </p>
+          </div>
+        </div>
+
+        <!-- Official Remarks / Instructions -->
+        <div>
+          <label class="block font-bold text-coffee-800 uppercase tracking-wider text-[10px] mb-1.5">
+            Lab Officer Authorization Remarks & Pickup Instructions *
+          </label>
+          <textarea rows="3" class="w-full px-3 py-2.5 rounded-xl border border-coffee-300 bg-white text-coffee-950 focus:ring-2 focus:ring-emerald-600 focus:outline-none">Approved. All items inspected and reserved. Please present your student matric card and this printed agreement slip at Counter B, Block C Level 2, 30 minutes before event kickoff.</textarea>
+          <span class="text-[10px] text-coffee-500 mt-1 block">These remarks will appear printed on Section D of the borrower's official loan agreement voucher.</span>
+        </div>
+
+        <!-- Verification Checkbox -->
+        <div class="bg-coffee-100/70 p-3 rounded-xl border border-coffee-200 flex items-start space-x-2.5">
+          <input type="checkbox" checked class="mt-0.5 w-4 h-4 text-emerald-700 rounded border-coffee-300 focus:ring-emerald-600" />
+          <label class="text-[11px] text-coffee-900 font-medium">
+            I certify that the requested equipment schedule has been verified and all hardware is physically staged for handover.
+          </label>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-coffee-50 px-7 py-4 border-t border-coffee-200 flex justify-between items-center">
+        <button class="px-4 py-2 rounded-xl text-xs font-bold text-coffee-700 bg-white hover:bg-coffee-100 border border-coffee-200 transition-colors">
+          Cancel & Return
+        </button>
+        <div class="flex items-center space-x-3">
+          <button class="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-700 to-emerald-900 hover:from-emerald-800 hover:to-emerald-950 shadow-md transition-all flex items-center">
+            <i class="fa-solid fa-check-double mr-1.5"></i> Confirm & Authorize Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

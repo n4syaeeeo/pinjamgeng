@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140" width="540" height="140">
+  <!-- Soft white pill container with subtle shadow -->
+  <rect x="2" y="2" width="536" height="136" rx="20" fill="#FFFFFF" fill-opacity="0.96" stroke="#E5E7EB" stroke-width="1.5"/>
+  
+  <!-- UPTM section -->
+  <g transform="translate(18, 18)">
+    <!-- Red circle top dot -->
+    <circle cx="44" cy="18" r="9" fill="#DC2626"/>
+    <!-- Navy Diamond Outer -->
+    <polygon points="44,28 78,62 44,96 10,62" fill="none" stroke="#1E3A8A" stroke-width="7" stroke-linejoin="round"/>
+    <polygon points="44,38 68,62 44,86 20,62" fill="#1E40AF"/>
+    <circle cx="44" cy="62" r="7.5" fill="#FFFFFF"/>
+    
+    <!-- UPTM Typography -->
+    <text x="96" y="66" font-family="Montserrat, Arial Black, Arial, sans-serif" font-weight="900" font-size="44" fill="#1E3A8A" letter-spacing="-1">UPTM</text>
+    <text x="96" y="86" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="10.5" fill="#4B5563" letter-spacing="0.5">UNIVERSITI POLY-TECH MALAYSIA</text>
+    <text x="96" y="98" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="8" fill="#9CA3AF" letter-spacing="1">DU060 (W)</text>
+  </g>
+
+  <!-- Vertical separator -->
+  <line x1="305" y1="26" x2="305" y2="114" stroke="#D1D5DB" stroke-width="1.5"/>
+
+  <!-- FCOM section -->
+  <g transform="translate(322, 22)">
+    <g transform="translate(0, 8)">
+      <!-- F -->
+      <text x="4" y="52" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="48" fill="#7A2E5A">F</text>
+      <!-- C -->
+      <text x="36" y="52" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="48" fill="#8B3367">C</text>
+      <!-- Infinity symbol O -->
+      <g transform="translate(74, 23) scale(0.72)">
+        <path d="M30,20 C18,7 2,7 2,20 C2,33 18,33 30,20 C42,7 58,7 58,20 C58,33 42,33 30,20 Z" fill="none" stroke="#2563EB" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30,20 C18,7 2,7 2,20 C2,33 18,33 30,20" fill="none" stroke="#06B6D4" stroke-width="7.5" stroke-linecap="round"/>
+      </g>
+      <!-- M -->
+      <text x="122" y="52" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="48" fill="#7A2E5A">M</text>
+    </g>
+    <!-- Subtitle -->
+    <text x="6" y="82" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="10" fill="#4B5563" letter-spacing="0.2">Faculty of Computing &amp; Multimedia</text>
+  </g>
+</svg>

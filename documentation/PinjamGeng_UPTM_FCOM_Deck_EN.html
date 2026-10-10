@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinjamGeng - FYP Presentation (UPTM FCOM Style)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mauve-cover: #55351E;       /* Deep rich mocha brown */
+      --title-berry: #42220F;       /* Dark espresso brown for bold titles */
+      --pill-rose: #A86538;         /* Warm caramel / terracotta badge pill */
+      --table-header: #DECAB6;      /* Warm latte table header */
+      --table-border: #D2BEAC;      /* Soft warm taupe border */
+      --text-dark: #28211D;         /* Deep espresso body text */
+      --text-muted: #61544D;        /* Warm taupe secondary text */
+      --card-bg: #FFFFFF;
+      --card-border: #E6D8CA;       /* Soft warm cream border */
+      --accent-bg: #F5EDE4;
+      --accent-border: #D9C2AD;
+      --cloud-bg: #F5EBE1;
+      --cloud-border: #D9C0A8;
+      --cloud-text: #5C3214;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111827;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Fixed 16:9 Slide Canvas */
+    .slide-viewport {
+      width: 1280px;
+      height: 720px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #FAF7F2;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      flex-direction: column;
+      background-size: cover;
+      background-position: center;
+      padding: 40px 60px;
+    }
+
+    .slide.active { display: flex; }
+
+    /* Cover / Thank You slide style */
+    .slide.cover-slide {
+      background-image: url('images/brown_cover_bg.png');
+      background-color: var(--mauve-cover);
+      color: #FFFFFF;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 40px 80px;
+    }
+
+    /* Content slide style */
+    .slide.content-slide {
+      background-image: url('images/brown_content_bg.png');
+      background-color: #FAF7F2;
+      justify-content: flex-start;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .logo-container img {
+      height: 62px;
+      object-fit: contain;
+    }
+
+    .slide-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 36px;
+      color: var(--title-berry);
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      position: relative;
+    }
+
+    /* Bottom-Right Slide Number Badge */
+    .slide-number-pill {
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+      background: var(--pill-rose);
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      width: 50px;
+      height: 36px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    /* Numbered Row Items (Problem, Objectives, Future Works) */
+    .numbered-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .numbered-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .number-badge {
+      width: 64px;
+      height: 56px;
+      background: var(--pill-rose);
+      border-radius: 18px;
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    .item-text h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--title-berry);
+      margin-bottom: 4px;
+    }
+
+    .item-text p {
+      font-size: 14.5px;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    /* Testing Table */
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+
+    .test-table th {
+      background: var(--table-header);
+      color: var(--title-berry);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      padding: 12px 16px;
+      text-align: left;
+      border: 1px solid var(--table-border);
+    }
+
+    .test-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--table-border);
+      color: var(--text-dark);
+    }
+
+    .test-table tr:nth-child(even) { background: #F7F2EC; }
+
+    .status-pass {
+      color: #15803D;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    /* Grid Layouts for Charts */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .chart-box {
+      background: #FFFFFF;
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      max-height: 440px;
+    }
+
+    .chart-box img {
+      max-width: 100%;
+      max-height: 410px;
+      object-fit: contain;
+    }
+
+    /* Controls Bar */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+      color: #FFFFFF;
+    }
+
+    .btn {
+      background: #48382F;
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: #5F4B3E; }
+    .btn-primary { background: var(--pill-rose); color: #fff; }
+    .btn-primary:hover { background: #8F532B; }
+
+    /* Print Styles */
+    @page { 
+      size: 16in 9in landscape; 
+      margin: 0; 
+    }
+    @media print {
+      html, body { 
+        background: #fff !important; 
+        padding: 0 !important; 
+        margin: 0 !important;
+        display: block !important;
+        height: auto !important;
+      }
+      .controls { display: none !important; }
+      .slide-viewport { 
+        width: 16in !important; 
+        height: auto !important; 
+        box-shadow: none !important; 
+        border-radius: 0 !important; 
+        overflow: visible !important;
+        display: block !important;
+        position: static !important;
+      }
+      .slide { 
+        width: 16in !important; 
+        height: 9in !important; 
+        display: flex !important; 
+        page-break-after: always !important; 
+        break-after: page !important;
+        position: relative !important; 
+        top: auto !important;
+        left: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 16:9 Viewport -->
+  <div class="slide-viewport">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide cover-slide active" id="slide-1">
+      <div style="width: 100%; display: flex; justify-content: flex-start;">
+        <img src="images/uptm_fcom_logo.png" alt="UPTM FCOM" style="height: 65px; border-radius: 10px; background: rgba(255,255,255,0.92); padding: 4px;">
+      </div>
+      <div>
+        <h4 style="font-family: 'Montserrat'; font-weight: 800; font-size: 24px; letter-spacing: 2px; margin-bottom: 8px;">FYP PRESENTATION</h4>
+        <h1 style="font-family: 'Montserrat'; font-weight: 900; font-size: 68px; letter-spacing: 1px; margin-bottom: 8px;">PINJAMGENG</h1>
+        <p style="font-family: 'Montserrat'; font-weight: 700; font-size: 15px; letter-spacing: 1px; color: #FDF2F8; margin-bottom: 24px;">SMART EVENT EQUIPMENT BOOKING AND INVENTORY MANAGEMENT SYSTEM</p>
+        <div style="font-family: 'Montserrat'; font-weight: 800; font-size: 22px; line-height: 1.35; margin-bottom: 20px;">
+          NURSYAFIQAH ZULAIKHA BINTI ZILKAMAL<br>
+          <span style="font-size: 20px;">AM2412018113</span>
+        </div>
+        <p style="font-family: 'Montserrat'; font-weight: 800; font-size: 18px;">SUPERVISOR: MADAM JIHADAH BINTI AHMAD</p>
+      </div>
+      <div style="width: 100%;">
+        <div style="height: 2px; background: rgba(255,255,255,0.4); margin-bottom: 12px;"></div>
+        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 16px;">
+          <span>FYP3024</span>
+          <span>FACULTY OF COMPUTING & MULTIMEDIA (FCOM)</span>
+          <span>CC101</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: PROJECT BACKGROUND -->
+    <div class="slide content-slide" id="slide-2">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">PROJECT BACKGROUND</h2>
+      <div class="slide-body" style="flex-direction: column; justify-content: center; gap: 24px; padding-right: 60px;">
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • <strong>PinjamGeng</strong> is a responsive web-based equipment booking and inventory management application tailored specifically for Universiti Poly-Tech Malaysia (UPTM), built using PHP 8.2, MySQL InnoDB, and Tailwind CSS.
+        </p>
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • It allows student club executive committees, event coordinators, and university societies to browse verified audio-visual and IT hardware, view real-time available stock counters, and submit reservation requests 24/7 online.
+        </p>
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • The system eliminates reliance on slow paper logbooks, prevents catastrophic double-booking clashes, and establishes end-to-end return accountability across campus facilities.
+        </p>
+      </div>
+      <div class="slide-number-pill">1</div>
+    </div>
+
+    <!-- SLIDE 3: PROBLEM STATEMENTS -->
+    <div class="slide content-slide" id="slide-3">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">PROBLEM STATEMENTS</h2>
+      <div class="slide-body" style="flex-direction: column; justify-content: center; padding: 10px 0;">
+        <div class="numbered-list" style="gap: 40px;">
+          <div class="numbered-item" style="align-items: flex-start; gap: 28px;">
+            <div class="number-badge" style="width: 76px; height: 72px; font-size: 32px; border-radius: 20px; margin-top: 2px;">1</div>
+            <div class="item-text">
+              <h3 style="font-size: 22px; margin-bottom: 10px;">Manual &amp; Uncentralised Booking Process</h3>
+              <p style="font-size: 16.5px; line-height: 1.6;">Manual, uncentralised processes make verifying live equipment availability and managing records difficult, causing reservation clashes, communication breakdowns, missing records, and time-consuming workflows.</p>
+            </div>
+          </div>
+          <div class="numbered-item" style="align-items: flex-start; gap: 28px;">
+            <div class="number-badge" style="width: 76px; height: 72px; font-size: 32px; border-radius: 20px; margin-top: 2px;">2</div>
+            <div class="item-text">
+              <h3 style="font-size: 22px; margin-bottom: 10px;">Equipment Selection Difficulty &amp; Lack of Packages</h3>
+              <p style="font-size: 16.5px; line-height: 1.6;">Users struggle to identify suitable gear for diverse event types when equipment information and booking records are managed separately; existing systems focus solely on individual items rather than convenient event-based packages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number-pill">2</div>
+    </div>
+
+    <!-- SLIDE 4: PROJECT OBJECTIVES -->
+    <div class="slide content-slide" id="slide-4">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">PROJECT OBJECTIVES</h2>
+      <div class="slide-body" style="flex-direction: column; justify-content: center; padding: 10px 0;">
+        <div class="numbered-list" style="gap: 40px;">
+          <div class="numbered-item" style="align-items: flex-start; gap: 28px;">
+            <div class="number-badge" style="width: 76px; height: 72px; font-size: 32px; border-radius: 20px; margin-top: 2px;">1</div>
+            <div class="item-text">
+              <h3 style="font-size: 22px; margin-bottom: 10px;">To Develop an Event Equipment Booking &amp; Inventory Management System</h3>
+              <p style="font-size: 16.5px; line-height: 1.6;">To develop a responsive web-based system enabling users to check availability, submit, and track requests 24/7, while allowing administrators to manage equipment records and booking approvals within the 12-week development period.</p>
+            </div>
+          </div>
+          <div class="numbered-item" style="align-items: flex-start; gap: 28px;">
+            <div class="number-badge" style="width: 76px; height: 72px; font-size: 32px; border-radius: 20px; margin-top: 2px;">2</div>
+            <div class="item-text">
+              <h3 style="font-size: 22px; margin-bottom: 10px;">To Implement an Event-Based Equipment Package Feature</h3>
+              <p style="font-size: 16.5px; line-height: 1.6;">To provide curated, predefined equipment packages for at least four campus event types—including seminars, workshops, meetings, and photography events—within the 12-week development period.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number-pill">3</div>
+    </div>
+
+    
+    <!-- SLIDE 7: LITERATURE REVIEW: EXISTING SYSTEM -->
+    <div class="slide content-slide" id="slide-5">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">LITERATURE REVIEW: EXISTING SYSTEM</h2>
+      <div class="slide-body" style="flex-direction: column; gap: 14px; justify-content: center;">
+        
+        <div style="background: #FFFFFF; border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);">
+          <h3 style="font-family: 'Montserrat', sans-serif; font-size: 18px; color: var(--title-berry); margin-bottom: 6px;">1. Cheqroom</h3>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Provides cloud-based asset tracking with equipment kit bundling and calendar reservation.</p>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Supports barcode/QR code custody tracking and item condition check-in logging.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted); font-style: italic;"><strong style="color: var(--pill-rose); font-style: normal;">Limitation:</strong> High annual enterprise subscription cost with excessive corporate features (geofencing, insurance depreciation) impractical for localized campus budgets.</p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);">
+          <h3 style="font-family: 'Montserrat', sans-serif; font-size: 18px; color: var(--title-berry); margin-bottom: 6px;">2. Booqable</h3>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Offers an intuitive step-by-step booking wizard with real-time stock availability verification.</p>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Visualizes equipment dispatch schedules using color-coded order timeline bars.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted); font-style: italic;"><strong style="color: var(--pill-rose); font-style: normal;">Limitation:</strong> Heavily oriented toward commercial rental businesses requiring customer invoicing, security deposits, and credit card payments rather than internal university club loan rules.</p>
+        </div>
+
+        <div style="background: #FFFFFF; border: 1.5px solid var(--card-border); border-radius: 12px; padding: 14px 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);">
+          <h3 style="font-family: 'Montserrat', sans-serif; font-size: 18px; color: var(--title-berry); margin-bottom: 6px;">3. EZOfficeInventory</h3>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Provides comprehensive asset lifecycle tracking with service tickets and "Under Maintenance" status flags.</p>
+          <p style="font-size: 14px; color: var(--text-dark); margin-bottom: 4px;">• Generates exportable utilization and equipment condition audit reports.</p>
+          <p style="font-size: 13.5px; color: var(--text-muted); font-style: italic;"><strong style="color: var(--pill-rose); font-style: normal;">Limitation:</strong> Complex and data-dense enterprise interface with a steep learning curve for student borrowers; lacks quick event-based packages.</p>
+        </div>
+
+      </div>
+      <div class="slide-number-pill">4</div>
+    </div>
+
+    <!-- SLIDE 8: COMPARISON & RESEARCH GAP -->
+    <div class="slide content-slide" id="slide-6">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">COMPARISON & RESEARCH GAP</h2>
+      <div class="slide-body" style="align-items: center; justify-content: center;">
+        <table class="test-table" style="font-size: 13px;">
+          <thead>
+            <tr>
+              <th style="width: 280px;">Feature / Capability</th>
+              <th style="text-align: center; width: 140px;">Cheqroom</th>
+              <th style="text-align: center; width: 140px;">Booqable</th>
+              <th style="text-align: center; width: 160px;">EZOfficeInventory</th>
+              <th style="text-align: center; width: 220px; background: var(--pill-dark); color: #FFFFFF;">Proposed System<br><span style="font-size: 11px; font-weight: normal;">(PinjamGeng)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight: 700;">Online Equipment Booking</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Real-Time Stock Availability</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Event-Based Equipment Packages</td>
+              <td style="text-align: center; color: var(--text-dark);">✓ (Kits)</td>
+              <td style="text-align: center; color: var(--text-dark);">✓ (Bundles)</td>
+              <td style="text-align: center; color: var(--text-muted);">Not dedicated</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓ (Smart Packages)</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Automated Conflict Engine</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Return Condition & Maintenance Log</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: var(--text-muted);">Not dedicated</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800;">✓</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Official Digital A4 Loan Slip</td>
+              <td style="text-align: center; color: var(--text-muted);">Not found</td>
+              <td style="text-align: center; color: var(--text-muted);">Not dedicated</td>
+              <td style="text-align: center; color: var(--text-muted);">Not dedicated</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓ (Standardized A4)</td>
+            </tr>
+            <tr>
+              <td style="font-weight: 700;">Zero Subscription (Campus Tailored)</td>
+              <td style="text-align: center; color: var(--text-muted);">Not found</td>
+              <td style="text-align: center; color: var(--text-muted);">Not found</td>
+              <td style="text-align: center; color: var(--text-muted);">Not found</td>
+              <td style="text-align: center; color: #15803D; font-weight: 800; background: #FAF5F0;">✓ (100% Free Campus)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="slide-number-pill">5</div>
+    </div>
+
+    <!-- SLIDE 5: AGILE METHODOLOGY -->
+    <div class="slide content-slide" id="slide-7">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">AGILE METHODOLOGY</h2>
+      <div class="slide-body" style="align-items: center; gap: 40px;">
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <img src="images/agile_wheel.png" alt="Agile Methodology" style="max-height: 430px; object-fit: contain;">
+        </div>
+        <div style="width: 3px; height: 380px; background: var(--pill-rose);"></div>
+        <div style="flex: 1.2; display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-size: 18px; line-height: 1.5; color: var(--text-dark);">
+            • A methodology whereby work can be broken into small, dynamic, iterative increments called <strong>sprints</strong>.
+          </p>
+          <p style="font-size: 18px; line-height: 1.5; color: var(--text-dark);">
+            • Utilizes an <strong>iterative approach</strong> in software development, allowing continuous feedback from supervisor Madam Jihadah Binti Ahmad and rapid refinement.
+          </p>
+          <p style="font-size: 18px; line-height: 1.5; color: var(--text-dark);">
+            • Executed across <strong>5 two-week sprints</strong>: Sprint 1 (Architecture & DB), Sprint 2 (Auth & Inventory), Sprint 3 (Booking Engine & Packages), Sprint 4 (Return & Damage), Sprint 5 (Deployment & UAT).
+          </p>
+        </div>
+      </div>
+      <div class="slide-number-pill">6</div>
+    </div>
+
+    <!-- SLIDE 6: UNIT TESTING -->
+    <div class="slide content-slide" id="slide-8">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">TESTING AND RESULT<br><span style="font-size: 28px;">UNIT TESTING</span></h2>
+      <div class="slide-body" style="align-items: center;">
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th style="width: 80px; text-align: center;">Test ID</th>
+              <th style="width: 120px;">Module</th>
+              <th>Test Description</th>
+              <th>Input</th>
+              <th>Expected Output</th>
+              <th style="width: 80px; text-align: center;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">UT01</td>
+              <td>Auth</td>
+              <td>Validate user login</td>
+              <td>Valid email & password</td>
+              <td>Login success, session token generated</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">UT02</td>
+              <td>Auth</td>
+              <td>Invalid credentials check</td>
+              <td>Wrong password</td>
+              <td>Error message displayed</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">UT03</td>
+              <td>Inventory</td>
+              <td>Stock availability calculation</td>
+              <td>Total qty & active loans</td>
+              <td>Correct available stock returned</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">UT04</td>
+              <td>Booking</td>
+              <td>Date range validation</td>
+              <td>End date &lt;= Start date</td>
+              <td>Form validation error triggered</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">UT05</td>
+              <td>Returns</td>
+              <td>Auto maintenance ticket on damage</td>
+              <td>Item condition = 'Damaged'</td>
+              <td>Status set to 'Under Maintenance' & ticket logged</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="slide-number-pill">7</div>
+    </div>
+
+    <!-- SLIDE 9: INTEGRATION TESTING -->
+    <div class="slide content-slide" id="slide-9">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">TESTING AND RESULT<br><span style="font-size: 28px;">INTEGRATION TESTING</span></h2>
+      <div class="slide-body" style="align-items: center;">
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th style="width: 80px; text-align: center;">Test ID</th>
+              <th style="width: 180px;">Integration Area</th>
+              <th>Test Description</th>
+              <th>Expected Result</th>
+              <th style="width: 80px; text-align: center;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">IT01</td>
+              <td>Frontend–Backend</td>
+              <td>Booking form submission via POST</td>
+              <td>Request saved with unique Ref No</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">IT02</td>
+              <td>Booking–Inventory</td>
+              <td>Admin approval stock decrement</td>
+              <td>Available stock decremented automatically</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">IT03</td>
+              <td>Auth–Protected API</td>
+              <td>Direct access to admin routes as student</td>
+              <td>Unauthorized access redirected to login</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">IT04</td>
+              <td>Package–Booking</td>
+              <td>Bundled item cascading insert</td>
+              <td>All package items populated into loan items</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+            <tr>
+              <td style="text-align: center; font-weight: 800;">IT05</td>
+              <td>Return–Inventory</td>
+              <td>Return desk good condition restore</td>
+              <td>Stock returned to available inventory pool</td>
+              <td class="status-pass">Pass</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="slide-number-pill">8</div>
+    </div>
+
+    <!-- SLIDE 10: UAT QUESTIONNAIRE OVERVIEW -->
+    <div class="slide content-slide" id="slide-10">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">TESTING AND RESULT<br><span style="font-size: 28px;">UAT / POST-DEVELOPMENT QUESTIONNAIRE</span></h2>
+      <div class="slide-body" style="align-items: center; gap: 40px;">
+        <div style="flex: 1.2; display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-size: 19px; line-height: 1.6; color: var(--text-dark);">
+            • A formal <strong>User Acceptance Testing (UAT)</strong> survey was administered to evaluate real user satisfaction, system usability, and operational efficiency across UPTM.
+          </p>
+          <p style="font-size: 19px; line-height: 1.6; color: var(--text-dark);">
+            • Conducted with <strong>30 verified UPTM respondents</strong>, comprising active student club executive committees, society presidents, event organizers, and faculty advisors.
+          </p>
+          <p style="font-size: 19px; line-height: 1.6; color: var(--text-dark);">
+            • Structured across <strong>6 evaluation sections</strong>: User Profile, Usability, Functionality, User Experience, Reliability, and Open-Ended Feedback.
+          </p>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <img src="images/real_card_header.png" alt="Google Form Header" style="max-width: 100%; max-height: 440px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+        </div>
+      </div>
+      <div class="slide-number-pill">9</div>
+    </div>
+
+    <!-- SLIDE 11: SECTION A: USER PROFILE -->
+    <div class="slide content-slide" id="slide-11">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION A: USER PROFILE</h2>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="chart-box"><img src="images/real_card_role.png" alt="User Role"></div>
+          <div class="chart-box"><img src="images/real_card_experience.png" alt="Experience"></div>
+          <div class="chart-box"><img src="images/real_card_frequency.png" alt="Borrowing Frequency"></div>
+        </div>
+      </div>
+      <div class="slide-number-pill">10</div>
+    </div>
+
+    <!-- SLIDE 12: SECTION B: USABILITY EVALUATION -->
+    <div class="slide content-slide" id="slide-12">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION B: USABILITY EVALUATION</h2>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="chart-box"><img src="images/real_card_navigation.png" alt="Navigation Ease"></div>
+          <div class="chart-box"><img src="images/real_card_wizard.png" alt="2-Step Booking Wizard"></div>
+        </div>
+      </div>
+      <div class="slide-number-pill">11</div>
+    </div>
+
+    <!-- SLIDE 13: SECTION C: FUNCTIONALITY EVALUATION -->
+    <div class="slide content-slide" id="slide-13">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION C: FUNCTIONALITY EVALUATION</h2>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="chart-box"><img src="images/real_card_packages.png" alt="Smart Packages"></div>
+          <div class="chart-box"><img src="images/real_card_stock.png" alt="Real-time Stock"></div>
+          <div class="chart-box"><img src="images/real_card_conflict.png" alt="Conflict Elimination"></div>
+        </div>
+      </div>
+      <div class="slide-number-pill">12</div>
+    </div>
+
+    <!-- SLIDE 14: SECTION D: REQUISITION EFFICIENCY -->
+    <div class="slide content-slide" id="slide-14">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION D: REQUISITION EFFICIENCY & DOCUMENTATION</h2>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="chart-box"><img src="images/real_card_speed.png" alt="Requisition Speed"></div>
+          <div class="chart-box"><img src="images/real_card_slip.png" alt="A4 Loan Slip"></div>
+          <div class="chart-box"><img src="images/real_card_return.png" alt="Return Desk"></div>
+        </div>
+      </div>
+      <div class="slide-number-pill">13</div>
+    </div>
+
+    <!-- SLIDE 15: SECTION E: OVERALL SATISFACTION -->
+    <div class="slide content-slide" id="slide-15">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION E: OVERALL SATISFACTION</h2>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="chart-box"><img src="images/real_card_features.png" alt="Most Valued Features"></div>
+          <div class="chart-box"><img src="images/real_card_satisfaction.png" alt="Overall Satisfaction Rating"></div>
+        </div>
+      </div>
+      <div class="slide-number-pill">14</div>
+    </div>
+
+    <!-- SLIDE 16: SECTION F: OPEN-ENDED FEEDBACK -->
+    <div class="slide content-slide" id="slide-16">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">SECTION F: OPEN-ENDED FEEDBACK</h2>
+      <div class="slide-body" style="gap: 24px;">
+        <div class="chart-box" style="flex: 1.1;"><img src="images/real_card_feedback.png" alt="Qualitative Feedback"></div>
+        <div style="flex: 1; background: #FFFFFF; border: 2px solid var(--card-border); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <h4 style="font-family: 'Montserrat'; font-weight: 800; font-size: 16px; color: var(--title-berry);">KEY RESPONDENT INSIGHTS &amp; QUOTES:</h4>
+          <p style="font-size: 13.5px; line-height: 1.45; color: var(--text-dark); font-style: italic;">
+            • "Pakej barang sangat membantu kelab kami pilih barang tanpa tertinggal kabel atau mic penting."
+          </p>
+          <p style="font-size: 13.5px; line-height: 1.45; color: var(--text-dark); font-style: italic;">
+            • "Sistem semak stok live sangat memudahkan. Tak perlu turun naik makmal tanya pegawai."
+          </p>
+          <p style="font-size: 13.5px; line-height: 1.45; color: var(--text-dark); font-style: italic;">
+            • "Cadangan: Tambah lebih banyak pilihan pakej preset untuk program outdoor / sukan kampus."
+          </p>
+          <p style="font-size: 13.5px; line-height: 1.45; color: var(--text-dark); font-style: italic;">
+            • "Design kemas, warna brown aesthetic nampak profesional dan mudah difahami."
+          </p>
+        </div>
+      </div>
+      <div class="slide-number-pill">15</div>
+    </div>
+
+    <!-- SLIDE 17: CORE INNOVATIONS & LIVE CLOUD -->
+    <div class="slide content-slide" id="slide-17">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">CORE INNOVATIONS & LIVE CLOUD</h2>
+      <div class="slide-body" style="flex-direction: column; gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex: 1;">
+          <div style="background: #FFFFFF; border: 2px solid var(--card-border); border-radius: 12px; padding: 20px;">
+            <div style="font-family: 'Montserrat'; font-weight: 900; font-size: 32px; color: var(--pill-rose); margin-bottom: 8px;">01</div>
+            <h3 style="font-family: 'Montserrat'; font-weight: 800; font-size: 16px; color: var(--title-berry); margin-bottom: 8px;">Automated Conflict Engine</h3>
+            <p style="font-size: 13px; color: var(--text-dark); line-height: 1.4;">Real-time mathematical scheduling verification blocks overlapping dates, guaranteeing 0% double booking.</p>
+          </div>
+          <div style="background: #FFFFFF; border: 2px solid var(--card-border); border-radius: 12px; padding: 20px;">
+            <div style="font-family: 'Montserrat'; font-weight: 900; font-size: 32px; color: var(--pill-rose); margin-bottom: 8px;">02</div>
+            <h3 style="font-family: 'Montserrat'; font-weight: 800; font-size: 16px; color: var(--title-berry); margin-bottom: 8px;">1-Click Smart Packages</h3>
+            <p style="font-size: 13px; color: var(--text-dark); line-height: 1.4;">Curated equipment bundles slash requisition submission time from 15 mins to under 60 seconds (85% reduction).</p>
+          </div>
+          <div style="background: #FFFFFF; border: 2px solid var(--card-border); border-radius: 12px; padding: 20px;">
+            <div style="font-family: 'Montserrat'; font-weight: 900; font-size: 32px; color: var(--pill-rose); margin-bottom: 8px;">03</div>
+            <h3 style="font-family: 'Montserrat'; font-weight: 800; font-size: 16px; color: var(--title-berry); margin-bottom: 8px;">Return Damage Engine</h3>
+            <p style="font-size: 13px; color: var(--text-dark); line-height: 1.4;">Standardized 4-tier defect grading (10%, 30%, 60%, 100%) with automated fine computation and maintenance locking.</p>
+          </div>
+        </div>
+        <div style="background: #F5EBE1; border: 1.5px solid #D9C0A8; border-radius: 10px; padding: 12px 20px; text-align: center;">
+          <strong style="font-family: 'Montserrat'; color: #5C3214; font-size: 15px;">🌐 LIVE CLOUD DEPLOYMENT: <a href="https://pinjamgeng.infinityfreeapp.com/" target="_blank" style="color: #5C3214; text-decoration: underline;">https://pinjamgeng.infinityfreeapp.com/</a></strong>
+        </div>
+      </div>
+      <div class="slide-number-pill">16</div>
+    </div>
+
+    <!-- SLIDE 18: FUTURE WORKS -->
+    <div class="slide content-slide" id="slide-18">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">FUTURE WORKS</h2>
+      <div class="slide-body">
+        <div class="numbered-list">
+          <div class="numbered-item">
+            <div class="number-badge">1</div>
+            <div class="item-text">
+              <h3>IoT Barcode & QR Code Hardware Scanning Integration</h3>
+              <p>Direct physical scanning of asset tags during counter checkout and return to achieve sub-second verification and eliminate manual entry.</p>
+            </div>
+          </div>
+          <div class="numbered-item">
+            <div class="number-badge">2</div>
+            <div class="item-text">
+              <h3>Automated WhatsApp & Telegram Push Notifications</h3>
+              <p>Instant real-time messaging bots delivering booking approval alerts, pickup schedules, and return deadline reminders directly to student phones.</p>
+            </div>
+          </div>
+          <div class="numbered-item">
+            <div class="number-badge">3</div>
+            <div class="item-text">
+              <h3>FPX Online Payment Gateway & AI Predictive Demand Forecasting</h3>
+              <p>Direct digital fine settlement for damage penalties and machine-learning predictive forecasting to prepare stock ahead of peak campus event seasons.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-number-pill">17</div>
+    </div>
+
+    <!-- SLIDE 19: CONCLUSION -->
+    <div class="slide content-slide" id="slide-19">
+      <div class="slide-header">
+        <div class="logo-container"><img src="images/uptm_fcom_logo.png" alt="UPTM FCOM"></div>
+      </div>
+      <h2 class="slide-title">CONCLUSION</h2>
+      <div class="slide-body" style="flex-direction: column; justify-content: center; gap: 24px; padding-right: 60px;">
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • <strong>PinjamGeng</strong> has successfully accomplished both core project objectives within the 12-week development timeframe, delivering a robust web application that solves real operational bottlenecks at Universiti Poly-Tech Malaysia.
+        </p>
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • The platform completely eliminates double-booking conflicts through mathematical scheduling algorithms, slashes equipment reservation time by 85% via 1-click event package bundling, and restores financial accountability through standardized return damage grading.
+        </p>
+        <p style="font-size: 20px; line-height: 1.6; color: var(--text-dark);">
+          • With a <strong>100% test pass rate</strong> across 28 test cases and an outstanding <strong>90% positive satisfaction rating</strong> in formal UAT testing, PinjamGeng is fully validated and ready for official campus-wide adoption at UPTM.
+        </p>
+      </div>
+      <div class="slide-number-pill">18</div>
+    </div>
+
+    <!-- SLIDE 20: THANK YOU -->
+    <div class="slide cover-slide" id="slide-20">
+      <div style="width: 100%; display: flex; justify-content: flex-start;">
+        <img src="images/uptm_fcom_logo.png" alt="UPTM FCOM" style="height: 65px; border-radius: 10px; background: rgba(255,255,255,0.92); padding: 4px;">
+      </div>
+      <div>
+        <h1 style="font-family: 'Montserrat'; font-weight: 900; font-size: 80px; letter-spacing: 2px; margin-bottom: 16px;">THANK YOU</h1>
+        <p style="font-family: 'Montserrat'; font-weight: 800; font-size: 22px; color: #FDF8F3; line-height: 1.4;">
+          SUPERVISOR: MADAM JIHADAH BINTI AHMAD<br>
+          <span style="font-size: 18px; font-weight: 600;">FACULTY OF COMPUTING & MULTIMEDIA (FCOM), UPTM</span>
+        </p>
+      </div>
+      <div style="width: 100%;">
+        <div style="height: 2px; background: rgba(255,255,255,0.4); margin-bottom: 12px;"></div>
+        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 16px;">
+          <span>FYP3024</span>
+          <span>DIPLOMA IN COMPUTER SCIENCE</span>
+          <span>CC101</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div class="controls">
+    <button class="btn" id="prevBtn" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+    <span style="font-weight: 700; font-size: 15px;" id="slideIndicator">Slide 1 / 20</span>
+    <button class="btn" id="nextBtn" onclick="nextSlide()">Next <i class="fa-solid fa-arrow-right"></i></button>
+    <button class="btn btn-primary" onclick="toggleFullscreen()"><i class="fa-solid fa-expand"></i> Fullscreen</button>
+    <button class="btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / PDF</button>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 20;
+
+    function showSlide(num) {
+      if (num < 1) num = 1;
+      if (num > totalSlides) num = totalSlides;
+      currentSlide = num;
+
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} / ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) showSlide(currentSlide - 1);
+    }
+
+    function toggleFullscreen() {
+      const el = document.querySelector('.slide-viewport');
+      if (!document.fullscreenElement) {
+        el.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      if (e.key === 'Home') showSlide(1);
+      if (e.key === 'End') showSlide(totalSlides);
+    });
+  </script>
+</body>
+</html>

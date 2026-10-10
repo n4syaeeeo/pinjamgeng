@@ -1,0 +1,13 @@
+# Apache Configuration for PinjamGeng
+DirectoryIndex index.php index.html
+
+# Prevent directory listings
+Options -Indexes
+
+# Prevent direct access to sensitive configuration and SQL files
+<FilesMatch "\.(sql|bak|bat|log|env)$">
+    Require all denied
+</FilesMatch>
+
+# Enable UTF-8 encoding
+AddDefaultCharset UTF-8

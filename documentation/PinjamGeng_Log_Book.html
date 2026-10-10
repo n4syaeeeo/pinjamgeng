@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PinjamGeng - FYP Log Book</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+    }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      background: #ffffff;
+      padding: 16mm 18mm 16mm 18mm;
+      margin-bottom: 20px;
+      position: relative;
+      border: 1px solid #d1d5db;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      page-break-after: always;
+    }
+    .page-frame {
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid #000000;
+      padding: 12mm 14mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .header-code {
+      font-size: 11pt;
+      color: #000000;
+      letter-spacing: 0.2px;
+      margin-bottom: 25px;
+    }
+    .center-block {
+      text-align: center;
+    }
+    .logo-img {
+      max-width: 260px;
+      height: auto;
+      margin-bottom: 25px;
+    }
+    .faculty-title {
+      font-size: 14pt;
+      font-weight: bold;
+      color: #000000;
+      margin-bottom: 25px;
+    }
+    .course-title {
+      font-size: 12.5pt;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+    .course-code {
+      font-size: 13pt;
+      font-weight: bold;
+      color: #e53935;
+      margin-bottom: 40px;
+    }
+    .logbook-title {
+      font-size: 26pt;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      color: #000000;
+      margin-bottom: 50px;
+    }
+    .info-box {
+      border: 1.5px solid #000000;
+      padding: 12px 14px;
+      font-size: 10.5pt;
+      line-height: 1.7;
+      color: #000000;
+      margin-bottom: 30px;
+    }
+    .info-line {
+      display: flex;
+      margin-bottom: 2px;
+    }
+    .info-label {
+      font-weight: bold;
+    }
+
+    /* Page 2 styling */
+    .page-2-frame {
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid #000000;
+      padding: 12mm 14mm;
+      display: flex;
+      flex-direction: column;
+    }
+    .divider-bar {
+      border-bottom: 3.5px solid #000000;
+      margin-top: 6px;
+      margin-bottom: 14px;
+    }
+    .log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+      line-height: 1.25;
+    }
+    .log-table th, .log-table td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      vertical-align: middle;
+    }
+    .log-table th {
+      background-color: #a6a6a6;
+      font-weight: bold;
+      font-size: 9.5pt;
+      text-align: center;
+    }
+    .col-week {
+      width: 7%;
+      text-align: center;
+      font-size: 9pt;
+      font-weight: bold;
+    }
+    .col-agenda {
+      width: 38%;
+      text-align: left;
+    }
+    .col-next {
+      width: 38%;
+      text-align: left;
+    }
+    .col-sig {
+      width: 17%;
+      text-align: center;
+    }
+    .break-row td {
+      height: 28px;
+      background: #ffffff;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="page-frame">
+      <div class="header-code">CC101 DIPLOMA BACHELOR IN COMPUTER SCIENCE</div>
+
+      <div class="center-block" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img src="images/uptm_fcom_logo.png" class="logo-img" alt="UPTM Logo" />
+        <div class="faculty-title">FACULTY OF COMPUTING & MULTIMEDIA (FCOM)</div>
+        <div class="course-title">COMPUTER PROJECT 1</div>
+        <div class="course-code">FYP3024</div>
+        <div class="logbook-title">LOG BOOK</div>
+      </div>
+
+      <div class="info-box">
+        <div style="margin-bottom: 8px;">
+          <strong>STUDENT'S NAME : </strong> NURSYAFIQAH ZULAIKHA BINTI ZILKAMAL
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <div><strong>ID NO. : </strong> AM2412018113</div>
+          <div style="padding-right: 20px;"><strong>SUPERVISOR : </strong> MADAM JIHADAH BINTI AHMAD</div>
+        </div>
+        <div>
+          <strong>PROJECT TITLE : </strong> SMART EVENT EQUIPMENT BOOKING AND INVENTORY MANAGEMENT SYSTEM (PINJAMGENG)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page">
+    <div class="page-2-frame">
+      <div class="header-code">CC101 DIPLOMA BACHELOR IN COMPUTER SCIENCE</div>
+      <div class="divider-bar"></div>
+
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th class="col-week">Week</th>
+            <th class="col-agenda">Agenda</th>
+            <th class="col-next">Next Agenda</th>
+            <th class="col-sig">Signature<br><span style="font-size: 8pt; font-weight: normal;">(Supervisor / Coordinator)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-week">1</td>
+            <td class="col-agenda">Brainstorming, Introduction to the course and Title selection</td>
+            <td class="col-next">Problem definition, objectives formulation, and project scope definition.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">2</td>
+            <td class="col-agenda">Discussed campus equipment borrowing bottlenecks, defined project objectives, and planned user requirements.</td>
+            <td class="col-next">Literature review on existing booking systems and drafting project proposal report.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">3</td>
+            <td class="col-agenda">Reviewed comparative analysis, identified research gaps, and established Agile methodology lifecycle.</td>
+            <td class="col-next">System architecture planning, user flowcharts, and user interface wireframing.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">4</td>
+            <td class="col-agenda">Presented UI wireframes, student/admin operational flowcharts, and relational database schema.</td>
+            <td class="col-next">Relational database modeling, MySQL schema design, and data dictionaries.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">5</td>
+            <td class="col-agenda">Finalized database schema, data dictionary, and submitted project proposal report to supervisor.</td>
+            <td class="col-next">Preparation and development environment setup.</td>
+            <td class="col-sig"></td>
+          </tr>
+
+          <!-- Mid semester break -->
+          <tr class="break-row">
+            <td colspan="4"></td>
+          </tr>
+
+          <tr>
+            <td class="col-week">6</td>
+            <td class="col-agenda">Project environment setup using XAMPP, PHP 8.2, MySQL, and Tailwind CSS.</td>
+            <td class="col-next">Developing role-based authentication and live equipment catalog module.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">7</td>
+            <td class="col-agenda">Implemented user authentication (BCrypt hashing), equipment catalog, and stock availability progress indicators.</td>
+            <td class="col-next">Developing pre-configured "Smart Event Packages" explorer and package selection.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">8</td>
+            <td class="col-agenda">Implemented pre-configured Smart Event Packages explorer and 2-step equipment booking wizard.</td>
+            <td class="col-next">Building automated schedule conflict checking and downloadable A4 loan agreement slip.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">9</td>
+            <td class="col-agenda">Implemented real-time date conflict validation and standardized downloadable A4 loan agreement slip.</td>
+            <td class="col-next">Developing administrator booking approval console and equipment return inspection desk.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">10</td>
+            <td class="col-agenda">Constructed admin booking approval workflow, return condition inspection desk, and auto-generated maintenance ticketing.</td>
+            <td class="col-next">Conducting unit testing, integration testing, and preparing UAT questionnaire.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">11</td>
+            <td class="col-agenda">Conducted automated unit and integration testing across booking and inventory modules.</td>
+            <td class="col-next">Conducting User Acceptance Testing (UAT) with student leaders and lab administrators.</td>
+            <td class="col-sig"></td>
+          </tr>
+          <tr>
+            <td class="col-week">12</td>
+            <td class="col-agenda">Completed live system demonstration to supervisor and reviewed final project report draft.</td>
+            <td class="col-next">Final report submission and project presentation preparation.</td>
+            <td class="col-sig"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <!-- Clean Warm Linen / Subtle Soft Cream -->
+  <rect width="1920" height="1080" fill="#FAF7F2"/>
+
+  <!-- Ultra-subtle faint watermark wavy doodles (opacity 0.05) -->
+  <g stroke="#6F482F" fill="none" stroke-linecap="round" opacity="0.05">
+    <path d="M-50,200 C150,150 200,350 400,280 C600,210 650,450 850,380" stroke-width="7"/>
+    <path d="M1200,-50 C1350,150 1500,80 1650,250 C1800,420 1950,300 2050,450" stroke-width="8"/>
+    <path d="M100,750 C250,600 450,700 350,900 C250,1100 500,1150 650,1000" stroke-width="7"/>
+    <path d="M1300,800 C1450,650 1650,750 1550,950 C1450,1150 1700,1200 1850,1050" stroke-width="8"/>
+  </g>
+</svg>

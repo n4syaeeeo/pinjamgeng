@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1150" width="920" height="1150" style="background-color:#ffffff;">
+  <style>
+    text { font-family: Arial, sans-serif; font-size: 10px; fill: #000000; }
+    .entity-title { font-size: 11px; font-weight: bold; text-anchor: middle; fill: #000000; }
+    .pk { font-weight: bold; }
+    rect { stroke: #000000; stroke-width: 1.5; fill: #ffffff; }
+    line { stroke: #000000; stroke-width: 1.2; fill: none; }
+    .title-line { stroke: #000000; stroke-width: 1.5; }
+    .cardinality { font-size: 9px; font-weight: bold; }
+  </style>
+
+  <!-- Outer Boundary -->
+  <rect x="15" y="15" width="890" height="1120" />
+
+  <!-- ENTITY 1: categories (Top Left) -->
+  <rect x="40" y="50" width="180" height="140" />
+  <text x="130" y="70" class="entity-title">categories</text>
+  <line x1="40" y1="80" x2="220" y2="80" class="title-line" />
+  <text x="50" y="98" class="pk">category_id (PK)</text>
+  <text x="50" y="116">category_name</text>
+  <text x="50" y="134">description</text>
+  <text x="50" y="152">icon</text>
+  <text x="50" y="170">created_at</text>
+
+  <!-- ENTITY 2: equipment (Top Middle) -->
+  <rect x="360" y="50" width="200" height="260" />
+  <text x="460" y="70" class="entity-title">equipment</text>
+  <line x1="360" y1="80" x2="560" y2="80" class="title-line" />
+  <text x="370" y="98" class="pk">equipment_id (PK)</text>
+  <text x="370" y="116">category_id (FK)</text>
+  <text x="370" y="134">item_code</text>
+  <text x="370" y="152">name</text>
+  <text x="370" y="170">brand_model</text>
+  <text x="370" y="188">total_qty</text>
+  <text x="370" y="206">available_qty</text>
+  <text x="370" y="224">booked_qty</text>
+  <text x="370" y="242">maintenance_qty</text>
+  <text x="370" y="260">storage_location</text>
+  <text x="370" y="278">default_condition</text>
+  <text x="370" y="296">replacement_cost</text>
+
+  <!-- Relationship: categories (1) -> (N) equipment -->
+  <line x1="220" y1="110" x2="360" y2="110" />
+  <text x="225" y="105" class="cardinality">1</text>
+  <text x="345" y="105" class="cardinality">N</text>
+
+  <!-- ENTITY 3: packages (Top Right) -->
+  <rect x="680" y="50" width="190" height="150" />
+  <text x="775" y="70" class="entity-title">packages</text>
+  <line x1="680" y1="80" x2="870" y2="80" class="title-line" />
+  <text x="690" y="98" class="pk">package_id (PK)</text>
+  <text x="690" y="116">package_name</text>
+  <text x="690" y="134">event_type</text>
+  <text x="690" y="152">description</text>
+  <text x="690" y="170">icon</text>
+  <text x="690" y="188">is_active</text>
+
+  <!-- ENTITY 4: package_items (Between equipment and packages) -->
+  <rect x="680" y="260" width="190" height="130" />
+  <text x="775" y="280" class="entity-title">package_items</text>
+  <line x1="680" y1="290" x2="870" y2="290" class="title-line" />
+  <text x="690" y="308" class="pk">package_item_id (PK)</text>
+  <text x="690" y="326">package_id (FK)</text>
+  <text x="690" y="344">equipment_id (FK)</text>
+  <text x="690" y="362">quantity</text>
+  <text x="690" y="380">created_at</text>
+
+  <!-- Relationship: packages (1) -> (N) package_items -->
+  <line x1="775" y1="200" x2="775" y2="260" />
+  <text x="782" y="215" class="cardinality">1</text>
+  <text x="782" y="250" class="cardinality">N</text>
+
+  <!-- Relationship: equipment (1) -> (N) package_items -->
+  <line x1="560" y1="280" x2="680" y2="280" />
+  <text x="568" y="275" class="cardinality">1</text>
+  <text x="665" y="275" class="cardinality">N</text>
+
+  <!-- ENTITY 5: users (Middle Left) -->
+  <rect x="40" y="460" width="190" height="230" />
+  <text x="135" y="480" class="entity-title">users</text>
+  <line x1="40" y1="490" x2="230" y2="490" class="title-line" />
+  <text x="50" y="508" class="pk">user_id (PK)</text>
+  <text x="50" y="526">full_name</text>
+  <text x="50" y="544">matric_staff_id</text>
+  <text x="50" y="562">email</text>
+  <text x="50" y="580">phone_no</text>
+  <text x="50" y="598">role (admin/user)</text>
+  <text x="50" y="616">user_category</text>
+  <text x="50" y="634">organization</text>
+  <text x="50" y="652">password_hash</text>
+  <text x="50" y="670">status</text>
+
+  <!-- ENTITY 6: bookings (Center) -->
+  <rect x="360" y="460" width="200" height="250" />
+  <text x="460" y="480" class="entity-title">bookings</text>
+  <line x1="360" y1="490" x2="560" y2="490" class="title-line" />
+  <text x="370" y="508" class="pk">booking_id (PK)</text>
+  <text x="370" y="526">booking_code</text>
+  <text x="370" y="544">user_id (FK)</text>
+  <text x="370" y="562">package_id (FK, null)</text>
+  <text x="370" y="580">event_name</text>
+  <text x="370" y="598">event_location</text>
+  <text x="370" y="616">start_date</text>
+  <text x="370" y="634">end_date</text>
+  <text x="370" y="652">status</text>
+  <text x="370" y="670">approved_by (FK)</text>
+  <text x="370" y="688">picked_up_at</text>
+  <text x="370" y="706">returned_at</text>
+
+  <!-- Relationship: users (1) -> (N) bookings -->
+  <line x1="230" y1="520" x2="360" y2="520" />
+  <text x="238" y="515" class="cardinality">1</text>
+  <text x="345" y="515" class="cardinality">N</text>
+
+  <!-- Relationship: packages (1) -> (N) bookings (dashed optional) -->
+  <line x1="775" y1="200" x2="775" y2="530" />
+  <line x1="775" y1="530" x2="560" y2="530" />
+  <text x="760" y="225" class="cardinality">0..1</text>
+  <text x="568" y="525" class="cardinality">N</text>
+
+  <!-- ENTITY 7: booking_items (Center Right) -->
+  <rect x="680" y="500" width="190" height="160" />
+  <text x="775" y="520" class="entity-title">booking_items</text>
+  <line x1="680" y1="530" x2="870" y2="530" class="title-line" />
+  <text x="690" y="548" class="pk">booking_item_id (PK)</text>
+  <text x="690" y="566">booking_id (FK)</text>
+  <text x="690" y="584">equipment_id (FK)</text>
+  <text x="690" y="602">quantity_requested</text>
+  <text x="690" y="620">quantity_allocated</text>
+  <text x="690" y="638">return_condition</text>
+  <text x="690" y="656">return_notes</text>
+
+  <!-- Relationship: bookings (1) -> (N) booking_items -->
+  <line x1="560" y1="560" x2="680" y2="560" />
+  <text x="568" y="555" class="cardinality">1</text>
+  <text x="665" y="555" class="cardinality">N</text>
+
+  <!-- Relationship: equipment (1) -> (N) booking_items -->
+  <line x1="460" y1="310" x2="460" y2="400" />
+  <line x1="460" y1="400" x2="710" y2="400" />
+  <line x1="710" y1="400" x2="710" y2="500" />
+  <text x="468" y="325" class="cardinality">1</text>
+  <text x="695" y="490" class="cardinality">N</text>
+
+  <!-- ENTITY 8: maintenance_tickets (Bottom Center) -->
+  <rect x="360" y="820" width="200" height="230" />
+  <text x="460" y="840" class="entity-title">maintenance_tickets</text>
+  <line x1="360" y1="850" x2="560" y2="850" class="title-line" />
+  <text x="370" y="868" class="pk">ticket_id (PK)</text>
+  <text x="370" y="886">equipment_id (FK)</text>
+  <text x="370" y="904">booking_id (FK, null)</text>
+  <text x="370" y="922">reported_by (FK)</text>
+  <text x="370" y="940">issue_type</text>
+  <text x="370" y="958">description</text>
+  <text x="370" y="976">severity</text>
+  <text x="370" y="994">status</text>
+  <text x="370" y="1012">serviced_by</text>
+  <text x="370" y="1030">cost</text>
+
+  <!-- Relationship: equipment (1) -> (N) maintenance_tickets -->
+  <line x1="390" y1="310" x2="390" y2="440" />
+  <line x1="390" y1="440" x2="330" y2="440" />
+  <line x1="330" y1="440" x2="330" y2="850" />
+  <line x1="330" y1="850" x2="360" y2="850" />
+  <text x="395" y="325" class="cardinality">1</text>
+  <text x="340" y="845" class="cardinality">N</text>
+
+  <!-- Relationship: bookings (1) -> (N) maintenance_tickets -->
+  <line x1="460" y1="710" x2="460" y2="820" />
+  <text x="468" y="725" class="cardinality">0..1</text>
+  <text x="468" y="810" class="cardinality">N</text>
+
+  <!-- ENTITY 9: audit_logs (Bottom Left) -->
+  <rect x="40" y="820" width="190" height="170" />
+  <text x="135" y="840" class="entity-title">audit_logs</text>
+  <line x1="40" y1="850" x2="230" y2="850" class="title-line" />
+  <text x="50" y="868" class="pk">log_id (PK)</text>
+  <text x="50" y="886">user_id (FK)</text>
+  <text x="50" y="904">action</text>
+  <text x="50" y="922">entity_type</text>
+  <text x="50" y="940">entity_id</text>
+  <text x="50" y="958">details</text>
+  <text x="50" y="976">created_at</text>
+
+  <!-- Relationship: users (1) -> (N) audit_logs -->
+  <line x1="135" y1="690" x2="135" y2="820" />
+  <text x="142" y="705" class="cardinality">1</text>
+  <text x="142" y="810" class="cardinality">N</text>
+</svg>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PinjamGeng - Simple Presentation Script (English)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-brown: #55351E;
+      --title-dark: #3A2111;
+      --pill-caramel: #A86538;
+      --bg-cream: #FAF7F2;
+      --card-border: #E8DDD2;
+      --text-dark: #231F1D;
+      --text-muted: #5C534D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #FFFFFF;
+      color: var(--text-dark);
+      line-height: 1.5;
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-box {
+      border-bottom: 3px solid var(--pill-caramel);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--primary-brown);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: var(--title-dark);
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    .meta-grid strong {
+      color: var(--text-dark);
+    }
+
+    .slide-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #F0E6DE;
+      padding-bottom: 6px;
+    }
+
+    .slide-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-badge {
+      background: var(--pill-caramel);
+      color: #FFFFFF;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--title-dark);
+    }
+
+    .action-cue {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #92400E;
+      background: #FEF3C7;
+      padding: 2px 10px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .speech-text {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-dark);
+    }
+
+    .speech-text strong {
+      color: var(--primary-brown);
+    }
+
+    @media print {
+      body { padding: 0; max-width: 100%; }
+      .slide-card { border: 1px solid #D9C8BA; box-shadow: none; margin-bottom: 14px; padding: 14px 16px; }
+      @page { margin: 12mm 15mm; size: A4 portrait; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-box">
+    <div class="header-badge">FYP3024 Final Year Project • Speaker Script</div>
+    <h1>PINJAMGENG: FYP PRESENTATION SCRIPT (ENGLISH)</h1>
+    <div style="font-size: 14px; font-weight: 600; color: var(--primary-brown);">Smart Event Equipment Booking and Inventory Management System</div>
+    
+    <div class="meta-grid">
+      <div><strong>Candidate:</strong> Nursyafiqah Zulaikha Binti Zilkamal (AM2412018113)</div>
+      <div><strong>Supervisor:</strong> Madam Jihadah Binti Ahmad</div>
+      <div><strong>Program:</strong> Diploma in Computer Science (CC101)</div>
+      <div><strong>Faculty:</strong> Faculty of Computing & Multimedia (FCOM), UPTM</div>
+      <div><strong>Live Cloud System:</strong> https://pinjamgeng.infinityfreeapp.com/</div>
+      <div><strong>Estimated Duration:</strong> 8 – 10 Minutes Total</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">1</div>
+        <div class="slide-title">Cover Slide</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Stand straight, smile, make eye contact with panel]</div>
+    <p class="speech-text">
+      "Assalamu’alaikum and good morning to our panel of examiners and my supervisor, Madam Jihadah Binti Ahmad. My name is <strong>Nursyafiqah Zulaikha Binti Zilkamal</strong>, matric number <strong>AM2412018113</strong>, from the Diploma in Computer Science program (CC101). Today, I will present my Final Year Project entitled: <strong>PinjamGeng: Smart Event Equipment Booking and Inventory Management System</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">2</div>
+        <div class="slide-title">Project Background</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "PinjamGeng is a responsive web application tailored specifically for UPTM clubs and societies, built using PHP, MySQL, and Tailwind CSS. It allows student committees to browse equipment, check <strong>live stock availability</strong>, and submit loan requests online <strong>24/7</strong>. This system replaces slow paper logbooks, prevents booking clashes, and ensures smooth return accountability across campus."
+    </p>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">3</div>
+        <div class="slide-title">Problem Statements</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, gesture to points 1 and 2]</div>
+    <p class="speech-text">
+      "We identified two main problems at UPTM:<br>
+      <strong>First</strong>, the current manual and uncentralised booking process makes it difficult to check live stock, causing booking clashes, missing records, and slow approvals.<br>
+      <strong>Second</strong>, users struggle to choose the right equipment for different events, and existing systems do not offer convenient event-based packages."
+    </p>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">4</div>
+        <div class="slide-title">Project Objectives</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "To solve these issues, two objectives were set for our 12-week development:<br>
+      <strong>First</strong>, to develop a web-based booking and inventory system for users to check stock, apply, and track loans, while admins manage records and approvals.<br>
+      <strong>Second</strong>, to implement event-based equipment packages for at least four event types: seminars, workshops, meetings, and photography events.<br>
+      Both objectives were <strong>successfully achieved</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">5</div>
+        <div class="slide-title">Agile Methodology</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, point to Agile circular wheel]</div>
+    <p class="speech-text">
+      "We used the Agile Scrum methodology, broken into <strong>five 2-week sprints</strong>: Sprint 1 for architecture and database design, Sprint 2 for authentication and inventory CRUD, Sprint 3 for the booking wizard and conflict algorithm, Sprint 4 for return desk and damage calculation, and Sprint 5 for live cloud deployment and UAT. This allowed continuous milestone reviews with Madam Jihadah."
+    </p>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">6</div>
+        <div class="slide-title">Unit Testing</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, point to table]</div>
+    <p class="speech-text">
+      "For Unit Testing, we tested five critical backend functions—including Bcrypt security, dynamic stock subtraction, date validation, and defect fine mathematics. All test cases from UT01 to UT05 passed <strong>100% with zero errors</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 7 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">7</div>
+        <div class="slide-title">Integration Testing</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "For Integration Testing, we verified data flow between modules—such as booking form submissions, automatic stock deductions, route security, and equipment returns. All five integration test cases passed <strong>100% successfully</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 8 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">8</div>
+        <div class="slide-title">UAT Questionnaire Overview</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, point to Google Form header card]</div>
+    <p class="speech-text">
+      "After deployment, we conducted formal User Acceptance Testing. As shown on the authentic Google Form on the right, <strong>30 verified UPTM respondents</strong> participated—including club presidents, event exco members, and faculty advisors. The survey covered six evaluation sections, which I will share now."
+    </p>
+  </div>
+
+  <!-- SLIDE 9 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">9</div>
+        <div class="slide-title">Section A: User Profile</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, point to the 3 charts]</div>
+    <p class="speech-text">
+      "Section A confirms our respondents' profile: <strong>96.7%</strong> are active Student Club and Society Executives, <strong>50%</strong> have 1 to 2 years of event organizing experience, and <strong>42.5%</strong> borrow equipment several times every semester. This confirms our feedback comes from frequent, real campus users."
+    </p>
+  </div>
+
+  <!-- SLIDE 10 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">10</div>
+        <div class="slide-title">Section B: Usability Evaluation</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "Section B evaluated system usability: <strong>79.3%</strong> of respondents rated system navigation as Easy or Very Easy, and <strong>93.4%</strong> agreed that our 2-Step Booking Wizard makes reservation quick and straightforward. None of the respondents found it difficult."
+    </p>
+  </div>
+
+  <!-- SLIDE 11 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">11</div>
+        <div class="slide-title">Section C: Functionality Evaluation</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "Section C evaluated system features: <strong>89.7%</strong> agreed that 1-Click Smart Packages make equipment selection much easier, <strong>86.7%</strong> confirmed that real-time stock counters give accurate availability, and <strong>89.7%</strong> confirmed that our conflict engine successfully eliminated double bookings."
+    </p>
+  </div>
+
+  <!-- SLIDE 12 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">12</div>
+        <div class="slide-title">Section D: Requisition Efficiency & Documentation</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "Section D examined operational efficiency: <strong>86.7%</strong> agreed equipment booking is noticeably faster than manual forms, <strong>82.8%</strong> supported the printable digital A4 Loan Slip for counter pickup, and <strong>83.3%</strong> agreed that return desk inspection encourages student care and accountability."
+    </p>
+  </div>
+
+  <!-- SLIDE 13 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">13</div>
+        <div class="slide-title">Section E: Overall Satisfaction</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "Section E shows overall satisfaction: The most valued features were <strong>Live Stock Visibility at 70%</strong> and <strong>Smart Packages at 63.3%</strong>. In terms of rating, <strong>76.7% gave 4 to 5 stars</strong>, with an overall positive satisfaction of <strong>90.0%</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 14 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">14</div>
+        <div class="slide-title">Section F: Open-Ended Feedback</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, read quote from right box]</div>
+    <p class="speech-text">
+      "Slide 14 shows qualitative feedback from respondents. Users praised the preset packages and live stock counters. One respondent also complimented the clean brown aesthetic theme for looking professional and easy to navigate."
+    </p>
+  </div>
+
+  <!-- SLIDE 15 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">15</div>
+        <div class="slide-title">Core Innovations & Live Cloud</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "PinjamGeng brings three core innovations:<br>
+      1. <strong>Automated Conflict Engine:</strong> Blocks overlapping dates automatically.<br>
+      2. <strong>1-Click Smart Packages:</strong> Cuts booking time from 15 minutes to under 60 seconds.<br>
+      3. <strong>Return Damage Engine:</strong> Standardized 4-tier grading with automatic fine calculation.<br>
+      The system is deployed live on the cloud at <strong>pinjamgeng.infinityfreeapp.com</strong>."
+    </p>
+  </div>
+
+  <!-- SLIDE 16 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">16</div>
+        <div class="slide-title">Future Works</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide]</div>
+    <p class="speech-text">
+      "For future enhancements, we recommend: Integrating <strong>IoT Barcode and QR code scanning</strong> for faster counter checkouts, automated <strong>WhatsApp and Telegram notifications</strong> for loan reminders, and <strong>FPX online payment</strong> for damage fines."
+    </p>
+  </div>
+
+  <!-- SLIDE 17 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">17</div>
+        <div class="slide-title">Conclusion</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, speak with confidence]</div>
+    <p class="speech-text">
+      "In conclusion, PinjamGeng has successfully achieved both project objectives within the 12-week timeframe. With a <strong>100% test pass rate</strong> and <strong>90% positive UAT satisfaction</strong>, PinjamGeng is fully validated and ready for official adoption at UPTM."
+    </p>
+  </div>
+
+  <!-- SLIDE 18 -->
+  <div class="slide-card">
+    <div class="slide-header">
+      <div class="slide-title-wrap">
+        <div class="slide-badge">18</div>
+        <div class="slide-title">Thank You & Q&A</div>
+      </div>
+    </div>
+    <div class="action-cue">[Action: Click Next Slide, smile and address the panel]</div>
+    <p class="speech-text">
+      "That is all from me. Thank you to my supervisor, Madam Jihadah, and the examiners for your time. I am now ready to take any questions. Thank you."
+    </p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 1100" width="850" height="1100" style="background-color:#ffffff;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#000000" />
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Arial, sans-serif; font-size: 10.5px; fill: #000000; text-anchor: middle; }
+    .title { font-size: 13px; font-weight: bold; }
+    .actor-label { font-size: 11px; font-weight: bold; }
+    .stereotype { font-size: 8.5px; font-style: italic; }
+    rect, ellipse, circle { stroke: #000000; stroke-width: 1.5; fill: #ffffff; }
+    line, path { stroke: #000000; stroke-width: 1.2; fill: none; }
+    .dashed { stroke-dasharray: 4, 3; }
+  </style>
+
+  <!-- Outer Frame -->
+  <rect x="20" y="20" width="810" height="1060" />
+
+  <!-- System Boundary -->
+  <rect x="200" y="50" width="450" height="1000" rx="4" ry="4" />
+  <text x="425" y="75" class="title">PinjamGeng: Event Equipment Booking &amp; Inventory System</text>
+
+  <!-- ACTOR 1: Admin (Left) -->
+  <!-- Head -->
+  <circle cx="90" cy="460" r="16" />
+  <!-- Body -->
+  <line x1="90" y1="476" x2="90" y2="530" />
+  <!-- Arms -->
+  <line x1="60" y1="495" x2="120" y2="495" />
+  <!-- Legs -->
+  <line x1="90" y1="530" x2="65" y2="575" />
+  <line x1="90" y1="530" x2="115" y2="575" />
+  <text x="90" y="598" class="actor-label">Administrator</text>
+  <text x="90" y="612" style="font-size:9.5px;">(FCM / IT Staff)</text>
+
+  <!-- ACTOR 2: Student Borrower (Right) -->
+  <!-- Head -->
+  <circle cx="760" cy="460" r="16" />
+  <!-- Body -->
+  <line x1="760" y1="476" x2="760" y2="530" />
+  <!-- Arms -->
+  <line x1="730" y1="495" x2="790" y2="495" />
+  <!-- Legs -->
+  <line x1="760" y1="530" x2="735" y2="575" />
+  <line x1="760" y1="530" x2="785" y2="575" />
+  <text x="760" y="598" class="actor-label">Student Borrower</text>
+  <text x="760" y="612" style="font-size:9.5px;">(Event Organizer)</text>
+
+  <!-- USE CASES (OVALS) -->
+
+  <!-- UC1: Login -->
+  <ellipse cx="425" cy="110" rx="90" ry="20" />
+  <text x="425" y="114">Login &amp; Authenticate</text>
+
+  <!-- UC2: Register -->
+  <ellipse cx="425" cy="165" rx="90" ry="20" />
+  <text x="425" y="169">Register Account</text>
+
+  <!-- UC3: Browse Catalog -->
+  <ellipse cx="425" cy="220" rx="90" ry="20" />
+  <text x="425" y="224">Browse Equipment Catalog</text>
+
+  <!-- UC4: Explore Packages -->
+  <ellipse cx="425" cy="275" rx="90" ry="20" />
+  <text x="425" y="279">Explore Event Packages</text>
+
+  <!-- UC5: Submit Booking -->
+  <ellipse cx="425" cy="335" rx="90" ry="20" />
+  <text x="425" y="339">Submit Booking Request</text>
+
+  <!-- UC5a: Check Availability (Included by UC5) -->
+  <ellipse cx="570" cy="385" rx="75" ry="17" />
+  <text x="570" y="388" style="font-size:9.5px;">Check Stock Availability</text>
+
+  <!-- UC5b: Accept Regulations (Included by UC5) -->
+  <ellipse cx="570" cy="430" rx="75" ry="17" />
+  <text x="570" y="433" style="font-size:9.5px;">Accept Loan Terms</text>
+
+  <!-- UC6: Track Booking -->
+  <ellipse cx="425" cy="480" rx="90" ry="20" />
+  <text x="425" y="484">Track Booking Status</text>
+
+  <!-- UC7: Print Slip -->
+  <ellipse cx="425" cy="535" rx="90" ry="20" />
+  <text x="425" y="539">Print Loan Agreement Slip</text>
+
+  <!-- UC8: Cancel Booking -->
+  <ellipse cx="425" cy="590" rx="90" ry="20" />
+  <text x="425" y="594">Cancel Booking Request</text>
+
+  <!-- UC9: Review & Approve Bookings -->
+  <ellipse cx="370" cy="650" rx="95" ry="20" />
+  <text x="370" y="654">Review &amp; Approve Bookings</text>
+
+  <!-- UC10: Counter Checkout -->
+  <ellipse cx="370" cy="710" rx="95" ry="20" />
+  <text x="370" y="714">Handover &amp; Checkout</text>
+
+  <!-- UC11: Return Inspection -->
+  <ellipse cx="370" cy="770" rx="95" ry="20" />
+  <text x="370" y="774">Inspect Return &amp; Condition</text>
+
+  <!-- UC11a: Auto Maintenance Ticket (Extended from UC11) -->
+  <ellipse cx="560" cy="800" rx="80" ry="18" />
+  <text x="560" y="803" style="font-size:9px;">Auto-Generate Ticket</text>
+
+  <!-- UC12: Manage Equipment -->
+  <ellipse cx="370" cy="835" rx="95" ry="20" />
+  <text x="370" y="839">Manage Equipment (CRUD)</text>
+
+  <!-- UC13: Manage Packages -->
+  <ellipse cx="370" cy="895" rx="95" ry="20" />
+  <text x="370" y="899">Manage Event Packages</text>
+
+  <!-- UC14: Manage Maintenance -->
+  <ellipse cx="370" cy="955" rx="95" ry="20" />
+  <text x="370" y="959">Manage Servicing &amp; Repairs</text>
+
+  <!-- UC15: Reports & Analytics -->
+  <ellipse cx="425" cy="1015" rx="95" ry="20" />
+  <text x="425" y="1019">Generate Reports &amp; Analytics</text>
+
+  <!-- CONNECTING LINES: Student Borrower (Right) -->
+  <line x1="740" y1="460" x2="515" y2="110" />
+  <line x1="740" y1="470" x2="515" y2="165" />
+  <line x1="740" y1="480" x2="515" y2="220" />
+  <line x1="740" y1="490" x2="515" y2="275" />
+  <line x1="740" y1="500" x2="515" y2="335" />
+  <line x1="740" y1="520" x2="515" y2="480" />
+  <line x1="740" y1="535" x2="515" y2="535" />
+  <line x1="740" y1="550" x2="515" y2="590" />
+
+  <!-- CONNECTING LINES: Admin (Left) -->
+  <line x1="110" y1="460" x2="335" y2="110" />
+  <line x1="110" y1="480" x2="335" y2="220" />
+  <line x1="110" y1="495" x2="335" y2="275" />
+  <line x1="110" y1="520" x2="275" y2="650" />
+  <line x1="110" y1="535" x2="275" y2="710" />
+  <line x1="110" y1="550" x2="275" y2="770" />
+  <line x1="110" y1="565" x2="275" y2="835" />
+  <line x1="110" y1="580" x2="275" y2="895" />
+  <line x1="110" y1="595" x2="275" y2="955" />
+  <line x1="110" y1="610" x2="330" y2="1015" />
+
+  <!-- INCLUDE & EXTEND RELATIONSHIPS -->
+  <!-- UC5 -> UC5a <<include>> -->
+  <line x1="490" y1="350" x2="530" y2="372" class="dashed" marker-end="url(#arrow)" />
+  <text x="522" y="360" class="stereotype">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- UC5 -> UC5b <<include>> -->
+  <line x1="475" y1="353" x2="535" y2="415" class="dashed" marker-end="url(#arrow)" />
+  <text x="520" y="398" class="stereotype">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- UC11a -> UC11 <<extend>> -->
+  <line x1="500" y1="790" x2="455" y2="780" class="dashed" marker-end="url(#arrow)" />
+  <text x="495" y="777" class="stereotype">&lt;&lt;extend&gt;&gt;</text>
+
+</svg>

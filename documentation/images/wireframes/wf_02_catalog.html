@@ -1,0 +1,224 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  body { background: #FFFFFF; padding: 30px; display: flex; justify-content: center; }
+  .wireframe-browser {
+    width: 900px;
+    border: 2px solid #4B5563;
+    border-radius: 6px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  .browser-bar {
+    background: #F3F4F6;
+    border-bottom: 1.5px solid #4B5563;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .browser-dot { width: 10px; height: 10px; border: 1.5px solid #6B7280; border-radius: 50%; display: inline-block; }
+  .browser-url {
+    flex: 1;
+    background: #FFFFFF;
+    border: 1px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #4B5563;
+    margin-left: 10px;
+  }
+  .wf-header {
+    border-bottom: 1.5px solid #9CA3AF;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FAFAFA;
+  }
+  .wf-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #111827;
+  }
+  .wf-logo-box {
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    background: #E5E7EB;
+  }
+  .wf-nav {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: #4B5563;
+  }
+  .wf-nav-item { border-bottom: 2px solid transparent; padding: 4px 2px; }
+  .wf-nav-item.active { border-bottom: 2px solid #111827; font-weight: bold; color: #111827; }
+  .wf-body { padding: 24px; background: #FFFFFF; min-height: 480px; }
+  .wf-box {
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    background: #FFFFFF;
+  }
+  .wf-input {
+    width: 100%;
+    border: 1.5px solid #9CA3AF;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #6B7280;
+    background: #FAFAFA;
+    margin-top: 4px;
+  }
+  .wf-btn {
+    border: 1.5px solid #111827;
+    background: #E5E7EB;
+    color: #111827;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    cursor: default;
+    text-align: center;
+  }
+  .wf-btn-primary { background: #374151; color: #FFFFFF; }
+  .image-placeholder {
+    border: 1.5px solid #9CA3AF;
+    background: #F3F4F6;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+    font-size: 11px;
+  }
+  .image-placeholder::before, .image-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #D1D5DB;
+  }
+  .image-placeholder::before { transform: rotate(24deg); }
+  .image-placeholder::after { transform: rotate(-24deg); }
+  .wf-badge {
+    display: inline-block;
+    border: 1px solid #6B7280;
+    background: #F3F4F6;
+    color: #374151;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  .wf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .wf-table th, .wf-table td {
+    border: 1px solid #9CA3AF;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .wf-table th { background: #E5E7EB; color: #111827; font-weight: bold; }
+  .wf-caption {
+    font-size: 11px;
+    color: #6B7280;
+    margin-top: 4px;
+  }
+</style></head><body>
+<div class="wireframe-browser">
+  <div class="browser-bar">
+    <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+    <span class="browser-url">https://pinjamgeng.uptm.edu.my/catalog.php</span>
+  </div>
+  <div class="wf-header">
+    <div class="wf-logo"><div class="wf-logo-box">PG</div> PinjamGeng • Borrower Portal</div>
+    <div class="wf-nav">
+      <span class="wf-nav-item active">Catalog & Stock</span>
+      <span class="wf-nav-item">Smart Packages</span>
+      <span class="wf-nav-item">Booking Wizard</span>
+      <span class="wf-nav-item">My Loan Slips</span>
+      <span class="wf-nav-item">[ User Profile ]</span>
+    </div>
+  </div>
+  <div class="wf-body">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <div>
+        <h2 style="font-size: 16px; color: #111827;">Live Equipment Inventory Catalog</h2>
+        <p style="font-size: 11px; color: #6B7280;">Real-time stock indicators updated continuously from central repository</p>
+      </div>
+      <div style="display: flex; gap: 8px; width: 340px;">
+        <div class="wf-input" style="margin: 0;">Search equipment by name or model...</div>
+        <div class="wf-btn">Filter</div>
+      </div>
+    </div>
+
+    <!-- Category Filter Bar -->
+    <div style="display: flex; gap: 8px; margin-bottom: 18px;">
+      <span class="wf-badge" style="background: #374151; color: #fff;">All Items (24)</span>
+      <span class="wf-badge">Audio & Sound (8)</span>
+      <span class="wf-badge">Visual & Projection (6)</span>
+      <span class="wf-badge">Stage & Electrical (6)</span>
+      <span class="wf-badge">Photography / Media (4)</span>
+    </div>
+
+    <!-- 4-Card Grid -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+      <!-- Card 1 -->
+      <div class="wf-box" style="padding: 10px;">
+        <div class="image-placeholder" style="height: 100px; margin-bottom: 8px;"><span style="position: relative; z-index: 1;">Projector 1080p</span></div>
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">EPSON EB-E01 Projector</div>
+        <div style="font-size: 10px; color: #6B7280; margin-bottom: 6px;">Visual / Stage • HDMI Support</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="wf-badge" style="background: #E5E7EB; color: #111827;">Stock: 4 / 6 Avail</span>
+          <div class="wf-btn" style="padding: 4px 8px; font-size: 10px;">+ Select</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="wf-box" style="padding: 10px;">
+        <div class="image-placeholder" style="height: 100px; margin-bottom: 8px;"><span style="position: relative; z-index: 1;">Wireless Mic Set</span></div>
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Shure Dual Wireless Mic</div>
+        <div style="font-size: 10px; color: #6B7280; margin-bottom: 6px;">Audio • 2x Handheld + Receiver</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="wf-badge" style="background: #E5E7EB; color: #111827;">Stock: 5 / 8 Avail</span>
+          <div class="wf-btn" style="padding: 4px 8px; font-size: 10px;">+ Select</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="wf-box" style="padding: 10px;">
+        <div class="image-placeholder" style="height: 100px; margin-bottom: 8px;"><span style="position: relative; z-index: 1;">PA Speaker Kit</span></div>
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">Yamaha StagePas 400BT</div>
+        <div style="font-size: 10px; color: #6B7280; margin-bottom: 6px;">Audio • Portable Speaker + Stand</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="wf-badge" style="background: #E5E7EB; color: #111827;">Stock: 2 / 3 Avail</span>
+          <div class="wf-btn" style="padding: 4px 8px; font-size: 10px;">+ Select</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="wf-box" style="padding: 10px;">
+        <div class="image-placeholder" style="height: 100px; margin-bottom: 8px;"><span style="position: relative; z-index: 1;">Tripod Projection Screen</span></div>
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 4px;">70" x 70" Tripod Screen</div>
+        <div style="font-size: 10px; color: #6B7280; margin-bottom: 6px;">Visual • Matte White Retractable</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="wf-badge" style="background: #E5E7EB; color: #111827;">Stock: 3 / 4 Avail</span>
+          <div class="wf-btn" style="padding: 4px 8px; font-size: 10px;">+ Select</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

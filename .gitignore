@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment and sensitive credentials
+.env
+*.local
+
+# System and OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and scratch
+*.log
+scratch/
+.tmp/
